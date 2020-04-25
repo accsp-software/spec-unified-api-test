@@ -5,10 +5,6 @@
     "description" : "the standard SAFIS API",
     "version" : "1.0.0"
   },
-  "host" : "safis.accsp.org",
-  "basePath" : "/safis_test/safist/api",
-  "schemes" : [ "https" ],
-  "produces" : [ "application/json" ],
   "paths" : {
     "/favorites_download" : {
       "post" : {
@@ -16,26 +12,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
         } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        },
         "summary" : "Something else goes here "
       }
     },
@@ -45,26 +42,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/lookup_list_by_attribute" : {
@@ -73,25 +71,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/lookup_list_date_changed" : {
@@ -100,26 +100,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/neg_reports_upload" : {
@@ -128,26 +129,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/neg_reports_upload_errors" : {
@@ -156,26 +158,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/neg_trips_upload" : {
@@ -184,26 +187,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/neg_trips_upload_errors" : {
@@ -212,26 +216,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/notification_upload" : {
@@ -240,26 +245,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/participants" : {
@@ -268,25 +274,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/permit_compliance" : {
@@ -295,26 +303,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/permit_endorsements" : {
@@ -323,26 +332,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/reports_upload" : {
@@ -351,26 +361,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/reports_upload_errors" : {
@@ -379,26 +390,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/trip_locations" : {
@@ -407,26 +419,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/trips_download" : {
@@ -435,26 +448,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/trips_upload" : {
@@ -463,31 +477,41 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
         }, {
           "name" : "AppVersion",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD2"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PAYLOAD2"
+              }
+            }
+          },
+          "required" : true
+        }
       }
     },
     "/trips_upload_errors" : {
@@ -496,26 +520,27 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     },
     "/user_permits" : {
@@ -524,56 +549,74 @@
         "responses" : {
           "200" : {
             "description" : "output of the endpoint",
-            "schema" : {
-              "type" : "object",
-              "properties" : { }
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : { }
+                }
+              }
             }
           }
         },
-        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "payload",
-          "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PAYLOAD1"
+            "type" : "string"
           }
-        } ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PAYLOAD1"
+        }
       }
     }
   },
-  "definitions" : {
-    "PAYLOAD1" : {
-      "properties" : {
-        "Authorization" : {
-          "type" : "string"
+  "servers" : [ {
+    "url" : "https://safis.accsp.org/safis_test/safist/api"
+  } ],
+  "components" : {
+    "requestBodies" : {
+      "PAYLOAD1" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/PAYLOAD1"
+            }
+          }
         },
-        "body" : {
-          "type" : "string"
-        },
-        "content_type" : {
-          "type" : "string"
-        }
+        "required" : true
       }
     },
-    "PAYLOAD2" : {
-      "properties" : {
-        "Authorization" : {
-          "type" : "string"
-        },
-        "filename" : {
-          "type" : "string"
-        },
-        "body" : {
-          "type" : "string"
-        },
-        "content_type" : {
-          "type" : "string"
+    "schemas" : {
+      "PAYLOAD1" : {
+        "properties" : {
+          "Authorization" : {
+            "type" : "string"
+          },
+          "body" : {
+            "type" : "string"
+          },
+          "content_type" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PAYLOAD2" : {
+        "properties" : {
+          "Authorization" : {
+            "type" : "string"
+          },
+          "filename" : {
+            "type" : "string"
+          },
+          "body" : {
+            "type" : "string"
+          },
+          "content_type" : {
+            "type" : "string"
+          }
         }
       }
     }
