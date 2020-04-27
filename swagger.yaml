@@ -15,7 +15,7 @@ paths:
       description: ''
       responses:
         '200':
-          description: output of the endpoint
+          description: 'The result of the calla'
           schema:
             type: object
             properties: {}
@@ -34,10 +34,10 @@ paths:
   
   /lookup_list:
     post:
-      description: ''
+      description: 'Lookup list contains lots of info'
       responses:
         '200':
-          description: output of the endpoint
+          description: "Nothing different here"
           schema:
             type: object
             properties: {}
@@ -426,18 +426,6 @@ definitions:
       Authorization:
         type: string
       filename:
-        type: string
-      body:
-        type: string
-      content_type:
-        type: string
-  PAYLOAD3:
-    properties:
-      Authorization:
-        type: string
-      filename:
-        type: string
-      app_id:
         type: string
       body:
         type: string
