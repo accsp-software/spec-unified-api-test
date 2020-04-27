@@ -1,0 +1,83 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ORDS generated API for SAFIS API",
+    "description": "the standard SAFIS API",
+    "version": "1.0.0"
+  },
+  "host": "safis.accsp.org",
+  "basePath": "/safis_test/safist/api",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/favorites_download": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "output of the endpoint",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/lookup_list": {
+      "post": {
+        "description": "Lookup list contains lots of info",
+        "responses": {
+          "200": {
+            "description": "Something special here",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/lookup_list_by_attribute": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "output of the endpoint",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/lookup_list_date_changed": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "output of the endpoint",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  }
+}
