@@ -1,0 +1,445 @@
+swagger: '2.0'
+info:
+  title: ORDS generated API for SAFIS API
+  description: the standard SAFIS API
+  version: 1.0.0
+host: safis.accsp.org
+basePath: /safis_test/safist/api
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /favorites_download:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  
+  /lookup_list:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /lookup_list_by_attribute:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /lookup_list_date_changed:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  
+  /neg_reports_upload:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /neg_reports_upload_errors:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /neg_trips_upload:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /neg_trips_upload_errors:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /notification_upload:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /participants:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /permit_compliance:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /permit_endorsements:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /reports_upload:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /reports_upload_errors:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /trip_locations:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /trips_download:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  /trips_upload:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: AppVersion
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD2'
+  /trips_upload_errors:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+  
+  /user_permits:
+    post:
+      description: ''
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      consumes:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: payload
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PAYLOAD1'
+definitions:
+  PAYLOAD1:
+    properties:
+      Authorization:
+        type: string
+      body:
+        type: string
+      content_type:
+        type: string
+  PAYLOAD2:
+    properties:
+      Authorization:
+        type: string
+      filename:
+        type: string
+      body:
+        type: string
+      content_type:
+        type: string
+  PAYLOAD3:
+    properties:
+      Authorization:
+        type: string
+      filename:
+        type: string
+      app_id:
+        type: string
+      body:
+        type: string
+      content_type:
+        type: string
