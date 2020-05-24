@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.28",
+        "version": "1.0.29",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
@@ -65,13 +65,6 @@
                     "eTrips",
                     "eDR"
                 ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589301194666
-                    }
-                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -86,8 +79,46 @@
                         "x-last-modified": 1589343440821
                     }
                 },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
                 "summary": "user_permits",
                 "description": "This call retrieves a list of fisher or dealer permits for the logged in user with a valid username, password and API key."
+            }
+        },
+        "/trips_download": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "summary": "trips_download ",
+                "description": ""
+            }
+        },
+        "/trip_locations": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "trip_locations ",
+                "description": ""
             }
         },
         "/lookup_list": {
@@ -99,17 +130,40 @@
                     "eTrips",
                     "eDR"
                 ],
-                "parameters": [
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {}
+                        },
+                        "description": "Successful Response"
+                    }
+                },
+                "security": [
                     {
-                        "$ref": "#/components/parameters/Non-Confidential",
-                        "name": "Authorization"
+                        "Non-Confidential": []
                     }
                 ],
                 "summary": "lookup_list",
-                "description": "",
-                "externalDocs": {
-                    "url": ""
-                }
+                "description": ""
+            }
+        },
+        "/favorites_download": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "favorites_download",
+                "description": "call to download a users stored favorites on eTrips online"
             }
         },
         "/lookup_list_by_attribute": {
@@ -117,22 +171,16 @@
                 "tags": [
                     "eTrips"
                 ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Non-Confidential",
-                        "name": "Authorization",
-                        "schema": {
-                            "example": ""
-                        },
-                        "required": true,
-                        "properties": ""
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "output of the endpoint"
                     }
                 },
+                "security": [
+                    {
+                        "Non-Confidential": []
+                    }
+                ],
                 "summary": "lookup_list_by_attribute",
                 "description": ""
             }
@@ -143,23 +191,207 @@
                     "eTrips",
                     "eDR"
                 ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Non-Confidential",
-                        "name": "Authorization",
-                        "schema": {
-                            "example": ""
-                        },
-                        "required": true,
-                        "properties": ""
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
                     }
+                },
+                "security": [
+                    {
+                        "Non-Confidential": []
+                    }
+                ],
+                "summary": "lookup_list_date_changed",
+                "description": ""
+            }
+        },
+        "/neg_reports_upload": {
+            "post": {
+                "tags": [
+                    "eDR"
                 ],
                 "responses": {
                     "200": {
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "lookup_list_date_changed",
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "neg_reports_upload ",
+                "description": ""
+            }
+        },
+        "/neg_reports_upload_errors": {
+            "post": {
+                "tags": [
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "neg_reports_upload_errors ",
+                "description": ""
+            }
+        },
+        "/neg_trips_upload": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "neg_trips_upload ",
+                "description": ""
+            }
+        },
+        "/neg_trips_upload_errors": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "neg_trips_upload_errors ",
+                "description": ""
+            }
+        },
+        "/notification_upload": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "notification_upload ",
+                "description": ""
+            }
+        },
+        "/participants": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "participants ",
+                "description": ""
+            }
+        },
+        "/permit_compliance": {
+            "post": {
+                "tags": [
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "permit_compliance ",
+                "description": ""
+            }
+        },
+        "/permit_endorsements": {
+            "post": {
+                "tags": [
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "permit_endorsements ",
+                "description": ""
+            }
+        },
+        "/reports_upload": {
+            "post": {
+                "tags": [
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "reports_upload ",
+                "description": ""
+            }
+        },
+        "/reports_upload_errors": {
+            "post": {
+                "tags": [
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
+                "summary": "reports_upload_errors ",
                 "description": ""
             }
         },
@@ -170,8 +402,7 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/trip_upload_response"
-                            },
-                            "properties": ""
+                            }
                         }
                     }
                 },
@@ -179,11 +410,6 @@
                     "eTrips"
                 ],
                 "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299712965
-                    },
                     {
                         "deprecated": false,
                         "example": "AppVersion : 2.2.11232",
@@ -203,7 +429,6 @@
                             }
                         },
                         "description": "successful upload attempt",
-                        "type": "",
                         "x-last-modified": 1589338696395
                     }
                 },
@@ -211,302 +436,10 @@
                 "description": "send a set of trips rows to safis"
             }
         },
-        "/neg_reports_upload": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "schema": {
-                            "example": ""
-                        },
-                        "required": true,
-                        "properties": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "neg_reports_upload ",
-                "description": ""
-            }
-        },
-        "/neg_reports_upload_errors": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "schema": {
-                            "example": ""
-                        },
-                        "required": true,
-                        "properties": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "neg_reports_upload_errors ",
-                "description": ""
-            }
-        },
-        "/neg_trips_upload": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Non-Confidential",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299779103
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "neg_trips_upload ",
-                "description": ""
-            }
-        },
-        "/neg_trips_upload_errors": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299803817
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "neg_trips_upload_errors ",
-                "description": ""
-            }
-        },
-        "/notification_upload": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299826573
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "notification_upload ",
-                "description": ""
-            }
-        },
-        "/participants": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Non-Confidential",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299861497
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "participants ",
-                "description": ""
-            }
-        },
-        "/permit_compliance": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299901676
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "permit_compliance ",
-                "description": ""
-            }
-        },
-        "/permit_endorsements": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299931318
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "permit_endorsements ",
-                "description": ""
-            }
-        },
-        "/reports_upload": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299958252
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "reports_upload ",
-                "description": ""
-            }
-        },
-        "/reports_upload_errors": {
-            "post": {
-                "tags": [
-                    "eDR"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589299981394
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "reports_upload_errors ",
-                "description": ""
-            }
-        },
-        "/trip_locations": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589300002640
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "trip_locations ",
-                "description": ""
-            }
-        },
-        "/trips_download": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589300023197
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "trips_download ",
-                "description": ""
-            }
-        },
-        "/favorites_download": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": []
-                    }
-                ],
-                "summary": "favorites_download ",
-                "description": "call to download a users stored favorites on eTrips online"
-            }
-        },
         "/trips_upload_errors": {
             "post": {
                 "tags": [
                     "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential-Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589300286998
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -514,6 +447,11 @@
                         "x-last-modified": 1589338797899
                     }
                 },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
                 "summary": "trips_upload_errors",
                 "description": ""
             }
@@ -946,12 +884,16 @@
             "Confidential-API": {
                 "scheme": "basic",
                 "type": "http",
-                "description": "username@apikey:password"
+                "description": "username@apikey:password",
+                "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ=",
+                "format": "the base64 representation of  username@apikey:password"
             },
             "Non-Confidential": {
                 "scheme": "basic",
                 "type": "http",
-                "description": "@apikey"
+                "description": "@apikey",
+                "example": "Basic dXNlcm5h=",
+                "format": "the base64 representation of @apikey"
             }
         }
     },
