@@ -2,13 +2,11 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.27",
-        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer\u2019s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
+        "version": "1.0.28",
+        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
-        },
-        "license": null,
-        "contact": null
+        }
     },
     "servers": [
         {
@@ -23,11 +21,10 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "$ref": "#/components/schemas/user_permits_request",
                                 "required": [
                                     "p_usertype"
                                 ],
-                                "enum": [],
-                                "type": "object",
                                 "properties": {
                                     "p_usertype": {
                                         "description": "type of permits being requested",
@@ -70,7 +67,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589301194666
                     }
@@ -108,8 +105,7 @@
                         "name": "Authorization"
                     }
                 ],
-                "responses": {},
-                "summary": "lookup_list ",
+                "summary": "lookup_list",
                 "description": "",
                 "externalDocs": {
                     "url": ""
@@ -137,7 +133,7 @@
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "lookup_list_by_attribute ",
+                "summary": "lookup_list_by_attribute",
                 "description": ""
             }
         },
@@ -163,7 +159,7 @@
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "lookup_list_date_changed ",
+                "summary": "lookup_list_date_changed",
                 "description": ""
             }
         },
@@ -173,7 +169,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/trips upload response"
+                                "$ref": "#/components/schemas/trip_upload_response"
                             },
                             "properties": ""
                         }
@@ -184,7 +180,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299712965
                     },
@@ -202,7 +198,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/trips upload response"
+                                    "$ref": "#/components/schemas/trip_upload_response"
                                 }
                             }
                         },
@@ -215,28 +211,6 @@
                 "description": "send a set of trips rows to safis"
             }
         },
-        "/trips_upload_errors": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/Confidential Auth",
-                        "name": "Authorization",
-                        "x-last-modified": 1589300286998
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint",
-                        "x-last-modified": 1589338797899
-                    }
-                },
-                "summary": "trips_upload_errors",
-                "description": ""
-            }
-        },
         "/neg_reports_upload": {
             "post": {
                 "tags": [
@@ -244,7 +218,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "schema": {
                             "example": ""
@@ -269,7 +243,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "schema": {
                             "example": ""
@@ -315,7 +289,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299803817
                     }
@@ -336,7 +310,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299826573
                     }
@@ -378,7 +352,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299901676
                     }
@@ -399,7 +373,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299931318
                     }
@@ -420,7 +394,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299958252
                     }
@@ -441,7 +415,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589299981394
                     }
@@ -462,7 +436,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589300002640
                     }
@@ -483,7 +457,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization",
                         "x-last-modified": 1589300023197
                     }
@@ -504,7 +478,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Confidential Auth",
+                        "$ref": "#/components/parameters/Confidential-Auth",
                         "name": "Authorization"
                     }
                 ],
@@ -513,8 +487,35 @@
                         "description": "output of the endpoint"
                     }
                 },
+                "security": [
+                    {
+                        "Confidential-API": []
+                    }
+                ],
                 "summary": "favorites_download ",
                 "description": "call to download a users stored favorites on eTrips online"
+            }
+        },
+        "/trips_upload_errors": {
+            "post": {
+                "tags": [
+                    "eTrips"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Confidential-Auth",
+                        "name": "Authorization",
+                        "x-last-modified": 1589300286998
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output of the endpoint",
+                        "x-last-modified": 1589338797899
+                    }
+                },
+                "summary": "trips_upload_errors",
+                "description": ""
             }
         }
     },
@@ -524,7 +525,7 @@
                 "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
                 "required": [
                     "trip_start_date",
-                    " trip_type",
+                    "trip_type",
                     "cf_license_nbr",
                     "port",
                     "iss_agency",
@@ -597,75 +598,6 @@
                     }
                 },
                 "x-last-modified": 1589314902665
-            },
-            "trips upload response": {
-                "description": "response to successful trips_upload call. ",
-                "required": [],
-                "enum": [],
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "required": [],
-                            "type": "object",
-                            "properties": {
-                                "event_id": {
-                                    "description": "unique ID of this upload process",
-                                    "type": "string"
-                                },
-                                "upload_date": {
-                                    "description": "date the upload was received by server. Format MM/DD/YYYY hh24:mi",
-                                    "type": "string"
-                                },
-                                "process_date": {
-                                    "description": "date the server completed processing upload request. Format MM/DD/YYYY hh24:mi",
-                                    "type": "string"
-                                },
-                                "total_count": {
-                                    "description": "Number of trips found in the upload",
-                                    "type": "string"
-                                },
-                                "errored_count": {
-                                    "description": "Number of trips NOT processed due to one or more errors",
-                                    "type": "string"
-                                },
-                                "trips_accepted": {
-                                    "description": "details for accepted trips",
-                                    "type": "array",
-                                    "items": {
-                                        "required": [],
-                                        "type": "object",
-                                        "properties": {
-                                            "supplier_trip_id": {
-                                                "description": "unique supplier id for supplied to the upload",
-                                                "type": "string"
-                                            },
-                                            "accsp_trip_id": {
-                                                "description": "accsp internal identifier for this matching the supplier trip id",
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of the upload attempt",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "Human readable description of the status reason or failure.",
-                        "type": "string"
-                    }
-                },
-                "example": "",
-                "x-last-modified": 1589339290772
             },
             "user_permits_response": {
                 "description": "",
@@ -746,10 +678,99 @@
                     "description": "User: Active Permit Count:0"
                 },
                 "x-last-modified": 1589344005031
+            },
+            "trip_upload_response": {
+                "description": "response to successful trips_upload call. ",
+                "required": [],
+                "enum": [],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "required": [],
+                            "type": "object",
+                            "properties": {
+                                "event_id": {
+                                    "description": "unique ID of this upload process",
+                                    "type": "string"
+                                },
+                                "upload_date": {
+                                    "description": "date the upload was received by server. Format MM/DD/YYYY hh24:mi",
+                                    "type": "string"
+                                },
+                                "process_date": {
+                                    "description": "date the server completed processing upload request. Format MM/DD/YYYY hh24:mi",
+                                    "type": "string"
+                                },
+                                "total_count": {
+                                    "description": "Number of trips found in the upload",
+                                    "type": "string"
+                                },
+                                "errored_count": {
+                                    "description": "Number of trips NOT processed due to one or more errors",
+                                    "type": "string"
+                                },
+                                "trips_accepted": {
+                                    "description": "details for accepted trips",
+                                    "type": "array",
+                                    "items": {
+                                        "required": [],
+                                        "type": "object",
+                                        "properties": {
+                                            "supplier_trip_id": {
+                                                "description": "unique supplier id for supplied to the upload",
+                                                "type": "string"
+                                            },
+                                            "accsp_trip_id": {
+                                                "description": "accsp internal identifier for this matching the supplier trip id",
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure.",
+                        "type": "string"
+                    }
+                },
+                "example": "",
+                "x-last-modified": 1589339290772
+            },
+            "user_permits_request": {
+                "title": "Root Type for user_permits_request",
+                "description": "",
+                "required": [
+                    "p_usertype"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_usertype": {
+                        "enum": [
+                            "FISHER",
+                            "DEALER"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_usertype": "FISHER"
+                }
             }
         },
         "parameters": {
-            "Confidential Auth": {
+            "Confidential-Auth": {
                 "deprecated": false,
                 "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ=",
                 "description": "\n",
@@ -922,20 +943,17 @@
             }
         },
         "securitySchemes": {
-            "Confidential API ": {
-                "scheme": "Basic",
-                "bearerFormat": "",
+            "Confidential-API": {
+                "scheme": "basic",
                 "type": "http",
                 "description": "username@apikey:password"
             },
             "Non-Confidential": {
-                "scheme": "Basic",
-                "bearerFormat": "",
+                "scheme": "basic",
                 "type": "http",
                 "description": "@apikey"
             }
-        },
-        "responses": {}
+        }
     },
     "tags": [
         {
@@ -949,7 +967,5 @@
             "externalDocs": {}
         }
     ],
-    "responses": {},
-    "security": [],
-    "externalDocs": null
+    "responses": {}
 }
