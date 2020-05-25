@@ -558,6 +558,13 @@
                     "cf_license_nbr": {
                         "description": "Permit/License Number of Permit in use.",
                         "type": "string"
+                    },
+                    "efforts": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/effort"
+                        }
                     }
                 },
                 "x-last-modified": 1589314902665
@@ -752,6 +759,108 @@
                             "$ref": "#/components/schemas/trip"
                         }
                     }
+                }
+            },
+            "effort": {
+                "title": "Root Type for effort",
+                "description": "",
+                "required": [
+                    "distance",
+                    "in_state",
+                    "area_code",
+                    "sub_area_code",
+                    "gear",
+                    "gear_quantity",
+                    "fishing_hours"
+                ],
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "type": "string"
+                    },
+                    "in_state": {
+                        "type": "string"
+                    },
+                    "area_code": {
+                        "type": "string"
+                    },
+                    "sub_area_code": {
+                        "type": "string"
+                    },
+                    "local_area_code": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "gear": {
+                        "type": "string"
+                    },
+                    "lma": {
+                        "type": "string"
+                    },
+                    "gear_quantity": {
+                        "type": "string"
+                    },
+                    "gear_sets": {
+                        "type": "string"
+                    },
+                    "fishing_hours": {
+                        "type": "string"
+                    },
+                    "hours_days": {
+                        "type": "string"
+                    },
+                    "total_gear": {
+                        "type": "string"
+                    },
+                    "gear_size": {
+                        "type": "string"
+                    },
+                    "mesh_ring_length": {
+                        "type": "string"
+                    },
+                    "mesh_ring_width": {
+                        "type": "string"
+                    },
+                    "stretch_size": {
+                        "type": "string"
+                    },
+                    "target_species": {
+                        "type": "string"
+                    },
+                    "avg_depth": {
+                        "type": "string"
+                    },
+                    "supplier_effort_id": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "distance": "1",
+                    "in_state": "RI",
+                    "area_code": "539",
+                    "sub_area_code": "0132",
+                    "local_area_code": "00",
+                    "latitude": "41.4450635115479",
+                    "longitude": "-71.3559923529778",
+                    "gear": "300",
+                    "lma": "",
+                    "gear_quantity": "16",
+                    "gear_sets": "23",
+                    "fishing_hours": "6.0",
+                    "hours_days": "H",
+                    "total_gear": "0",
+                    "gear_size": "",
+                    "mesh_ring_length": "",
+                    "mesh_ring_width": "",
+                    "stretch_size": "",
+                    "target_species": "",
+                    "avg_depth": "55",
+                    "supplier_effort_id": "120119073102827"
                 }
             }
         },
