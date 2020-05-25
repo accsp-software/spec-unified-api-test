@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.29",
+        "version": "1.0.30",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
@@ -18,45 +18,19 @@
         "/user_permits": {
             "post": {
                 "requestBody": {
+                    "description": "",
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/user_permits_request",
-                                "required": [
-                                    "p_usertype"
-                                ],
-                                "properties": {
-                                    "p_usertype": {
-                                        "description": "type of permits being requested",
-                                        "enum": [
-                                            "FISHER",
-                                            "DEALER"
-                                        ],
-                                        "type": "string"
+                                "$ref": "#/components/schemas/user_permits_request"
+                            },
+                            "examples": {
+                                "fisher_permit_request": {
+                                    "value": {
+                                        "p_usertype": "FISHER"
                                     }
-                                },
-                                "example": {
-                                    "p_usertype": "DEALER"
                                 }
-                            },
-                            "example": {
-                                "p_usertype": "DEALER"
-                            },
-                            "properties": {
-                                "p_usertype": {
-                                    "description": "type of permits being requested",
-                                    "enum": [
-                                        "FISHER",
-                                        "DEALER"
-                                    ],
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object",
-                            "enum": [],
-                            "required": [
-                                "p_usertype"
-                            ]
+                            }
                         }
                     },
                     "required": true
@@ -71,17 +45,40 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/user_permits_response"
+                                },
+                                "examples": {
+                                    "2_license_example": {
+                                        "value": {
+                                            "row": [
+                                                {
+                                                    "license_nbr": "MAFISHER",
+                                                    "license_type": "Commercial Fisher",
+                                                    "permit_type": "Commercial",
+                                                    "agency": "0003",
+                                                    "in_use": "Y"
+                                                },
+                                                {
+                                                    "license_nbr": "MAFISHER2",
+                                                    "license_type": "For-hire",
+                                                    "permit_type": "For-Hire",
+                                                    "agency": "0003",
+                                                    "in_use": "Y"
+                                                }
+                                            ],
+                                            "status": "OK",
+                                            "description": "User: Active Permit Count:0"
+                                        }
+                                    }
                                 }
                             }
                         },
-                        "description": "successful call results",
-                        "type": "",
-                        "x-last-modified": 1589343440821
+                        "description": "successful response"
                     }
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "user_permits",
@@ -98,7 +95,7 @@
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "trips_download ",
+                "summary": "trips_download",
                 "description": ""
             }
         },
@@ -114,10 +111,11 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
-                "summary": "trip_locations ",
+                "summary": "trip_locations",
                 "description": ""
             }
         },
@@ -133,14 +131,17 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+
+                            }
                         },
                         "description": "Successful Response"
                     }
                 },
                 "security": [
                     {
-                        "Non-Confidential": []
+                        "Non-Confidential": [
+                        ]
                     }
                 ],
                 "summary": "lookup_list",
@@ -159,7 +160,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "favorites_download",
@@ -178,7 +180,8 @@
                 },
                 "security": [
                     {
-                        "Non-Confidential": []
+                        "Non-Confidential": [
+                        ]
                     }
                 ],
                 "summary": "lookup_list_by_attribute",
@@ -198,7 +201,8 @@
                 },
                 "security": [
                     {
-                        "Non-Confidential": []
+                        "Non-Confidential": [
+                        ]
                     }
                 ],
                 "summary": "lookup_list_date_changed",
@@ -217,7 +221,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "neg_reports_upload ",
@@ -236,7 +241,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "neg_reports_upload_errors ",
@@ -255,7 +261,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "neg_trips_upload ",
@@ -274,7 +281,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "neg_trips_upload_errors ",
@@ -293,7 +301,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "notification_upload ",
@@ -312,7 +321,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "participants ",
@@ -331,7 +341,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "permit_compliance ",
@@ -350,7 +361,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "permit_endorsements ",
@@ -369,7 +381,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "reports_upload ",
@@ -388,7 +401,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "reports_upload_errors ",
@@ -401,7 +415,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/trip_upload_response"
+                                "$ref": "#/components/schemas/trips"
                             }
                         }
                     }
@@ -414,6 +428,9 @@
                         "deprecated": false,
                         "example": "AppVersion : 2.2.11232",
                         "name": "AppVersion",
+                        "schema": {
+                            "type": "string"
+                        },
                         "in": "header",
                         "required": true,
                         "x-last-modified": 1589300119228
@@ -432,6 +449,12 @@
                         "x-last-modified": 1589338696395
                     }
                 },
+                "security": [
+                    {
+                        "Confidential-API": [
+                        ]
+                    }
+                ],
                 "summary": "trips_upload ",
                 "description": "send a set of trips rows to safis"
             }
@@ -449,7 +472,8 @@
                 },
                 "security": [
                     {
-                        "Confidential-API": []
+                        "Confidential-API": [
+                        ]
                     }
                 ],
                 "summary": "trips_upload_errors",
@@ -469,7 +493,8 @@
                     "iss_agency",
                     "supplier_trip_id"
                 ],
-                "enum": [],
+                "enum": [
+                ],
                 "type": "object",
                 "properties": {
                     "trip_start_date": {
@@ -539,14 +564,17 @@
             },
             "user_permits_response": {
                 "description": "",
-                "required": [],
-                "enum": [],
+                "required": [
+                ],
+                "enum": [
+                ],
                 "type": "object",
                 "properties": {
                     "row": {
                         "type": "array",
                         "items": {
-                            "required": [],
+                            "required": [
+                            ],
                             "type": "object",
                             "properties": {
                                 "license_nbr": {
@@ -619,14 +647,17 @@
             },
             "trip_upload_response": {
                 "description": "response to successful trips_upload call. ",
-                "required": [],
-                "enum": [],
+                "required": [
+                ],
+                "enum": [
+                ],
                 "type": "object",
                 "properties": {
                     "row": {
                         "type": "array",
                         "items": {
-                            "required": [],
+                            "required": [
+                            ],
                             "type": "object",
                             "properties": {
                                 "event_id": {
@@ -653,7 +684,8 @@
                                     "description": "details for accepted trips",
                                     "type": "array",
                                     "items": {
-                                        "required": [],
+                                        "required": [
+                                        ],
                                         "type": "object",
                                         "properties": {
                                             "supplier_trip_id": {
@@ -705,6 +737,22 @@
                 "example": {
                     "p_usertype": "FISHER"
                 }
+            },
+            "trips": {
+                "description": "collection of trip objects. ",
+                "required": [
+                    "trips"
+                ],
+                "type": "object",
+                "properties": {
+                    "trips": {
+                        "description": "collection of trips",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/trip"
+                        }
+                    }
+                }
             }
         },
         "parameters": {
@@ -715,7 +763,8 @@
                 "schema": {
                     "format": "the base64 representation of  username@apikey:password",
                     "pattern": "",
-                    "enum": [],
+                    "enum": [
+                    ],
                     "type": "string",
                     "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ="
                 },
@@ -725,7 +774,8 @@
                 "type": "string",
                 "format": "the base64 representation of  username@apikey:password",
                 "pattern": "",
-                "enum": []
+                "enum": [
+                ]
             },
             "Non-Confidential": {
                 "deprecated": false,
@@ -734,7 +784,8 @@
                 "schema": {
                     "format": "the base64 value of @apikey",
                     "pattern": "",
-                    "enum": [],
+                    "enum": [
+                    ],
                     "type": "string",
                     "example": ""
                 },
@@ -744,7 +795,8 @@
                 "type": "string",
                 "format": "the base64 value of @apikey",
                 "pattern": "",
-                "enum": [],
+                "enum": [
+                ],
                 "x-last-modified": 1589299609834
             }
         },
@@ -768,7 +820,8 @@
                                 "p_partner",
                                 "p_listname"
                             ],
-                            "enum": [],
+                            "enum": [
+                            ],
                             "type": "object",
                             "properties": {
                                 "p_partner": {
@@ -828,7 +881,8 @@
                             }
                         },
                         "type": "object",
-                        "enum": [],
+                        "enum": [
+                        ],
                         "required": [
                             "p_partner",
                             "p_listname"
@@ -846,7 +900,8 @@
                             "required": [
                                 "trips"
                             ],
-                            "enum": [],
+                            "enum": [
+                            ],
                             "type": "object",
                             "properties": {
                                 "trips": {
@@ -870,7 +925,8 @@
                             }
                         },
                         "type": "object",
-                        "enum": [],
+                        "enum": [
+                        ],
                         "required": [
                             "trips"
                         ]
@@ -884,16 +940,12 @@
             "Confidential-API": {
                 "scheme": "basic",
                 "type": "http",
-                "description": "username@apikey:password",
-                "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ=",
-                "format": "the base64 representation of  username@apikey:password"
+                "description": "username@apikey:password"
             },
             "Non-Confidential": {
                 "scheme": "basic",
                 "type": "http",
-                "description": "@apikey",
-                "example": "Basic dXNlcm5h=",
-                "format": "the base64 representation of @apikey"
+                "description": "@apikey"
             }
         }
     },
@@ -901,13 +953,19 @@
         {
             "name": "eTrips",
             "description": "eTrips",
-            "externalDocs": {}
+            "externalDocs": {
+
+            }
         },
         {
             "name": "eDR",
             "description": "eDR",
-            "externalDocs": {}
+            "externalDocs": {
+
+            }
         }
     ],
-    "responses": {}
+    "responses": {
+
+    }
 }
