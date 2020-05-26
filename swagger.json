@@ -132,7 +132,9 @@
                     "200": {
                         "content": {
                             "application/json": {
-
+                                "schema": {
+                                    "$ref": "#/components/schemas/lookup_list_responses"
+                                }
                             }
                         },
                         "description": "Successful Response"
@@ -498,6 +500,7 @@
                 "type": "object",
                 "properties": {
                     "trip_start_date": {
+                        "format": "date",
                         "description": "calendar date of beginning of fishing trip. Format MM/DD/YYYY",
                         "type": "string"
                     },
@@ -564,6 +567,13 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/effort"
+                        }
+                    },
+                    "trip_additional_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
                         }
                     }
                 },
@@ -722,7 +732,29 @@
                         "type": "string"
                     }
                 },
-                "example": "",
+                "example": {
+                    "row": [
+                        {
+                            "event_id": "121582",
+                            "upload_date": "2018-08-30 12:56:28",
+                            "process_date": "12:56:32",
+                            "total_count": "2",
+                            "errored_count": "0",
+                            "trips_accepted": [
+                                {
+                                    "supplier_trip_id": "0192929",
+                                    "accsp_trip_id": 1231213
+                                },
+                                {
+                                    "supplier_trip_id": "0141229",
+                                    "accsp_trip_id": 1211213
+                                }
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "UPDATEEVENTSUPLOAD"
+                },
                 "x-last-modified": 1589339290772
             },
             "user_permits_request": {
@@ -837,6 +869,13 @@
                     },
                     "supplier_effort_id": {
                         "type": "string"
+                    },
+                    "catches": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/catch"
+                        }
                     }
                 },
                 "example": {
@@ -861,6 +900,290 @@
                     "target_species": "",
                     "avg_depth": "55",
                     "supplier_effort_id": "120119073102827"
+                }
+            },
+            "catch": {
+                "title": "Root Type for catch",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "species_itis": {
+                        "type": "string"
+                    },
+                    "disposition": {
+                        "type": "string"
+                    },
+                    "unit_of_measure": {
+                        "type": "string"
+                    },
+                    "market_code": {
+                        "type": "string"
+                    },
+                    "grade_code": {
+                        "type": "string"
+                    },
+                    "reported_quantity": {
+                        "type": "string"
+                    },
+                    "nbr_of_fish": {
+                        "type": "string"
+                    },
+                    "supplier_catch_id": {
+                        "type": "string"
+                    },
+                    "sale_disposition_flag": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "species_itis": "170425",
+                    "disposition": "001",
+                    "unit_of_measure": "LB",
+                    "market_code": "UN",
+                    "grade_code": "01",
+                    "reported_quantity": "25",
+                    "nbr_of_fish": "4",
+                    "supplier_catch_id": "6"
+                }
+            },
+            "attribute": {
+                "title": "Root Type for attribute",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "040",
+                    "value": "Y"
+                }
+            },
+            "attribute_with_units": {
+                "title": "Root Type for attribute_with_units",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "units": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "231",
+                    "value": "1233",
+                    "units": "CM"
+                }
+            },
+            "attribute_multi_value": {
+                "title": "Root Type for attribute_multi_value",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "units": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "231",
+                    "value": "1233",
+                    "values": [
+                        "21312",
+                        "231231"
+                    ],
+                    "units": "CM"
+                }
+            },
+            "lookup_list_responses": {
+                "oneOf": [
+                    {
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/gears_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/attributes_list_response"
+                    }
+                ],
+                "description": "",
+                "type": "object"
+            },
+            "gears_list_response": {
+                "title": "GEARS",
+                "description": "GEARS",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string"
+                                },
+                                "desc": {
+                                    "type": "string"
+                                },
+                                "category_code": {
+                                    "type": "string"
+                                },
+                                "category_name": {
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_ch_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "077",
+                            "desc": "HOOP NET",
+                            "category_code": "070",
+                            "category_name": "OTHER FIXED NETS",
+                            "comm_flag": "Y",
+                            "for_hire_ch_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        },
+                        {
+                            "code": "407",
+                            "desc": "LONG LINES, DRIFT W/HOOKS",
+                            "category_code": "400",
+                            "category_name": "LONG LINES",
+                            "comm_flag": "Y",
+                            "for_hire_ch_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "2 Gear(s) Returned"
+                }
+            },
+            "attributes_list_response": {
+                "title": "ADDITIONAL_ATTRIBUTES",
+                "description": "ADDITIONAL_ATTRIBUTES",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "attribute_name": {
+                                    "type": "string"
+                                },
+                                "help_text": {
+                                    "type": "string"
+                                },
+                                "order_seq": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "attribute_count": {
+                                    "type": "string"
+                                },
+                                "list_type": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_charter_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "attribute_code": 3,
+                            "attribute_name": "Target Species",
+                            "help_text": "Choose one or more targeted species.",
+                            "order_seq": 1,
+                            "attribute_count": "M",
+                            "list_type": "D",
+                            "type": "STRING",
+                            "comm_flag": "Y",
+                            "for_hire_charter_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "1 Attribute(s) Returned"
                 }
             }
         },
