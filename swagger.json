@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.30",
+        "version": "1.0.31",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
@@ -251,26 +251,6 @@
                 "description": ""
             }
         },
-        "/neg_trips_upload": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": [
-                        ]
-                    }
-                ],
-                "summary": "neg_trips_upload ",
-                "description": ""
-            }
-        },
         "/neg_trips_upload_errors": {
             "post": {
                 "tags": [
@@ -480,6 +460,45 @@
                 ],
                 "summary": "trips_upload_errors",
                 "description": ""
+            }
+        },
+        "/neg_trips_upload": {
+            "summary": "send a set of negative / no fishing trip reports to safis",
+            "description": "",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/neg_trips"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/neg_trips_response"
+                                }
+                            }
+                        },
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": [
+                        ]
+                    }
+                ],
+                "summary": "neg_trips_upload ",
+                "description": "send a set of negative / no fishing trip reports to safis."
             }
         }
     },
@@ -1184,6 +1203,146 @@
                     ],
                     "status": "OK",
                     "description": "1 Attribute(s) Returned"
+                }
+            },
+            "neg_trip": {
+                "title": "Root Type for neg_trip",
+                "description": "no-fishing report/negative trip",
+                "required": [
+                    "cf_license_nbr",
+                    "start_date",
+                    "supplier_row_id",
+                    "iss_agency"
+                ],
+                "type": "object",
+                "properties": {
+                    "supplier_row_id": {
+                        "description": "unique identifier given by sender. Useful for updating information and retrieving errors. ",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 digit identification of the issuing agency of permit",
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "format": "date",
+                        "description": "start date of the negative/no fishing report",
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "format": "date",
+                        "description": "last date of negative report if a range is being given",
+                        "type": "string"
+                    },
+                    "cf_license_nbr": {
+                        "description": "license number given by issuing agency",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "supplier_row_id": "1231231",
+                    "iss_agency": "0003",
+                    "start_date": "11/22/2015",
+                    "end_date": "11/22/2015",
+                    "cf_license_nbr": "999999"
+                }
+            },
+            "neg_trips": {
+                "description": "An Array of negative trips.",
+                "required": [
+                    "neg_trips"
+                ],
+                "type": "object",
+                "properties": {
+                    "neg_trips": {
+                        "description": "Collection of negative trip reports",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/neg_trip"
+                        }
+                    }
+                },
+                "example": {
+                    "neg_trips": [
+                        {
+                            "supplier_row_id": "12345611",
+                            "iss_agency": "0004",
+                            "start_date": "11/22/2017",
+                            "end_date": "11/22/2017",
+                            "cf_license_nbr": "123456"
+                        },
+                        {
+                            "supplier_row_id": "12345612",
+                            "iss_agency": "0004",
+                            "start_date": "11/23/2017",
+                            "end_date": "11/23/2017",
+                            "cf_license_nbr": "123456"
+                        }
+                    ]
+                }
+            },
+            "neg_trips_response": {
+                "title": "Root Type for neg_trips_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "event_id": {
+                                    "description": "the unique job-id/event_id for this upload assigned by the system",
+                                    "type": "string"
+                                },
+                                "upload_date": {
+                                    "format": "date-time",
+                                    "description": "when the upload was received",
+                                    "type": "string"
+                                },
+                                "process_date": {
+                                    "description": "When the upload was processed.",
+                                    "type": "string"
+                                },
+                                "total_count": {
+                                    "description": "total count of neg trip records received.",
+                                    "type": "string"
+                                },
+                                "errored_count": {
+                                    "description": "total count of neg trip records that were not processed due to one or more errors.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "event_id": "765841",
+                            "upload_date": "2020-04-16 15:12:14",
+                            "process_date": "15:12:15",
+                            "total_count": "2",
+                            "errored_count": "1"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Total rows inserted 2"
                 }
             }
         },
