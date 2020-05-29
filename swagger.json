@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.31",
+        "version": "1.0.32",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
@@ -1044,21 +1044,6 @@
                     "units": "CM"
                 }
             },
-            "lookup_list_responses": {
-                "oneOf": [
-                    {
-                        "type": "object"
-                    },
-                    {
-                        "$ref": "#/components/schemas/gears_list_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/attributes_list_response"
-                    }
-                ],
-                "description": "",
-                "type": "object"
-            },
             "gears_list_response": {
                 "title": "GEARS",
                 "description": "GEARS",
@@ -1344,6 +1329,18 @@
                     "status": "OK",
                     "description": "Total rows inserted 2"
                 }
+            },
+            "lookup_list_responses": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/gears_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/attributes_list_response"
+                    }
+                ],
+                "description": "",
+                "type": "object"
             }
         },
         "parameters": {
