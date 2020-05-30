@@ -2,8 +2,11 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.32",
-        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose, for example it  does not supply a web-page interface. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
+        "version": "1.0.34",
+        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
+        "contact": {
+            "email": "support@accsp.org"
+        },
         "x-logo": {
             "url": "https://raw.githubusercontent.com/accsp-software/spec-unified-api-test/master/docs/accsp_logo.jpg"
         }
@@ -150,34 +153,31 @@
                 "description": "call to download a users stored favorites on eTrips online"
             }
         },
-        "/lookup_list_by_attribute": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "security": [
-                    {
-                        "Non-Confidential": [
-                        ]
-                    }
-                ],
-                "summary": "lookup_list_by_attribute",
-                "description": ""
-            }
-        },
         "/lookup_list_date_changed": {
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/lookup_list_date_changed_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "tags": [
                     "eTrips",
                     "eDR"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/lookup_list_date_changed_response"
+                                }
+                            }
+                        },
                         "description": "output of the endpoint"
                     }
                 },
@@ -188,7 +188,7 @@
                     }
                 ],
                 "summary": "lookup_list_date_changed",
-                "description": ""
+                "description": "fetch the last date that the specified lookup table(s) were changed."
             }
         },
         "/neg_reports_upload": {
@@ -516,6 +516,43 @@
                 ],
                 "summary": "trip_locations",
                 "description": "send a set of trip location data rows to safis"
+            }
+        },
+        "/lookup_list_by_attribute": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/lookup_list_attribute_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/lookup_list_attribute_response"
+                                }
+                            }
+                        },
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Non-Confidential": [
+                        ]
+                    }
+                ],
+                "summary": "lookup_list_by_attribute",
+                "description": "fetch a set of rows for specified attribute lookup list. Used in combination with _additional_attributes lookup_list"
             }
         }
     },
@@ -1495,6 +1532,197 @@
                     ],
                     "status": "OK",
                     "description": "Total rows inserted 3"
+                }
+            },
+            "lookup_list_attribute_request": {
+                "title": "Root Type for lookup_list_attribute_request",
+                "description": "",
+                "required": [
+                    "p_attribute",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character issuing agency of the attributes list",
+                        "type": "string"
+                    },
+                    "p_attribute": {
+                        "description": "attribute code corresponding to attribute_code given by lookup_list",
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "the earliest date filter for the list request. Format MM/DD/YYYY hh24:mi:ss",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0018",
+                    "p_attribute": "403",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "lookup_list_attribute_response": {
+                "title": "Root Type for lookup_list_attribute_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "description": "return value for this element",
+                                    "type": "string"
+                                },
+                                "desc": {
+                                    "description": "display value of element",
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "description": "indicator flag for whether element is needed for Commercial Trip.",
+                                    "type": "string"
+                                },
+                                "for_hire_charter_flag": {
+                                    "description": "indicator flag for whether element is needed for For-Hire Charter Trip.",
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "description": "indicator flag for whether element is needed for For-Hire Headboat Trip.",
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "description": "indicator flag for whether element is needed for Recreational Trip.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "031",
+                            "desc": "PURSE SEINE, TARP",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        },
+                        {
+                            "code": "093",
+                            "desc": "OTTER TRAWL BOTTOM, LOBSTER",
+                            "comm_flag": "Y",
+                            "for_hire_charter_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Attribute(s) Found"
+                }
+            },
+            "lookup_list_date_changed_request": {
+                "title": "Root Type for lookup_list_date_changed_request",
+                "description": "",
+                "required": [
+                    "p_listnames",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency\n",
+                        "type": "string"
+                    },
+                    "p_listnames": {
+                        "description": "One or more list names from:\n\nGEARS,\nGEAR_ATTRIBUTES,\nTRIP_ADDITIONAL_ATTRIBUTES,\nEFFORT_ADDITIONAL_ATTRIBUTES, \nPARTNER_MANAGED_SPECIES, \nDISPOSITION, \nAREASFISHED, \nSPECIES, \nCATCH_SOURCE, \nUSER_NOTIFICATIONS, \nPARTICIPANTS, \nVESSELS,\nSWIPE_CARDS, \nTRIP_ACTIVITY, \nPORTS , \nDEALERS, \nPARTNER_MANAGED_NOTIFICATIONS, \nSALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES\n",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listnames": [
+                        "GEARS",
+                        "VESSELS",
+                        "GEAR_ATTRIBUTES",
+                        "TRIP_ADDITIONAL_ATTRIBUTES",
+                        "EFFORT_ADDITIONAL_ATTRIBUTES"
+                    ]
+                }
+            },
+            "lookup_list_date_changed_response": {
+                "title": "Root Type for lookup_list_date_changed_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "description": "lookup_lists requested",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "list": {
+                                    "description": "listname from p_listnames",
+                                    "type": "string"
+                                },
+                                "last_date": {
+                                    "format": "date",
+                                    "description": "last modified date of requested list. Format MM/DD/YYYY hh24:mi:ss",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "list": "GEARS",
+                            "last_date": "09/26/2018 16:55:04"
+                        },
+                        {
+                            "list": "VESSELS",
+                            "last_date": "09/01/2016 12:44:01"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Date(s) Found"
                 }
             }
         },
