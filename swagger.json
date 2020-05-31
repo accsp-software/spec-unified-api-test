@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.35",
+        "version": "1.0.36",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -99,37 +99,6 @@
                     }
                 },
                 "summary": "trips_download",
-                "description": ""
-            }
-        },
-        "/lookup_list": {
-            "post": {
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/lookup_list_body"
-                },
-                "tags": [
-                    "eTrips",
-                    "eDR"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/lookup_list_responses"
-                                }
-                            }
-                        },
-                        "description": "Successful Response"
-                    }
-                },
-                "security": [
-                    {
-                        "Non-Confidential": [
-                        ]
-                    }
-                ],
-                "summary": "lookup_list",
                 "description": ""
             }
         },
@@ -437,8 +406,7 @@
                                 }
                             }
                         },
-                        "description": "successful upload attempt",
-                        "x-last-modified": 1589338696395
+                        "description": "successful upload attempt"
                     }
                 },
                 "security": [
@@ -475,8 +443,7 @@
                                 }
                             }
                         },
-                        "description": "output of the endpoint",
-                        "x-last-modified": 1589338797899
+                        "description": "output of the endpoint"
                     }
                 },
                 "security": [
@@ -601,6 +568,44 @@
                 "summary": "lookup_list_by_attribute",
                 "description": "fetch a set of rows for specified attribute lookup list. Used in combination with _additional_attributes lookup_list"
             }
+        },
+        "/lookup_list": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/lookup_list_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips",
+                    "eDR"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/lookup_list_responses"
+                                }
+                            }
+                        },
+                        "description": "Successful Response"
+                    }
+                },
+                "security": [
+                    {
+                        "Non-Confidential": [
+                        ]
+                    }
+                ],
+                "summary": "lookup_list",
+                "description": "fetch a set of rows for a specified lookup table"
+            }
         }
     },
     "components": {
@@ -696,22 +701,15 @@
                             "$ref": "#/components/schemas/attribute"
                         }
                     }
-                },
-                "x-last-modified": 1589314902665
+                }
             },
             "user_permits_response": {
                 "description": "",
-                "required": [
-                ],
-                "enum": [
-                ],
                 "type": "object",
                 "properties": {
                     "row": {
                         "type": "array",
                         "items": {
-                            "required": [
-                            ],
                             "type": "object",
                             "properties": {
                                 "license_nbr": {
@@ -779,15 +777,10 @@
                     ],
                     "status": "OK",
                     "description": "User: Active Permit Count:0"
-                },
-                "x-last-modified": 1589344005031
+                }
             },
             "trip_upload_response": {
                 "description": "response to successful trips_upload call. ",
-                "required": [
-                ],
-                "enum": [
-                ],
                 "type": "object",
                 "properties": {
                     "row": {
@@ -873,9 +866,8 @@
                         }
                     ],
                     "status": "OK",
-                    "description": "UPDATEEVENTSUPLOAD"
-                },
-                "x-last-modified": 1589339290772
+                    "description": "UPDATE EVENTS UPLOAD"
+                }
             },
             "user_permits_request": {
                 "title": "Root Type for user_permits_request",
@@ -1856,187 +1848,56 @@
                     "SUPPLIER_CATCH_ID": "052620093047883",
                     "EVENT_ID": "807053"
                 }
-            }
-        },
-        "parameters": {
-            "Confidential-Auth": {
-                "deprecated": false,
-                "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ=",
-                "description": "\n",
-                "schema": {
-                    "format": "the base64 representation of  username@apikey:password",
-                    "pattern": "",
-                    "enum": [
-                    ],
-                    "type": "string",
-                    "example": "Basic dXNlcm5hbWVAbXlhcGlrZXk6cGFzc3dvcmQ="
-                },
-                "in": "header",
-                "required": true,
-                "properties": "",
-                "type": "string",
-                "format": "the base64 representation of  username@apikey:password",
-                "pattern": "",
-                "enum": [
-                ]
             },
-            "Non-Confidential": {
-                "deprecated": false,
-                "example": "Basic QG15c2VjcmV0YXBpa2V5",
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
                 "description": "",
-                "schema": {
-                    "format": "the base64 value of @apikey",
-                    "pattern": "",
-                    "enum": [
-                    ],
-                    "type": "string",
-                    "example": ""
-                },
-                "in": "header",
-                "required": true,
-                "properties": "",
-                "type": "string",
-                "format": "the base64 value of @apikey",
-                "pattern": "",
-                "enum": [
+                "required": [
+                    "p_listname",
+                    "p_partner"
                 ],
-                "x-last-modified": 1589299609834
-            }
-        },
-        "examples": {
-            "permit_results": {
-                "summary": "Example results  of user_permits",
-                "description": "",
-                "value": "{\r\n  \"row\": [\r\n    {\r\n      \"license_nbr\": \"MAFISHER\",\r\n      \"license_type\": \"Commercial Fisher\",\r\n      \"permit_type\": \"Commercial\",\r\n      \"agency\": \"0003\",\r\n      \"in_use\": \"Y\"\r\n    },\r\n    {\r\n      \"license_nbr\": \"MAFISHER2\",\r\n      \"license_type\": \"For-hire\",\r\n      \"permit_type\": \"For-Hire\",\r\n      \"agency\": \"0003\",\r\n      \"in_use\": \"Y\"\r\n    }\r\n  ],\r\n  \"status\": \"OK\",\r\n  \"description\": \"User :mafisher Active Permit Count:2\"\r\n}",
-                "externalValue": "",
-                "type": "",
-                "x-last-modified": 1589340218243
-            }
-        },
-        "requestBodies": {
-            "lookup_list_body": {
-                "description": "Fetch a list of valid values for a specified list noted in p_listname above. Returned as a JSON encoded object. If no rows exist, there will be no data, and status record will indicate zero errors",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "required": [
-                                "p_partner",
-                                "p_listname"
-                            ],
-                            "enum": [
-                            ],
-                            "type": "object",
-                            "properties": {
-                                "p_partner": {
-                                    "description": "4 character value of permit issuing agency",
-                                    "type": "string"
-                                },
-                                "p_listname": {
-                                    "description": "Lookup list name being requested",
-                                    "enum": [
-                                        "GEARS",
-                                        "PORTS",
-                                        "SPECIES",
-                                        "TRIP_ADDITIONAL_ATTRIBUTES",
-                                        "EFFORT_ADDITIONAL_ATTRIBUTES",
-                                        "VESSELS"
-                                    ],
-                                    "type": "string"
-                                },
-                                "p_lastdate": {
-                                    "description": "oldest date of changes requested",
-                                    "type": "string"
-                                }
-                            },
-                            "example": {
-                                "p_partner": "0023",
-                                "p_listname": "GEARS",
-                                "p_listtype": "EDR",
-                                "p_lastdate": "12/27/2010 14:45:00 "
-                            }
-                        },
-                        "example": {
-                            "p_partner": "0023",
-                            "p_listname": "GEARS",
-                            "p_listtype": "EDR",
-                            "p_lastdate": "12/27/2010 14:45:00 "
-                        },
-                        "properties": {
-                            "p_partner": {
-                                "description": "4 character value of permit issuing agency",
-                                "type": "string"
-                            },
-                            "p_listname": {
-                                "description": "Lookup list name being requested",
-                                "enum": [
-                                    "GEARS",
-                                    "PORTS",
-                                    "SPECIES",
-                                    "TRIP_ADDITIONAL_ATTRIBUTES",
-                                    "EFFORT_ADDITIONAL_ATTRIBUTES",
-                                    "VESSELS"
-                                ],
-                                "type": "string"
-                            },
-                            "p_lastdate": {
-                                "description": "oldest date of changes requested",
-                                "type": "string"
-                            }
-                        },
-                        "type": "object",
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
                         "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES"
                         ],
-                        "required": [
-                            "p_partner",
-                            "p_listname"
-                        ]
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
                     }
                 },
-                "required": true,
-                "x-last-modified": 1589164251848
-            },
-            "trips_upload_body": {
-                "description": "Body of trips upload",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "required": [
-                                "trips"
-                            ],
-                            "enum": [
-                            ],
-                            "type": "object",
-                            "properties": {
-                                "trips": {
-                                    "description": "Trips taken",
-                                    "minItems": 1,
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/trip"
-                                    }
-                                }
-                            }
-                        },
-                        "properties": {
-                            "trips": {
-                                "description": "Trips taken",
-                                "minItems": 1,
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/trip"
-                                }
-                            }
-                        },
-                        "type": "object",
-                        "enum": [
-                        ],
-                        "required": [
-                            "trips"
-                        ]
-                    }
-                },
-                "required": true,
-                "x-last-modified": 1589168037873
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
             }
         },
         "securitySchemes": {
@@ -2055,20 +1916,11 @@
     "tags": [
         {
             "name": "eTrips",
-            "description": "eTrips",
-            "externalDocs": {
-
-            }
+            "description": "eTrips"
         },
         {
             "name": "eDR",
-            "description": "eDR",
-            "externalDocs": {
-
-            }
+            "description": "eDR"
         }
-    ],
-    "responses": {
-
-    }
+    ]
 }
