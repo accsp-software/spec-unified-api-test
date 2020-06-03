@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.36",
+        "version": "1.0.37",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -262,11 +262,28 @@
         },
         "/participants": {
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/participants"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "tags": [
                     "eTrips"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/participants_response"
+                                }
+                            }
+                        },
                         "description": "output of the endpoint"
                     }
                 },
@@ -277,7 +294,7 @@
                     }
                 ],
                 "summary": "participants ",
-                "description": ""
+                "description": "Check for/update users with the given information.\nThis call retrieves a list of participants in the SAFIS system with the supplier user identifiable information. \n"
             }
         },
         "/permit_compliance": {
@@ -1897,6 +1914,199 @@
                     "p_listname": "GEARS",
                     "p_listtype": "EDR",
                     "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "participant": {
+                "title": "Root Type for participant",
+                "description": "",
+                "required": [
+                    "birth_date",
+                    "first_name",
+                    "last_name",
+                    "supplier_user_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "supplier_user_id": {
+                        "description": "unique identifier for this user. Used to communicate back errors and for updates",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "users valid email address",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "description": "user's legal first name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "description": "users legal last name",
+                        "type": "string"
+                    },
+                    "birth_date": {
+                        "format": "date",
+                        "description": "date of birth. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 character identification of license issuing agency",
+                        "type": "string"
+                    },
+                    "license_nbr": {
+                        "description": "license/permit number given by the issuing agency",
+                        "type": "string"
+                    },
+                    "address_1": {
+                        "description": "address line 1",
+                        "type": "string"
+                    },
+                    "address_2": {
+                        "description": "address line 2",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "address city",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "US State or Territory",
+                        "type": "string"
+                    },
+                    "county": {
+                        "description": "address county",
+                        "type": "string"
+                    },
+                    "postal_code": {
+                        "description": "US Postal Code",
+                        "type": "string"
+                    },
+                    "phone_nbr": {
+                        "description": "users 10 digit phone number",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "supplier_user_id": "1222",
+                    "email": "testemail@example.com",
+                    "first_name": "Jonas",
+                    "last_name": "Brother",
+                    "birth_date": "04/13/1980",
+                    "iss_agency": "0018",
+                    "license_nbr": "526783",
+                    "address_1": "909 Georgia Ave",
+                    "address_2": "Suite 100",
+                    "city": "Silver Spring",
+                    "state": "MD",
+                    "county": "Montgomery",
+                    "postal_code": "20910",
+                    "phone_nbr": "5559900647"
+                }
+            },
+            "participants": {
+                "description": "",
+                "required": [
+                    "participants"
+                ],
+                "type": "object",
+                "properties": {
+                    "participants": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/participant"
+                        }
+                    }
+                }
+            },
+            "participants_response": {
+                "title": "Root Type for participants_response",
+                "description": "participants response combines succesful trip information and errors. ",
+                "type": "object",
+                "properties": {
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "supplier_user_id": {
+                                    "description": "unique record id given in the payload.",
+                                    "type": "string"
+                                },
+                                "safis_participant_id": {
+                                    "format": "int32",
+                                    "description": "SAFIS system participant id of the given user. Required in trips_upload API if downloading records without username.",
+                                    "type": "integer"
+                                },
+                                "safis_license_nbr": {
+                                    "description": "License Number stored in the SAFIS system for this user's record.",
+                                    "type": "string"
+                                },
+                                "issuing_agency": {
+                                    "description": "4 character id of license issuing agency.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "errors": {
+                        "description": "all errors encountered in the upload attempt",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "supplier_user_id": {
+                                    "description": "unique record id given in the payload",
+                                    "type": "string"
+                                },
+                                "messages": {
+                                    "type": "array",
+                                    "items": {
+                                        "description": "individual error message descriptions",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "processed": {
+                        "format": "int32",
+                        "description": "number of participant records processed",
+                        "type": "integer"
+                    },
+                    "description": {
+                        "description": "human readable explanation of the request attempt result",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "participants": [
+                        {
+                            "supplier_user_id": "1111",
+                            "safis_participant_id": 196973,
+                            "safis_license_nbr": "1111",
+                            "issuing_agency": "0018"
+                        }
+                    ],
+                    "errors": [
+                        {
+                            "supplier_user_id": "1112",
+                            "messages": [
+                                "Phone Number is not in the right format",
+                                "Birth Date Value is not valid."
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "processed": 2,
+                    "description": "Rows processed: 2 Event_id: 815428"
                 }
             }
         },
