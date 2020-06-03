@@ -2,8 +2,8 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.37",
-        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact support@accsp.org. \n",
+        "version": "1.0.39",
+        "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. \n",
         "contact": {
             "email": "support@accsp.org"
         },
@@ -237,7 +237,7 @@
                     }
                 ],
                 "summary": "neg_trips_upload_errors ",
-                "description": ""
+                "description": "fetch a list of errors from negative/did not fish reports that didn’t load after calling neg_trips_upload."
             }
         },
         "/notification_upload": {
@@ -396,7 +396,8 @@
                                 "$ref": "#/components/schemas/trips"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "tags": [
                     "eTrips"
@@ -937,15 +938,18 @@
                 "type": "object",
                 "properties": {
                     "distance": {
+                        "description": "distance code of fishing location.",
                         "type": "string"
                     },
                     "in_state": {
                         "type": "string"
                     },
                     "area_code": {
+                        "description": "3 character area-code for effort location",
                         "type": "string"
                     },
                     "sub_area_code": {
+                        "description": "sub area code of fishing location.",
                         "type": "string"
                     },
                     "local_area_code": {
@@ -958,6 +962,7 @@
                         "type": "string"
                     },
                     "gear": {
+                        "description": "gear used in this effort",
                         "type": "string"
                     },
                     "lma": {
@@ -970,6 +975,7 @@
                         "type": "string"
                     },
                     "fishing_hours": {
+                        "description": "amount of fishing time",
                         "type": "string"
                     },
                     "hours_days": {
@@ -991,19 +997,36 @@
                         "type": "string"
                     },
                     "target_species": {
+                        "description": "Species you intend to catch",
                         "type": "string"
                     },
                     "avg_depth": {
+                        "description": "Average fishing depth",
                         "type": "string"
                     },
                     "supplier_effort_id": {
+                        "description": "unique identifier of effort. Used to communicate back errors and for updates",
                         "type": "string"
                     },
                     "catches": {
-                        "description": "",
+                        "description": "collection of catches made with this effort",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/catch"
+                        }
+                    },
+                    "gear_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_with_units"
+                        }
+                    },
+                    "effort_additional_attributes": {
+                        "description": "additional attributes tied to effort",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_multi_value"
                         }
                     }
                 },
@@ -1034,35 +1057,64 @@
             "catch": {
                 "title": "Root Type for catch",
                 "description": "",
+                "required": [
+                    "disposition",
+                    "species_itis",
+                    "supplier_catch_id",
+                    "unit_of_measure",
+                    "reported_quantity"
+                ],
                 "type": "object",
                 "properties": {
                     "species_itis": {
+                        "description": "ITIS code of the fish caught",
                         "type": "string"
                     },
                     "disposition": {
+                        "description": "the final disposition of the catch made",
                         "type": "string"
                     },
                     "unit_of_measure": {
+                        "description": "Code for unit of measure used to reference the reported_quantity field",
                         "type": "string"
                     },
                     "market_code": {
+                        "description": "catch market code",
                         "type": "string"
                     },
                     "grade_code": {
+                        "description": "catch grade code",
                         "type": "string"
                     },
                     "reported_quantity": {
+                        "description": "numeric quantity of fish caught. Always used in conjunction with unit_of_measure field. ",
                         "type": "string"
                     },
                     "nbr_of_fish": {
+                        "description": "Count of fish caught",
                         "type": "string"
                     },
                     "supplier_catch_id": {
+                        "description": "unique identifier for the catch given. used to communicate back catch-level errors. ",
                         "type": "string"
                     },
                     "sale_disposition_flag": {
                         "description": "",
                         "type": "string"
+                    },
+                    "catch_additional_attributes": {
+                        "description": "additional attributes tied to the catch",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
+                    },
+                    "species_attributes": {
+                        "description": "attributes tied to a specific species.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
                     }
                 },
                 "example": {
@@ -1135,6 +1187,7 @@
                         "type": "string"
                     },
                     "values": {
+                        "description": "only used when attribute allows multiple values to be selected",
                         "type": "array",
                         "items": {
                             "type": "string"
