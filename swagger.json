@@ -242,6 +242,16 @@
         },
         "/notification_upload": {
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/notification_upload_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "tags": [
                     "eTrips"
                 ],
@@ -719,82 +729,6 @@
                             "$ref": "#/components/schemas/attribute"
                         }
                     }
-                }
-            },
-            "user_permits_response": {
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "license_nbr": {
-                                    "description": "Permit/License number given by the issuing agency",
-                                    "type": "string"
-                                },
-                                "license_type": {
-                                    "description": "License type as defined by the issuing agency",
-                                    "type": "string"
-                                },
-                                "permit_type": {
-                                    "description": "Permit type as defined by ACCSP.",
-                                    "enum": [
-                                        "For-Hire",
-                                        "Commercial",
-                                        "Operator",
-                                        "Dealer"
-                                    ],
-                                    "type": "string"
-                                },
-                                "agency": {
-                                    "description": "",
-                                    "type": "string"
-                                },
-                                "in_use": {
-                                    "description": "Is the permit currently active?",
-                                    "enum": [
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of the request attempt",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "Human readable description of the status reason or failure.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "license_nbr": "MAFISHER",
-                            "license_type": "Commercial Fisher",
-                            "permit_type": "Commercial",
-                            "agency": "0003",
-                            "in_use": "Y"
-                        },
-                        {
-                            "license_nbr": "MAFISHER2",
-                            "license_type": "For-hire",
-                            "permit_type": "For-Hire",
-                            "agency": "0003",
-                            "in_use": "Y"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "User: Active Permit Count:0"
                 }
             },
             "trip_upload_response": {
@@ -2160,6 +2094,154 @@
                     "status": "OK",
                     "processed": 2,
                     "description": "Rows processed: 2 Event_id: 815428"
+                }
+            },
+            "user_permits_response": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "license_nbr": {
+                                    "description": "Permit/License number given by the issuing agency",
+                                    "type": "string"
+                                },
+                                "license_type": {
+                                    "description": "License type as defined by the issuing agency",
+                                    "type": "string"
+                                },
+                                "permit_type": {
+                                    "description": "Permit type as defined by ACCSP.",
+                                    "enum": [
+                                        "For-Hire",
+                                        "Commercial",
+                                        "Operator",
+                                        "Dealer"
+                                    ],
+                                    "type": "string"
+                                },
+                                "agency": {
+                                    "description": "4 character issuing agency of permit",
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "Is the permit currently active?",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "license_nbr": "MAFISHER",
+                            "license_type": "Commercial Fisher",
+                            "permit_type": "Commercial",
+                            "agency": "0003",
+                            "in_use": "Y"
+                        },
+                        {
+                            "license_nbr": "MAFISHER2",
+                            "license_type": "For-hire",
+                            "permit_type": "For-Hire",
+                            "agency": "0003",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "User: Active Permit Count:0"
+                }
+            },
+            "partner_attribute": {
+                "title": "Root Type for partner_attribute",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "element_id": {
+                        "description": "element id ",
+                        "type": "string"
+                    },
+                    "element_value": {
+                        "description": "element value in string form",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "element_id": "400",
+                    "element_value": "Y"
+                }
+            },
+            "notification_upload_request": {
+                "title": "Root Type for notification_upload_request",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "p_license_nbr": {
+                        "type": "string"
+                    },
+                    "p_vessel_cgn": {
+                        "type": "string"
+                    },
+                    "p_vessel_srn": {
+                        "type": "string"
+                    },
+                    "p_trip_type": {
+                        "type": "string"
+                    },
+                    "p_start_date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "p_start_time": {
+                        "type": "string"
+                    },
+                    "p_departure_port": {
+                        "type": "string"
+                    },
+                    "p_arrival_port": {
+                        "type": "string"
+                    },
+                    "p_notif_type": {
+                        "type": "string"
+                    },
+                    "partner_attributes": {
+                        "description": "list of partner attributes",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/partner_attribute"
+                        }
+                    }
+                },
+                "example": {
+                    "p_license_nbr": "991011",
+                    "p_vessel_cgn": "",
+                    "p_vessel_srn": "NH0258BA",
+                    "p_trip_type": "C",
+                    "p_start_date": "2010-05-30",
+                    "p_start_time": "1845",
+                    "p_departure_port": "224109",
+                    "p_arrival_port": "222109",
+                    "p_notif_type": "3"
                 }
             }
         },
