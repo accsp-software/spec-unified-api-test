@@ -227,6 +227,13 @@
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/neg_trips_error_response"
+                                }
+                            }
+                        },
                         "description": "output of the endpoint"
                     }
                 },
@@ -266,7 +273,7 @@
                         ]
                     }
                 ],
-                "summary": "notification_upload ",
+                "summary": "notification_upload",
                 "description": ""
             }
         },
@@ -2242,6 +2249,58 @@
                     "p_departure_port": "224109",
                     "p_arrival_port": "222109",
                     "p_notif_type": "3"
+                }
+            },
+            "neg_trips_error_response": {
+                "title": "Root Type for neg_trips_error_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ERR_DESC": {
+                                    "description": "error message to the user",
+                                    "type": "string"
+                                },
+                                "EVENT_ID": {
+                                    "description": "associated event_id from the request.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status given.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "ERR_DESC": "Fishing license entered is not valid. Please check",
+                            "EVENT_ID": "816672"
+                        },
+                        {
+                            "ERR_DESC": "A valid start date must be entered ",
+                            "EVENT_ID": "816672"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Total Errors 2"
                 }
             }
         },
