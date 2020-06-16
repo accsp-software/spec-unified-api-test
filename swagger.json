@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.43",
+        "version": "1.0.44",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -393,11 +393,28 @@
         },
         "/permit_endorsements": {
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/permit_endorsements_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "tags": [
                     "eDR"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/permit_endorsements_responses"
+                                }
+                            }
+                        },
                         "description": "output of the endpoint"
                     }
                 },
@@ -408,7 +425,7 @@
                     }
                 ],
                 "summary": "permit_endorsements ",
-                "description": ""
+                "description": "fetch a list of endorsements for a given a partner"
             }
         },
         "/reports_upload": {
@@ -3441,11 +3458,320 @@
                             "compliant": "N",
                             "last_record_type": "P",
                             "last_record_date": "04/15/2019",
-                            "non_compliance_dates": "04/16/2020;04/17/2020;04/18/2020;04/19/2020;"
+                            "non_compliance_dates": "04/16/2020;04/17/2020;04/18/2020"
                         }
                     ],
                     "status": "OK",
                     "description": "Record(s) Found"
+                }
+            },
+            "permit_endorsements_request": {
+                "title": "Root Type for permit_endorsements_request",
+                "description": "",
+                "required": [
+                    "p_partner",
+                    "p_listname"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "name of endorsement list requested",
+                        "enum": [
+                            "VESSELS_ON_LICENSE",
+                            "ENDORSEMENTS_ON_LICENSE",
+                            "SPECIES_BY_ENDORSEMENT",
+                            "SPECIES_BY_LICENSE"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0014",
+                    "p_listname": "SPECIES_BY_LICENSE",
+                    "p_lastdate": "12/27/2000 14:45:00"
+                }
+            },
+            "permit_endorsements_responses": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/endorsements_on_license_reponse"
+                    },
+                    {
+                        "$ref": "#/components/schemas/species_by_endorsement_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/species_by_license_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vessels_on_license_response"
+                    }
+                ],
+                "description": "",
+                "type": "object"
+            },
+            "endorsements_on_license_reponse": {
+                "title": "endorsements_on_license",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "License_NBR": {
+                                    "description": "Permit/License number given by the issuing agency",
+                                    "type": "string"
+                                },
+                                "Endorsement_Type": {
+                                    "type": "string"
+                                },
+                                "In_Use": {
+                                    "description": "flag for whether the record is active.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status given.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "License_NBR": "200370",
+                            "Endorsement_Type": "SHELL",
+                            "In_Use": "Y"
+                        },
+                        {
+                            "License_NBR": "40351",
+                            "Endorsement_Type": "SHELL",
+                            "In_Use": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Endorsements associated with license type(s): 2"
+                }
+            },
+            "species_by_license_response": {
+                "title": "species_by_license",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "License_Type": {
+                                    "type": "string"
+                                },
+                                "Species_Itis": {
+                                    "description": "ITIS code of the species",
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "description": "common name of the species.",
+                                    "type": "string"
+                                },
+                                "Health_Dept": {
+                                    "description": "flag indicating whether dept of health fields are required",
+                                    "type": "string"
+                                },
+                                "Area": {
+                                    "description": "flag indicating whether area fished is required",
+                                    "type": "string"
+                                },
+                                "In_Use": {
+                                    "description": "flag indicating whether record is active",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status given.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "License_Type": "GA ADMINISTRATOR",
+                            "Species_Itis": "167687",
+                            "Name": "BASS, BLACK SEA",
+                            "Health_Dept": "N",
+                            "Area": "N",
+                            "In_Use": "Y"
+                        },
+                        {
+                            "License_Type": "GA ADMINISTRATOR",
+                            "Species_Itis": "167759",
+                            "Name": "GROUPER, GAG",
+                            "Health_Dept": "N",
+                            "Area": "N",
+                            "In_Use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Species allowed by license type(s): 2"
+                }
+            },
+            "species_by_endorsement_response": {
+                "title": "species_by_endorsement",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Endorsement_Type": {
+                                    "type": "string"
+                                },
+                                "Species_Itis": {
+                                    "description": "ITIS code of the species",
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "description": "common name of the species.",
+                                    "type": "string"
+                                },
+                                "Health_Dept": {
+                                    "description": "flag indicating whether dept of health fields are required",
+                                    "type": "string"
+                                },
+                                "Area": {
+                                    "description": "flag indicating whether area fished is required",
+                                    "type": "string"
+                                },
+                                "In_Use": {
+                                    "description": "flag indicating whether record is active",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status given.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "Endorsement_Type": "SHELL",
+                            "Species_Itis": "072878",
+                            "Name": "SNAILS, MOON",
+                            "Health_Dept": "N",
+                            "Area": "N",
+                            "In_Use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Species allowed by endorsement(s): 1"
+                }
+            },
+            "vessels_on_license_response": {
+                "title": "vessels_on_license",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Vessel_ID": {
+                                    "description": "unique identifier of vessel in SAFIS",
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "description": "vessel name",
+                                    "type": "string"
+                                },
+                                "State_Reg": {
+                                    "description": "state registration number of vessel",
+                                    "type": "string"
+                                },
+                                "License_NBR": {
+                                    "type": "string"
+                                },
+                                "In_Use": {
+                                    "description": "flag indicating whether record is active",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status given.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "Vessel_ID": "314544",
+                            "Name": "ROCKIN ROBIN",
+                            "State_Reg": "MS8609BL",
+                            "License_NBR": "177095",
+                            "In_Use": "Y"
+                        },
+                        {
+                            "Vessel_ID": "305727",
+                            "Name": "ANNIES SONG",
+                            "State_Reg": "MS3314BJ",
+                            "License_NBR": "176219",
+                            "In_Use": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Vessels assigned for Fisherman endorsement(s): 2"
                 }
             }
         },
