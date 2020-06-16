@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.42",
+        "version": "1.0.43",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -357,11 +357,27 @@
         },
         "/permit_compliance": {
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/permit_compliance_request"
+                            }
+                        }
+                    }
+                },
                 "tags": [
                     "eDR"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/permit_compliance_response"
+                                }
+                            }
+                        },
                         "description": "output of the endpoint"
                     }
                 },
@@ -372,7 +388,7 @@
                     }
                 ],
                 "summary": "permit_compliance ",
-                "description": ""
+                "description": "checks the current compliance status of a dealer permit"
             }
         },
         "/permit_endorsements": {
@@ -3343,6 +3359,93 @@
                     ],
                     "status": "OK",
                     "description": "Total Errors 2"
+                }
+            },
+            "permit_compliance_request": {
+                "title": "Root Type for permit_compliance_request",
+                "description": "",
+                "required": [
+                    "p_license_nbr",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_license_nbr": {
+                        "description": "license/permit number given by the issuing agency",
+                        "type": "string"
+                    },
+                    "p_partner": {
+                        "description": "4 character identification of license issuing agency",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_license_nbr": "54321",
+                    "p_partner": "0023"
+                }
+            },
+            "permit_compliance_response": {
+                "title": "Root Type for permit_compliance_response",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "compliant": {
+                                    "description": "a flag (Y or N) to identify whether a given permit is compliant",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "last_record_type": {
+                                    "description": "the type of record last entered (P/N) for positive or negative report",
+                                    "enum": [
+                                        "P",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "last_record_date": {
+                                    "format": "date",
+                                    "description": "the date of the last report entered into the system. Format MM/DD/YYYY",
+                                    "type": "string"
+                                },
+                                "non_compliance_dates": {
+                                    "description": "A list of dates that the dealer is not compliant in the format MM/DD/YYYY that are delimited by a semi-colon.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "compliant": "N",
+                            "last_record_type": "P",
+                            "last_record_date": "04/15/2019",
+                            "non_compliance_dates": "04/16/2020;04/17/2020;04/18/2020;04/19/2020;"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Record(s) Found"
                 }
             }
         },
