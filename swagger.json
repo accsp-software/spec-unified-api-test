@@ -1399,6 +1399,15 @@
                     },
                     {
                         "$ref": "#/components/schemas/disposition_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/areas_fished_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/species_response"
                     }
                 ],
                 "description": "",
@@ -3772,6 +3781,409 @@
                     ],
                     "status": "OK",
                     "description": "Vessels assigned for Fisherman endorsement(s): 2"
+                }
+            },
+            "partner_managed_species_response": {
+                "title": "PARTNER_MANAGED_SPECIES",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "description": "unique attribute code/id",
+                                    "type": "integer"
+                                },
+                                "attribute_name": {
+                                    "description": "name of attribute",
+                                    "type": "string"
+                                },
+                                "attribute_desc": {
+                                    "description": "accompanying help text",
+                                    "type": "string"
+                                },
+                                "species_itis": {
+                                    "description": "ITIS code of species",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "format of attribute.",
+                                    "enum": [
+                                        "NUMBER*",
+                                        "STRING",
+                                        "DATE",
+                                        "TIMESTAMP"
+                                    ],
+                                    "type": "string"
+                                },
+                                "list_type": {
+                                    "description": "denotes whether list returned is static (S) or dynamic(D)",
+                                    "enum": [
+                                        "S",
+                                        "D"
+                                    ],
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "description": "JSON key-value pairs showing the return and display value of static list items respectively",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "order_seq": {
+                                    "format": "int32",
+                                    "description": "display order of attribute relative to others",
+                                    "type": "integer"
+                                },
+                                "attribute_count": {
+                                    "description": "expected number of values returned. default is Single(S). Multiple (M).",
+                                    "enum": [
+                                        "S",
+                                        "M"
+                                    ],
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in commercial trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_charter_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire headboat trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in recreational trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the result status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "attribute_code": 1212,
+                            "attribute_name": "Length Qualifier",
+                            "attribute_desc": "How was the length taken? (measured or estimated)",
+                            "species_itis": "172421",
+                            "type": "STRING",
+                            "list_type": "S",
+                            "options": [
+                                {
+                                    "M": "Measured"
+                                },
+                                {
+                                    "E": "Estimated"
+                                },
+                                {
+                                    "U": "Unknown"
+                                }
+                            ],
+                            "order_seq": 6,
+                            "attribute_count": "S",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R"
+                        },
+                        {
+                            "attribute_code": 1203,
+                            "attribute_name": "Tag #",
+                            "attribute_desc": "HMS Tag Number (the 9 digits follows BT starting with 05 or 90)",
+                            "species_itis": "172421",
+                            "type": "NUMBER",
+                            "order_seq": 14,
+                            "comm_flag": "Y",
+                            "for_hire_charter_flag": "Y",
+                            "for_hire_hb_flag": "Y",
+                            "rec_flag": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Partner_Managed_Species count: 2"
+                }
+            },
+            "areas_fished_response": {
+                "title": "AREAS_FISHED",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "area_code": {
+                                    "description": "3 character ACCSP standard area code",
+                                    "type": "string"
+                                },
+                                "sub_area_code": {
+                                    "description": "4 character ACCSP standard sub area code",
+                                    "type": "string"
+                                },
+                                "local_area_code": {
+                                    "description": "ACCSP local area code",
+                                    "type": "string"
+                                },
+                                "local_area_name": {
+                                    "description": "Name of local area",
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "description": "2 character state abbreviation.",
+                                    "type": "string"
+                                },
+                                "area_display_name": {
+                                    "description": "area fished name.",
+                                    "type": "string"
+                                },
+                                "waters": {
+                                    "description": "indicator for state or federal waters fished",
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "indicator for whether area is currently active",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "area_code": "514",
+                            "sub_area_code": "0106",
+                            "local_area_code": "GBH3",
+                            "local_area_name": "MA GBH3 - NEPONSET RIV AND DORCHESTER BAY",
+                            "state": "MA",
+                            "area_display_name": "MA GBH3 - NEPONSET RIV AND DORCHESTER BAY",
+                            "waters": "S",
+                            "in_use": "Y"
+                        },
+                        {
+                            "area_code": "442",
+                            "sub_area_code": "0000",
+                            "local_area_code": "00",
+                            "state": "US",
+                            "area_display_name": "US 442 - MISAINE BANK",
+                            "waters": "F",
+                            "in_use": "Y"
+                        },
+                        {
+                            "area_code": "513",
+                            "sub_area_code": "0021",
+                            "local_area_code": "00",
+                            "state": "ME",
+                            "area_display_name": "ME 513 - 21- PISCATAQUA RIVER - ME",
+                            "waters": "S",
+                            "in_use": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "3 Areas(s) Returned"
+                }
+            },
+            "species_response": {
+                "title": "SPECIES",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "species_qc_id": {
+                                    "format": "int32",
+                                    "description": "unique row id used to detect changes to current records.",
+                                    "type": "integer"
+                                },
+                                "species_itis": {
+                                    "description": "ITIS code of species",
+                                    "type": "string"
+                                },
+                                "species_name": {
+                                    "description": "common name of species",
+                                    "type": "string"
+                                },
+                                "uom": {
+                                    "description": "unit of measure",
+                                    "type": "string"
+                                },
+                                "grade": {
+                                    "description": "grade code",
+                                    "type": "string"
+                                },
+                                "grade_description": {
+                                    "description": "description of grade code",
+                                    "type": "string"
+                                },
+                                "market": {
+                                    "description": "market code",
+                                    "type": "string"
+                                },
+                                "market_description": {
+                                    "description": "description of market code",
+                                    "type": "string"
+                                },
+                                "min_price": {
+                                    "format": "double",
+                                    "description": "expected minimum price in US dollars.",
+                                    "type": "number"
+                                },
+                                "max_price": {
+                                    "format": "double",
+                                    "description": "expected maximum price in US dollars.",
+                                    "type": "number"
+                                },
+                                "in_use": {
+                                    "description": "indicator for whether record is in-use currently",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "hms": {
+                                    "description": "HMS Flag indicator",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "shark": {
+                                    "description": "Shark Flag indicator",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "area": {
+                                    "description": "Flag on whether to collect Area Fished for this species.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "species_qc_id": 81715,
+                            "species_itis": "171671",
+                            "species_name": "LANCES, SAND",
+                            "uom": "LB",
+                            "grade": "01",
+                            "grade_description": "ROUND",
+                            "market": "UN",
+                            "market_description": "UNCLASSIFIED",
+                            "min_price": 0.1,
+                            "max_price": 0.5,
+                            "in_use": "N",
+                            "hms": "N",
+                            "shark": "N",
+                            "area": "N"
+                        },
+                        {
+                            "species_qc_id": 81768,
+                            "species_itis": "170333",
+                            "species_name": "MULLETS",
+                            "uom": "LB",
+                            "grade": "01",
+                            "grade_description": "ROUND",
+                            "market": "UN",
+                            "market_description": "UNCLASSIFIED",
+                            "min_price": 0.01,
+                            "max_price": 1.5,
+                            "in_use": "N",
+                            "hms": "N",
+                            "shark": "N",
+                            "area": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "2 Species(s) Returned"
                 }
             }
         },
