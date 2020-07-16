@@ -2425,7 +2425,7 @@
                                         "N"
                                     ],
                                     "type": "string"
-                                },
+                                }, 
                                 "for_hire_ch_flag": {
                                     "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
                                     "enum": [
