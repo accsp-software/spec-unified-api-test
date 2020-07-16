@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.47",
+        "version": "1.0.48",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -1420,6 +1420,12 @@
                     },
                     {
                         "$ref": "#/components/schemas/vessels_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/swipe_cards_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ports_response"
                     }
                 ],
                 "description": "",
@@ -4502,6 +4508,166 @@
                     ],
                     "status": "OK",
                     "description": "1+ Vessel(s) Returned"
+                }
+            },
+            "swipe_cards_response": {
+                "title": "SWIPE_CARDS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "card_nbr": {
+                                    "description": "unique idenitifier for the card.",
+                                    "type": "string"
+                                },
+                                "license_nbr": {
+                                    "description": "agency issued license/permit number.",
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "flag for whether card is currently in use.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "card_nbr": "*0103131487*Y16*SMS3557AZ",
+                            "license_nbr": "131487",
+                            "in_use": "Y"
+                        },
+                        {
+                            "card_nbr": "*0103156979*Y16",
+                            "license_nbr": "156979",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Swipe_Cards count: 2"
+                }
+            },
+            "ports_response": {
+                "title": "PORTS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "port": {
+                                    "description": "fips 6 digit port code.",
+                                    "type": "string"
+                                },
+                                "fips_place_name": {
+                                    "description": "name of port",
+                                    "type": "string"
+                                },
+                                "fips_county_name": {
+                                    "description": "county name of port location",
+                                    "type": "string"
+                                },
+                                "state_postal": {
+                                    "description": "state abbreviation of port.",
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "description": "indicate for whether port should be an option on commercial trip.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "description": "indicate for whether port should be an option on For-Hire Headboat trip.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_ch_flag": {
+                                    "description": "indicate for whether port should be an option on For-Hire Charter trip.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "description": "indicate for whether port should be an option on Recreational trip.",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "port": "117035",
+                            "fips_place_name": "HOME PORT MARINA",
+                            "fips_county_name": "PINELLAS",
+                            "state_postal": "FL",
+                            "comm_flag": "N",
+                            "for_hire_hb_flag": "Y",
+                            "for_hire_ch_flag": "Y",
+                            "rec_flag": "Y"
+                        },
+                        {
+                            "port": "118435",
+                            "fips_place_name": "DON'S DOCK",
+                            "fips_county_name": "PINELLAS",
+                            "state_postal": "FL",
+                            "comm_flag": "N",
+                            "for_hire_hb_flag": "Y",
+                            "for_hire_ch_flag": "Y",
+                            "rec_flag": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "2 Ports(s) Returned"
                 }
             }
         },
