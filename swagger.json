@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.50",
+        "version": "1.0.51",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. \n",
         "contact": {
             "email": "support@accsp.org"
@@ -502,56 +502,6 @@
                 "description": "Fetch a list of errors from a dealer reports_upload attempt that did not load. "
             }
         },
-        "/trips_upload": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/trips"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "deprecated": false,
-                        "example": "AppVersion : 2.2.11232",
-                        "name": "AppVersion",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "header",
-                        "required": true,
-                        "x-last-modified": 1589300119228
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/trip_upload_response"
-                                }
-                            }
-                        },
-                        "description": "successful upload attempt"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": [
-                        ]
-                    }
-                ],
-                "summary": "trips_upload ",
-                "description": "send a set of trips rows to safis"
-            }
-        },
         "/trips_upload_errors": {
             "post": {
                 "requestBody": {
@@ -739,103 +689,58 @@
                 "summary": "lookup_list",
                 "description": "fetch a set of rows for a specified lookup table"
             }
+        },
+        "/trips_upload": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/trips"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "parameters": [
+                    {
+                        "example": "AppVersion : 2.2.11232",
+                        "name": "AppVersion",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/trip_upload_response"
+                                }
+                            }
+                        },
+                        "description": "successful upload attempt"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": [
+                        ]
+                    }
+                ],
+                "summary": "trips_upload ",
+                "description": "send a set of trips rows to safis"
+            }
         }
     },
     "components": {
         "schemas": {
-            "trip": {
-                "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
-                "required": [
-                    "trip_start_date",
-                    "trip_type",
-                    "cf_license_nbr",
-                    "port",
-                    "iss_agency",
-                    "supplier_trip_id"
-                ],
-                "enum": [
-                ],
-                "type": "object",
-                "properties": {
-                    "trip_start_date": {
-                        "format": "date",
-                        "description": "calendar date of beginning of fishing trip. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "trip_type": {
-                        "description": "Trip Type undertaken. Commercial (C), Recreational (R), For Hire-Charter(A), For Hire-Headboat (H)",
-                        "enum": [
-                            "C",
-                            "R",
-                            "A",
-                            "H"
-                        ],
-                        "type": "string"
-                    },
-                    "trip_start_time": {
-                        "description": "calendar time of start of fishing trip. Format hh24:mi",
-                        "type": "string"
-                    },
-                    "trip_end_time": {
-                        "description": "calendar time of end of fishing trip. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "vessel_permit": {
-                        "description": "Vessel Permit number of vessel in use",
-                        "type": "string"
-                    },
-                    "vtr_number": {
-                        "description": "Vessel Trip Report number. Auto-generated by the application",
-                        "type": "string"
-                    },
-                    "trip_activity": {
-                        "description": "Indicator for intended/final outcome of fishing trip",
-                        "type": "string"
-                    },
-                    "state_reg_nbr": {
-                        "description": "State Registration number of vessel",
-                        "type": "string"
-                    },
-                    "coast_guard_nbr": {
-                        "description": "Coast Guard Number/Hull Number of vessel",
-                        "type": "string"
-                    },
-                    "port": {
-                        "description": "Landing Port of vessel",
-                        "type": "string"
-                    },
-                    "supplier_trip_id": {
-                        "description": "unique trip id given by the caller. Only used to communicate errors and updates.",
-                        "type": "string"
-                    },
-                    "participant_id": {
-                        "description": "ACCSP Participant idenitifier.",
-                        "type": "string"
-                    },
-                    "iss_agency": {
-                        "description": "4 character identifier of issuing agency of permit in use",
-                        "type": "string"
-                    },
-                    "cf_license_nbr": {
-                        "description": "Permit/License Number of Permit in use.",
-                        "type": "string"
-                    },
-                    "efforts": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/effort"
-                        }
-                    },
-                    "trip_additional_attributes": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute"
-                        }
-                    }
-                }
-            },
             "trip_upload_response": {
                 "description": "response to successful trips_upload call. ",
                 "type": "object",
@@ -960,332 +865,6 @@
                             "$ref": "#/components/schemas/trip"
                         }
                     }
-                }
-            },
-            "effort": {
-                "title": "Root Type for effort",
-                "description": "",
-                "required": [
-                    "distance",
-                    "in_state",
-                    "area_code",
-                    "sub_area_code",
-                    "gear",
-                    "gear_quantity",
-                    "fishing_hours"
-                ],
-                "type": "object",
-                "properties": {
-                    "distance": {
-                        "description": "distance code of fishing location.",
-                        "type": "string"
-                    },
-                    "in_state": {
-                        "type": "string"
-                    },
-                    "area_code": {
-                        "description": "3 character area-code for effort location",
-                        "type": "string"
-                    },
-                    "sub_area_code": {
-                        "description": "sub area code of fishing location.",
-                        "type": "string"
-                    },
-                    "local_area_code": {
-                        "type": "string"
-                    },
-                    "latitude": {
-                        "type": "string"
-                    },
-                    "longitude": {
-                        "type": "string"
-                    },
-                    "gear": {
-                        "description": "gear used in this effort",
-                        "type": "string"
-                    },
-                    "lma": {
-                        "type": "string"
-                    },
-                    "gear_quantity": {
-                        "type": "string"
-                    },
-                    "gear_sets": {
-                        "type": "string"
-                    },
-                    "fishing_hours": {
-                        "description": "amount of fishing time",
-                        "type": "string"
-                    },
-                    "hours_days": {
-                        "type": "string"
-                    },
-                    "total_gear": {
-                        "type": "string"
-                    },
-                    "gear_size": {
-                        "type": "string"
-                    },
-                    "mesh_ring_length": {
-                        "type": "string"
-                    },
-                    "mesh_ring_width": {
-                        "type": "string"
-                    },
-                    "stretch_size": {
-                        "type": "string"
-                    },
-                    "target_species": {
-                        "description": "Species you intend to catch",
-                        "type": "string"
-                    },
-                    "avg_depth": {
-                        "description": "Average fishing depth",
-                        "type": "string"
-                    },
-                    "supplier_effort_id": {
-                        "description": "unique identifier of effort. Used to communicate back errors and for updates",
-                        "type": "string"
-                    },
-                    "catches": {
-                        "description": "collection of catches made with this effort",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/catch"
-                        }
-                    },
-                    "gear_attributes": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute_with_units"
-                        }
-                    },
-                    "effort_additional_attributes": {
-                        "description": "additional attributes tied to effort",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute_multi_value"
-                        }
-                    }
-                },
-                "example": {
-                    "distance": "1",
-                    "in_state": "RI",
-                    "area_code": "539",
-                    "sub_area_code": "0132",
-                    "local_area_code": "00",
-                    "latitude": "41.4450635115479",
-                    "longitude": "-71.3559923529778",
-                    "gear": "300",
-                    "lma": "",
-                    "gear_quantity": "16",
-                    "gear_sets": "23",
-                    "fishing_hours": "6.0",
-                    "hours_days": "H",
-                    "total_gear": "0",
-                    "gear_size": "",
-                    "mesh_ring_length": "",
-                    "mesh_ring_width": "",
-                    "stretch_size": "",
-                    "target_species": "",
-                    "avg_depth": "55",
-                    "supplier_effort_id": "120119073102827"
-                }
-            },
-            "catch": {
-                "title": "Root Type for catch",
-                "description": "",
-                "required": [
-                    "disposition",
-                    "species_itis",
-                    "supplier_catch_id",
-                    "unit_of_measure",
-                    "reported_quantity"
-                ],
-                "type": "object",
-                "properties": {
-                    "species_itis": {
-                        "description": "ITIS code of the fish caught",
-                        "type": "string"
-                    },
-                    "disposition": {
-                        "description": "the final disposition of the catch made",
-                        "type": "string"
-                    },
-                    "unit_of_measure": {
-                        "description": "Code for unit of measure used to reference the reported_quantity field",
-                        "type": "string"
-                    },
-                    "market_code": {
-                        "description": "catch market code",
-                        "type": "string"
-                    },
-                    "grade_code": {
-                        "description": "catch grade code",
-                        "type": "string"
-                    },
-                    "reported_quantity": {
-                        "description": "numeric quantity of fish caught. Always used in conjunction with unit_of_measure field. ",
-                        "type": "string"
-                    },
-                    "nbr_of_fish": {
-                        "description": "Count of fish caught",
-                        "type": "string"
-                    },
-                    "supplier_catch_id": {
-                        "description": "unique identifier for the catch given. used to communicate back catch-level errors. ",
-                        "type": "string"
-                    },
-                    "sale_disposition_flag": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "catch_additional_attributes": {
-                        "description": "additional attributes tied to the catch",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute"
-                        }
-                    },
-                    "species_attributes": {
-                        "description": "attributes tied to a specific species.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute"
-                        }
-                    }
-                },
-                "example": {
-                    "species_itis": "170425",
-                    "disposition": "001",
-                    "unit_of_measure": "LB",
-                    "market_code": "UN",
-                    "grade_code": "01",
-                    "reported_quantity": "25",
-                    "nbr_of_fish": "4",
-                    "supplier_catch_id": "6"
-                }
-            },
-            "attribute": {
-                "title": "Root Type for attribute",
-                "description": "",
-                "required": [
-                    "code"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "code": "040",
-                    "value": "Y"
-                }
-            },
-            "attribute_with_units": {
-                "title": "Root Type for attribute_with_units",
-                "description": "",
-                "required": [
-                    "code"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    },
-                    "units": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "code": "231",
-                    "value": "1233",
-                    "units": "CM"
-                }
-            },
-            "attribute_multi_value": {
-                "title": "Root Type for attribute_multi_value",
-                "description": "",
-                "required": [
-                    "code"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    },
-                    "values": {
-                        "description": "only used when attribute allows multiple values to be selected",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "units": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "code": "231",
-                    "value": "1233",
-                    "values": [
-                        "21312",
-                        "231231"
-                    ],
-                    "units": "CM"
-                }
-            },
-            "neg_trip": {
-                "title": "Root Type for neg_trip",
-                "description": "no-fishing report/negative trip",
-                "required": [
-                    "cf_license_nbr",
-                    "start_date",
-                    "supplier_row_id",
-                    "iss_agency"
-                ],
-                "type": "object",
-                "properties": {
-                    "supplier_row_id": {
-                        "description": "unique identifier given by sender. Useful for updating information and retrieving errors. ",
-                        "type": "string"
-                    },
-                    "iss_agency": {
-                        "description": "4 digit identification of the issuing agency of permit",
-                        "type": "string"
-                    },
-                    "start_date": {
-                        "format": "date",
-                        "description": "start date of the negative/no fishing report",
-                        "type": "string"
-                    },
-                    "end_date": {
-                        "format": "date",
-                        "description": "last date of negative report if a range is being given",
-                        "type": "string"
-                    },
-                    "cf_license_nbr": {
-                        "description": "license number given by issuing agency",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "supplier_row_id": "1231231",
-                    "iss_agency": "0003",
-                    "start_date": "11/22/2015",
-                    "end_date": "11/22/2015",
-                    "cf_license_nbr": "999999"
                 }
             },
             "neg_trips": {
@@ -1902,92 +1481,6 @@
                     "p_listname": "GEARS",
                     "p_listtype": "EDR",
                     "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
-            "participant": {
-                "title": "Root Type for participant",
-                "description": "",
-                "required": [
-                    "birth_date",
-                    "first_name",
-                    "last_name",
-                    "supplier_user_id"
-                ],
-                "type": "object",
-                "properties": {
-                    "supplier_user_id": {
-                        "description": "unique identifier for this user. Used to communicate back errors and for updates",
-                        "type": "string"
-                    },
-                    "email": {
-                        "description": "users valid email address",
-                        "type": "string"
-                    },
-                    "first_name": {
-                        "description": "user's legal first name",
-                        "type": "string"
-                    },
-                    "last_name": {
-                        "description": "users legal last name",
-                        "type": "string"
-                    },
-                    "birth_date": {
-                        "format": "date",
-                        "description": "date of birth. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "iss_agency": {
-                        "description": "4 character identification of license issuing agency",
-                        "type": "string"
-                    },
-                    "license_nbr": {
-                        "description": "license/permit number given by the issuing agency",
-                        "type": "string"
-                    },
-                    "address_1": {
-                        "description": "address line 1",
-                        "type": "string"
-                    },
-                    "address_2": {
-                        "description": "address line 2",
-                        "type": "string"
-                    },
-                    "city": {
-                        "description": "address city",
-                        "type": "string"
-                    },
-                    "state": {
-                        "description": "US State or Territory",
-                        "type": "string"
-                    },
-                    "county": {
-                        "description": "address county",
-                        "type": "string"
-                    },
-                    "postal_code": {
-                        "description": "US Postal Code",
-                        "type": "string"
-                    },
-                    "phone_nbr": {
-                        "description": "users 10 digit phone number",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "supplier_user_id": "1222",
-                    "email": "testemail@example.com",
-                    "first_name": "Jonas",
-                    "last_name": "Brother",
-                    "birth_date": "04/13/1980",
-                    "iss_agency": "0018",
-                    "license_nbr": "526783",
-                    "address_1": "909 Georgia Ave",
-                    "address_2": "Suite 100",
-                    "city": "Silver Spring",
-                    "state": "MD",
-                    "county": "Montgomery",
-                    "postal_code": "20910",
-                    "phone_nbr": "5559900647"
                 }
             },
             "participants": {
@@ -5039,6 +4532,578 @@
                     ],
                     "status": "OK",
                     "description": "Sale_Dispositions_Additional_Attributes count: 2"
+                }
+            },
+            "trip": {
+                "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
+                "required": [
+                    "trip_start_date",
+                    "trip_type",
+                    "cf_license_nbr",
+                    "port",
+                    "iss_agency",
+                    "supplier_trip_id"
+                ],
+                "enum": [
+                ],
+                "type": "object",
+                "properties": {
+                    "trip_start_date": {
+                        "format": "date",
+                        "description": "calendar date of beginning of fishing trip. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "trip_type": {
+                        "description": "Trip Type undertaken. Commercial (C), Recreational (R), For Hire-Charter(A), For Hire-Headboat (H)",
+                        "enum": [
+                            "C",
+                            "R",
+                            "A",
+                            "H"
+                        ],
+                        "type": "string"
+                    },
+                    "trip_start_time": {
+                        "description": "calendar time of start of fishing trip. Format hh24:mi",
+                        "type": "string"
+                    },
+                    "trip_end_time": {
+                        "description": "calendar time of end of fishing trip. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "vessel_permit": {
+                        "description": "Vessel Permit number of vessel in use",
+                        "type": "string"
+                    },
+                    "vtr_number": {
+                        "description": "Vessel Trip Report number. Auto-generated by the application",
+                        "type": "string"
+                    },
+                    "trip_activity": {
+                        "description": "Indicator for intended/final outcome of fishing trip",
+                        "type": "string"
+                    },
+                    "state_reg_nbr": {
+                        "description": "State Registration number of vessel",
+                        "type": "string"
+                    },
+                    "coast_guard_nbr": {
+                        "description": "Coast Guard Number/Hull Number of vessel",
+                        "type": "string"
+                    },
+                    "port": {
+                        "description": "Landing Port of vessel",
+                        "type": "string"
+                    },
+                    "supplier_trip_id": {
+                        "description": "unique trip id given by the caller. Only used to communicate errors and updates.",
+                        "type": "string"
+                    },
+                    "participant_id": {
+                        "description": "ACCSP Participant idenitifier.",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 character identifier of issuing agency of permit in use",
+                        "type": "string"
+                    },
+                    "cf_license_nbr": {
+                        "description": "Permit/License Number of Permit in use.",
+                        "type": "string"
+                    },
+                    "efforts": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/effort"
+                        }
+                    },
+                    "trip_additional_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
+                    }
+                },
+                "example": {
+                    "cf_license_nbr": "CTFISHER",
+                    "iss_agency": "0005",
+                    "trip_type": "C",
+                    "supplier_trip_id": "062220035128937",
+                    "port": "071001",
+                    "state": "23",
+                    "coast_guard_nbr": "1093639",
+                    "state_reg_nbr": "",
+                    "trip_start_date": "06/21/2020",
+                    "trip_start_time": "2142",
+                    "trip_end_date": "06/21/2020",
+                    "report_completion_date": "06/21/2020",
+                    "trip_end_time": "2252",
+                    "num_crew": "2",
+                    "num_anglers": "1",
+                    "vtr_number": "9929220020912",
+                    "vessel_permit": "12345",
+                    "trip_activity": "0",
+                    "efforts": [
+                        {
+                            "distance": "1",
+                            "in_state": "RI",
+                            "area_code": "539",
+                            "sub_area_code": "0132",
+                            "local_area_code": "00",
+                            "latitude": "41.4450635115479",
+                            "longitude": "-71.3559923529778",
+                            "gear": "300",
+                            "lma": "",
+                            "gear_quantity": "16",
+                            "gear_sets": "23",
+                            "fishing_hours": "6.0",
+                            "hours_days": "H",
+                            "total_gear": "0",
+                            "gear_size": "",
+                            "mesh_ring_length": "",
+                            "mesh_ring_width": "",
+                            "stretch_size": "",
+                            "target_species": "",
+                            "avg_depth": "55",
+                            "supplier_effort_id": "120119073102827",
+                            "catches": [
+                                {
+                                    "species_itis": "161706",
+                                    "disposition": "001",
+                                    "market_code": "UN",
+                                    "grade_code": "01",
+                                    "unit_of_measure": "LB",
+                                    "sale_disposition_flag": "D",
+                                    "dealer_license_nbr": "",
+                                    "date_sold": "",
+                                    "reported_quantity": "2",
+                                    "price": "0.00",
+                                    "dea_iss_agency": "",
+                                    "catch_source": "S",
+                                    "catch_latitude": "",
+                                    "catch_longitude": "",
+                                    "supplier_catch_id": "062220035129010",
+                                    "nbr_of_fish": "0",
+                                    "offload_port": "",
+                                    "unit_of_length": "",
+                                    "length": "",
+                                    "species_attributes": [
+                                    ],
+                                    "sale_disposition_attributes": [
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "trip_additional_attributes": [
+                        {
+                            "code": "040",
+                            "value": "Y"
+                        }
+                    ]
+                }
+            },
+            "effort": {
+                "title": "Effort",
+                "description": "",
+                "required": [
+                    "distance",
+                    "in_state",
+                    "area_code",
+                    "sub_area_code",
+                    "gear",
+                    "gear_quantity",
+                    "fishing_hours"
+                ],
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "description": "distance code of fishing location.",
+                        "type": "string"
+                    },
+                    "in_state": {
+                        "type": "string"
+                    },
+                    "area_code": {
+                        "description": "3 character area-code for effort location",
+                        "type": "string"
+                    },
+                    "sub_area_code": {
+                        "description": "sub area code of fishing location.",
+                        "type": "string"
+                    },
+                    "local_area_code": {
+                        "description": "local area code value",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "latitude of effort in decimal degrees",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "longitude of effort in decimal degrees",
+                        "type": "string"
+                    },
+                    "gear": {
+                        "description": "gear used in this effort",
+                        "type": "string"
+                    },
+                    "gear_quantity": {
+                        "format": "int32",
+                        "description": "quantity of gear used",
+                        "type": "string"
+                    },
+                    "gear_sets": {
+                        "type": "string"
+                    },
+                    "fishing_hours": {
+                        "description": "amount of fishing time",
+                        "type": "string"
+                    },
+                    "hours_days": {
+                        "description": "Hours or Days indicator of fishing time",
+                        "enum": [
+                            "H",
+                            "D"
+                        ],
+                        "type": "string"
+                    },
+                    "total_gear": {
+                        "type": "string"
+                    },
+                    "gear_size": {
+                        "type": "string"
+                    },
+                    "avg_depth": {
+                        "description": "Average fishing depth",
+                        "type": "string"
+                    },
+                    "supplier_effort_id": {
+                        "description": "unique identifier of effort. Used to communicate back errors and for updates",
+                        "type": "string"
+                    },
+                    "catches": {
+                        "description": "collection of catches made with this effort",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/catch"
+                        }
+                    },
+                    "gear_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_with_units"
+                        }
+                    },
+                    "effort_additional_attributes": {
+                        "description": "additional attributes tied to effort",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_multi_value"
+                        }
+                    }
+                },
+                "example": {
+                    "distance": "1",
+                    "in_state": "RI",
+                    "area_code": "539",
+                    "sub_area_code": "0132",
+                    "local_area_code": "00",
+                    "latitude": "41.4450635115479",
+                    "longitude": "-71.3559923529778",
+                    "gear": "300",
+                    "gear_quantity": "16",
+                    "gear_sets": "23",
+                    "fishing_hours": "6.0",
+                    "hours_days": "H",
+                    "total_gear": "0",
+                    "gear_size": "",
+                    "avg_depth": "55",
+                    "supplier_effort_id": "120119073102827"
+                }
+            },
+            "catch": {
+                "title": "Catch",
+                "description": "",
+                "required": [
+                    "disposition",
+                    "species_itis",
+                    "supplier_catch_id",
+                    "unit_of_measure",
+                    "reported_quantity"
+                ],
+                "type": "object",
+                "properties": {
+                    "species_itis": {
+                        "description": "ITIS code of the fish caught",
+                        "type": "string"
+                    },
+                    "disposition": {
+                        "description": "the final disposition of the catch made",
+                        "type": "string"
+                    },
+                    "unit_of_measure": {
+                        "description": "Code for unit of measure used to reference the reported_quantity field",
+                        "type": "string"
+                    },
+                    "market_code": {
+                        "description": "catch market code",
+                        "type": "string"
+                    },
+                    "grade_code": {
+                        "description": "catch grade code",
+                        "type": "string"
+                    },
+                    "reported_quantity": {
+                        "description": "numeric quantity of fish caught. Always used in conjunction with unit_of_measure field. ",
+                        "type": "string"
+                    },
+                    "nbr_of_fish": {
+                        "description": "Count of fish caught",
+                        "type": "string"
+                    },
+                    "supplier_catch_id": {
+                        "description": "unique identifier for the catch given. used to communicate back catch-level errors. ",
+                        "type": "string"
+                    },
+                    "sale_disposition_flag": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "catch_additional_attributes": {
+                        "description": "additional attributes tied to the catch",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
+                    },
+                    "species_attributes": {
+                        "description": "attributes tied to a specific species.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
+                    }
+                },
+                "example": {
+                    "species_itis": "170425",
+                    "disposition": "001",
+                    "unit_of_measure": "LB",
+                    "market_code": "UN",
+                    "grade_code": "01",
+                    "reported_quantity": "25",
+                    "nbr_of_fish": "4",
+                    "supplier_catch_id": "6"
+                }
+            },
+            "attribute_multi_value": {
+                "title": "additional attributes",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "only used when attribute allows multiple values to be selected",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "units": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "231",
+                    "value": "1233",
+                    "values": [
+                        "21312",
+                        "231231"
+                    ],
+                    "units": "CM"
+                }
+            },
+            "attribute": {
+                "title": "additional attribute",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "040",
+                    "value": "Y"
+                }
+            },
+            "attribute_with_units": {
+                "title": "gear attributes",
+                "description": "",
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "units": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "231",
+                    "value": "1233",
+                    "units": "CM"
+                }
+            },
+            "participant": {
+                "title": "Participant",
+                "description": "",
+                "required": [
+                    "birth_date",
+                    "first_name",
+                    "last_name",
+                    "supplier_user_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "supplier_user_id": {
+                        "description": "unique identifier for this user. Used to communicate back errors and for updates",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "users valid email address",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "description": "user's legal first name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "description": "users legal last name",
+                        "type": "string"
+                    },
+                    "birth_date": {
+                        "format": "date",
+                        "description": "date of birth. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 character identification of license issuing agency",
+                        "type": "string"
+                    },
+                    "license_nbr": {
+                        "description": "license/permit number given by the issuing agency",
+                        "type": "string"
+                    },
+                    "address_1": {
+                        "description": "address line 1",
+                        "type": "string"
+                    },
+                    "address_2": {
+                        "description": "address line 2",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "address city",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "US State or Territory",
+                        "type": "string"
+                    },
+                    "county": {
+                        "description": "address county",
+                        "type": "string"
+                    },
+                    "postal_code": {
+                        "description": "US Postal Code",
+                        "type": "string"
+                    },
+                    "phone_nbr": {
+                        "description": "users 10 digit phone number",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "supplier_user_id": "1222",
+                    "email": "testemail@example.com",
+                    "first_name": "Jonas",
+                    "last_name": "Brother",
+                    "birth_date": "04/13/1980",
+                    "iss_agency": "0018",
+                    "license_nbr": "526783",
+                    "address_1": "909 Georgia Ave",
+                    "address_2": "Suite 100",
+                    "city": "Silver Spring",
+                    "state": "MD",
+                    "county": "Montgomery",
+                    "postal_code": "20910",
+                    "phone_nbr": "5559900647"
+                }
+            },
+            "neg_trip": {
+                "title": "negative trip",
+                "description": "no-fishing report/negative trip",
+                "required": [
+                    "cf_license_nbr",
+                    "start_date",
+                    "supplier_row_id",
+                    "iss_agency"
+                ],
+                "type": "object",
+                "properties": {
+                    "supplier_row_id": {
+                        "description": "unique identifier given by sender. Useful for updating information and retrieving errors. ",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 digit identification of the issuing agency of permit",
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "format": "date",
+                        "description": "start date of the negative/no fishing report",
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "format": "date",
+                        "description": "last date of negative report if a range is being given",
+                        "type": "string"
+                    },
+                    "cf_license_nbr": {
+                        "description": "license number given by issuing agency",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "supplier_row_id": "1231231",
+                    "iss_agency": "0003",
+                    "start_date": "11/22/2015",
+                    "end_date": "11/22/2015",
+                    "cf_license_nbr": "999999"
                 }
             }
         },
