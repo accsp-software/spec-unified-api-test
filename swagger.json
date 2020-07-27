@@ -739,96 +739,6 @@
     },
     "components": {
         "schemas": {
-            "trip_upload_response": {
-                "description": "response to successful trips_upload call. ",
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "required": [
-                            ],
-                            "type": "object",
-                            "properties": {
-                                "event_id": {
-                                    "description": "unique ID of this upload process",
-                                    "type": "string"
-                                },
-                                "upload_date": {
-                                    "description": "date the upload was received by server. Format MM/DD/YYYY hh24:mi",
-                                    "type": "string"
-                                },
-                                "process_date": {
-                                    "description": "date the server completed processing upload request. Format MM/DD/YYYY hh24:mi",
-                                    "type": "string"
-                                },
-                                "total_count": {
-                                    "description": "Number of trips found in the upload",
-                                    "type": "string"
-                                },
-                                "errored_count": {
-                                    "description": "Number of trips NOT processed due to one or more errors",
-                                    "type": "string"
-                                },
-                                "trips_accepted": {
-                                    "description": "details for accepted trips",
-                                    "type": "array",
-                                    "items": {
-                                        "required": [
-                                        ],
-                                        "type": "object",
-                                        "properties": {
-                                            "supplier_trip_id": {
-                                                "description": "unique supplier id for supplied to the upload",
-                                                "type": "string"
-                                            },
-                                            "accsp_trip_id": {
-                                                "description": "accsp internal identifier for this matching the supplier trip id",
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of the upload attempt",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "Human readable description of the status reason or failure.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "event_id": "121582",
-                            "upload_date": "2018-08-30 12:56:28",
-                            "process_date": "12:56:32",
-                            "total_count": "2",
-                            "errored_count": "0",
-                            "trips_accepted": [
-                                {
-                                    "supplier_trip_id": "0192929",
-                                    "accsp_trip_id": 1231213
-                                },
-                                {
-                                    "supplier_trip_id": "0141229",
-                                    "accsp_trip_id": 1211213
-                                }
-                            ]
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "UPDATE EVENTS UPLOAD"
-                }
-            },
             "user_permits_request": {
                 "title": "Root Type for user_permits_request",
                 "description": "",
@@ -4532,177 +4442,6 @@
                     "description": "Sale_Dispositions_Additional_Attributes count: 2"
                 }
             },
-            "trip": {
-                "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
-                "required": [
-                    "trip_start_date",
-                    "trip_type",
-                    "cf_license_nbr",
-                    "port",
-                    "iss_agency",
-                    "supplier_trip_id"
-                ],
-                "enum": [
-                ],
-                "type": "object",
-                "properties": {
-                    "trip_start_date": {
-                        "format": "date",
-                        "description": "calendar date of beginning of fishing trip. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "trip_type": {
-                        "description": "Trip Type undertaken. Commercial (C), Recreational (R), For Hire-Charter(A), For Hire-Headboat (H)",
-                        "enum": [
-                            "C",
-                            "R",
-                            "A",
-                            "H"
-                        ],
-                        "type": "string"
-                    },
-                    "trip_start_time": {
-                        "description": "calendar time of start of fishing trip. Format hh24:mi",
-                        "type": "string"
-                    },
-                    "trip_end_time": {
-                        "description": "calendar time of end of fishing trip. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "vessel_permit": {
-                        "description": "Vessel Permit number of vessel in use",
-                        "type": "string"
-                    },
-                    "vtr_number": {
-                        "description": "Vessel Trip Report number. Auto-generated by the application",
-                        "type": "string"
-                    },
-                    "trip_activity": {
-                        "description": "Indicator for intended/final outcome of fishing trip",
-                        "type": "string"
-                    },
-                    "state_reg_nbr": {
-                        "description": "State Registration number of vessel",
-                        "type": "string"
-                    },
-                    "coast_guard_nbr": {
-                        "description": "Coast Guard Number/Hull Number of vessel",
-                        "type": "string"
-                    },
-                    "port": {
-                        "description": "Landing Port of vessel",
-                        "type": "string"
-                    },
-                    "supplier_trip_id": {
-                        "description": "unique trip id given by the caller. Only used to communicate errors and updates.",
-                        "type": "string"
-                    },
-                    "participant_id": {
-                        "description": "ACCSP Participant idenitifier.",
-                        "type": "string"
-                    },
-                    "iss_agency": {
-                        "description": "4 character identifier of issuing agency of permit in use",
-                        "type": "string"
-                    },
-                    "cf_license_nbr": {
-                        "description": "Permit/License Number of Permit in use.",
-                        "type": "string"
-                    },
-                    "efforts": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/effort"
-                        }
-                    },
-                    "trip_additional_attributes": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute"
-                        }
-                    }
-                },
-                "example": {
-                    "cf_license_nbr": "CTFISHER",
-                    "iss_agency": "0005",
-                    "trip_type": "C",
-                    "supplier_trip_id": "062220035128937",
-                    "port": "071001",
-                    "state": "23",
-                    "coast_guard_nbr": "1093639",
-                    "state_reg_nbr": "",
-                    "trip_start_date": "06/21/2020",
-                    "trip_start_time": "2142",
-                    "trip_end_date": "06/21/2020",
-                    "report_completion_date": "06/21/2020",
-                    "trip_end_time": "2252",
-                    "num_crew": "2",
-                    "num_anglers": "1",
-                    "vtr_number": "9929220020912",
-                    "vessel_permit": "12345",
-                    "trip_activity": "0",
-                    "efforts": [
-                        {
-                            "distance": "1",
-                            "in_state": "RI",
-                            "area_code": "539",
-                            "sub_area_code": "0132",
-                            "local_area_code": "00",
-                            "latitude": "41.4450635115479",
-                            "longitude": "-71.3559923529778",
-                            "gear": "300",
-                            "lma": "",
-                            "gear_quantity": "16",
-                            "gear_sets": "23",
-                            "fishing_hours": "6.0",
-                            "hours_days": "H",
-                            "total_gear": "0",
-                            "gear_size": "",
-                            "mesh_ring_length": "",
-                            "mesh_ring_width": "",
-                            "stretch_size": "",
-                            "target_species": "",
-                            "avg_depth": "55",
-                            "supplier_effort_id": "120119073102827",
-                            "catches": [
-                                {
-                                    "species_itis": "161706",
-                                    "disposition": "001",
-                                    "market_code": "UN",
-                                    "grade_code": "01",
-                                    "unit_of_measure": "LB",
-                                    "sale_disposition_flag": "D",
-                                    "dealer_license_nbr": "",
-                                    "date_sold": "",
-                                    "reported_quantity": "2",
-                                    "price": "0.00",
-                                    "dea_iss_agency": "",
-                                    "catch_source": "S",
-                                    "catch_latitude": "",
-                                    "catch_longitude": "",
-                                    "supplier_catch_id": "062220035129010",
-                                    "nbr_of_fish": "0",
-                                    "offload_port": "",
-                                    "unit_of_length": "",
-                                    "length": "",
-                                    "species_attributes": [
-                                    ],
-                                    "sale_disposition_attributes": [
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "trip_additional_attributes": [
-                        {
-                            "code": "040",
-                            "value": "Y"
-                        }
-                    ]
-                }
-            },
             "effort": {
                 "title": "Effort",
                 "description": "",
@@ -5102,6 +4841,261 @@
                     "start_date": "11/22/2015",
                     "end_date": "11/22/2015",
                     "cf_license_nbr": "999999"
+                }
+            },
+            "trip_upload_response": {
+                "description": "response to successful trips_upload call. ",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "event_id": {
+                                    "description": "unique ID of this upload process",
+                                    "type": "string"
+                                },
+                                "upload_date": {
+                                    "description": "date the upload was received by server. Format MM/DD/YYYY hh24:mi",
+                                    "type": "string"
+                                },
+                                "process_date": {
+                                    "description": "date the server completed processing upload request. Format MM/DD/YYYY hh24:mi",
+                                    "type": "string"
+                                },
+                                "total_count": {
+                                    "description": "Number of trips found in the upload",
+                                    "type": "string"
+                                },
+                                "errored_count": {
+                                    "description": "Number of trips NOT processed due to one or more errors",
+                                    "type": "string"
+                                },
+                                "trips_accepted": {
+                                    "description": "details for accepted trips",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "supplier_trip_id": {
+                                                "description": "unique supplier id for supplied to the upload",
+                                                "type": "string"
+                                            },
+                                            "accsp_trip_id": {
+                                                "description": "accsp internal identifier for this matching the supplier trip id",
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "event_id": "121582",
+                            "upload_date": "2018-08-30 12:56:28",
+                            "process_date": "12:56:32",
+                            "total_count": "2",
+                            "errored_count": "0",
+                            "trips_accepted": [
+                                {
+                                    "supplier_trip_id": "0192929",
+                                    "accsp_trip_id": 1231213
+                                },
+                                {
+                                    "supplier_trip_id": "0141229",
+                                    "accsp_trip_id": 1211213
+                                }
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "UPDATE EVENTS UPLOAD"
+                }
+            },
+            "trip": {
+                "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
+                "required": [
+                    "trip_start_date",
+                    "trip_type",
+                    "cf_license_nbr",
+                    "port",
+                    "iss_agency",
+                    "supplier_trip_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "trip_start_date": {
+                        "format": "date",
+                        "description": "calendar date of beginning of fishing trip. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "trip_type": {
+                        "description": "Trip Type undertaken. Commercial (C), Recreational (R), For Hire-Charter(A), For Hire-Headboat (H)",
+                        "enum": [
+                            "C",
+                            "R",
+                            "A",
+                            "H"
+                        ],
+                        "type": "string"
+                    },
+                    "trip_start_time": {
+                        "description": "calendar time of start of fishing trip. Format hh24:mi",
+                        "type": "string"
+                    },
+                    "trip_end_time": {
+                        "description": "calendar time of end of fishing trip. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "vessel_permit": {
+                        "description": "Vessel Permit number of vessel in use",
+                        "type": "string"
+                    },
+                    "vtr_number": {
+                        "description": "Vessel Trip Report number. Auto-generated by the application",
+                        "type": "string"
+                    },
+                    "trip_activity": {
+                        "description": "Indicator for intended/final outcome of fishing trip",
+                        "type": "string"
+                    },
+                    "state_reg_nbr": {
+                        "description": "State Registration number of vessel",
+                        "type": "string"
+                    },
+                    "coast_guard_nbr": {
+                        "description": "Coast Guard Number/Hull Number of vessel",
+                        "type": "string"
+                    },
+                    "port": {
+                        "description": "Landing Port of vessel",
+                        "type": "string"
+                    },
+                    "supplier_trip_id": {
+                        "description": "unique trip id given by the caller. Only used to communicate errors and updates.",
+                        "type": "string"
+                    },
+                    "participant_id": {
+                        "description": "ACCSP Participant idenitifier.",
+                        "type": "string"
+                    },
+                    "iss_agency": {
+                        "description": "4 character identifier of issuing agency of permit in use",
+                        "type": "string"
+                    },
+                    "cf_license_nbr": {
+                        "description": "Permit/License Number of Permit in use.",
+                        "type": "string"
+                    },
+                    "efforts": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/effort"
+                        }
+                    },
+                    "trip_additional_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute"
+                        }
+                    }
+                },
+                "example": {
+                    "cf_license_nbr": "CTFISHER",
+                    "iss_agency": "0005",
+                    "trip_type": "C",
+                    "supplier_trip_id": "062220035128937",
+                    "port": "071001",
+                    "state": "23",
+                    "coast_guard_nbr": "1093639",
+                    "state_reg_nbr": "",
+                    "trip_start_date": "06/21/2020",
+                    "trip_start_time": "2142",
+                    "trip_end_date": "06/21/2020",
+                    "report_completion_date": "06/21/2020",
+                    "trip_end_time": "2252",
+                    "num_crew": "2",
+                    "num_anglers": "1",
+                    "vtr_number": "9929220020912",
+                    "vessel_permit": "12345",
+                    "trip_activity": "0",
+                    "efforts": [
+                        {
+                            "distance": "1",
+                            "in_state": "RI",
+                            "area_code": "539",
+                            "sub_area_code": "0132",
+                            "local_area_code": "00",
+                            "latitude": "41.4450635115479",
+                            "longitude": "-71.3559923529778",
+                            "gear": "300",
+                            "lma": "",
+                            "gear_quantity": "16",
+                            "gear_sets": "23",
+                            "fishing_hours": "6.0",
+                            "hours_days": "H",
+                            "total_gear": "0",
+                            "gear_size": "",
+                            "mesh_ring_length": "",
+                            "mesh_ring_width": "",
+                            "stretch_size": "",
+                            "target_species": "",
+                            "avg_depth": "55",
+                            "supplier_effort_id": "120119073102827",
+                            "catches": [
+                                {
+                                    "species_itis": "161706",
+                                    "disposition": "001",
+                                    "market_code": "UN",
+                                    "grade_code": "01",
+                                    "unit_of_measure": "LB",
+                                    "sale_disposition_flag": "D",
+                                    "dealer_license_nbr": "",
+                                    "date_sold": "",
+                                    "reported_quantity": "2",
+                                    "price": "0.00",
+                                    "dea_iss_agency": "",
+                                    "catch_source": "S",
+                                    "catch_latitude": "",
+                                    "catch_longitude": "",
+                                    "supplier_catch_id": "062220035129010",
+                                    "nbr_of_fish": "0",
+                                    "offload_port": "",
+                                    "unit_of_length": "",
+                                    "length": "",
+                                    "species_attributes": [
+                                    ],
+                                    "sale_disposition_attributes": [
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "trip_additional_attributes": [
+                        {
+                            "code": "040",
+                            "value": "Y"
+                        }
+                    ]
                 }
             }
         },
