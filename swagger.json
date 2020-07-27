@@ -119,26 +119,6 @@
                 "description": "retrieve set of trips rows from safis. \nA list of trips is requested from the SAFIS system within the upper and lower limits of the start and end dates (inclusive) . This list will only contain successfully uploaded trips and will be sent to same format as the trips_upload call. "
             }
         },
-        "/favorites_download": {
-            "post": {
-                "tags": [
-                    "eTrips"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "output of the endpoint"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": [
-                        ]
-                    }
-                ],
-                "summary": "favorites_download",
-                "description": "call to download a users stored favorites on eTrips online"
-            }
-        },
         "/lookup_list_date_changed": {
             "post": {
                 "requestBody": {
