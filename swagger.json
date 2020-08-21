@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.54",
+        "version": "1.0.55",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -1630,7 +1630,17 @@
                     "p_start_time": "1845",
                     "p_departure_port": "224109",
                     "p_arrival_port": "222109",
-                    "p_notif_type": "6"
+                    "p_notif_type": "6",
+                    "partner_attributes": [
+                        {
+                            "element_id": "400",
+                            "element_value": "2883"
+                        },
+                        {
+                            "element_id": "403",
+                            "element_value": "Y"
+                        }
+                    ]
                 }
             },
             "gear_attributes_response": {
