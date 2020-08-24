@@ -2312,6 +2312,7 @@
                 "type": "object",
                 "properties": {
                     "state_reg_nbr": {
+                        "description": "State Registration number of vessel. If no vessel used, provide 'FROM_SHORE'. Required to provide either coast_guard_nbr or state_reg_nbr.",
                         "type": "string"
                     },
                     "landing_date": {
@@ -2361,7 +2362,7 @@
                         "type": "string"
                     },
                     "landings": {
-                        "description": "",
+                        "description": "Collection of landings in this dealer report.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/landing"
@@ -4454,46 +4455,48 @@
                 "type": "object",
                 "properties": {
                     "distance": {
-                        "description": "distance code of fishing location.",
+                        "description": "Distance from shore of fishing location.",
                         "type": "string"
                     },
                     "in_state": {
+                        "description": "State postal if fishing in state waters.  'US' if fishing in federal waters.",
                         "type": "string"
                     },
                     "area_code": {
-                        "description": "3 character area-code for effort location.",
+                        "description": "3 character area-code of fishing location.",
                         "type": "string"
                     },
                     "sub_area_code": {
-                        "description": "sub area code of fishing location.",
+                        "description": "4 character sub-area code of fishing location.",
                         "type": "string"
                     },
                     "local_area_code": {
-                        "description": "local area code value",
+                        "description": "Local-area code of fishing location.",
                         "type": "string"
                     },
                     "latitude": {
-                        "description": "latitude of effort in decimal degrees",
+                        "description": "Latitude of effort in decimal degrees.",
                         "type": "string"
                     },
                     "longitude": {
-                        "description": "longitude of effort in decimal degrees",
+                        "description": "Longitude of effort in decimal degrees.",
                         "type": "string"
                     },
                     "gear": {
-                        "description": "gear used in this effort",
+                        "description": "Gear code used in this effort.",
                         "type": "string"
                     },
                     "gear_quantity": {
                         "format": "int32",
-                        "description": "quantity of gear used",
+                        "description": "Quantity of gear used.",
                         "type": "string"
                     },
                     "gear_sets": {
+                        "description": "Number of gear sets in this effort.",
                         "type": "string"
                     },
                     "fishing_hours": {
-                        "description": "amount of fishing time",
+                        "description": "Total amount of active fishing time in this effort.",
                         "type": "string"
                     },
                     "hours_days": {
@@ -4505,35 +4508,37 @@
                         "type": "string"
                     },
                     "total_gear": {
+                        "description": "Total gear in water.",
                         "type": "string"
                     },
                     "gear_size": {
+                        "description": "Indicates how mesh size wass measured. Stretch Size (S) or Mesh length and width (M).",
                         "type": "string"
                     },
                     "avg_depth": {
-                        "description": "Average fishing depth",
+                        "description": "Bottom depth.",
                         "type": "string"
                     },
                     "supplier_effort_id": {
-                        "description": "unique identifier of effort. Used to communicate back errors and for updates",
+                        "description": "Unique effort id given by the caller. Only used to communicate errors and updates.",
                         "type": "string"
                     },
                     "catches": {
-                        "description": "collection of catches made with this effort",
+                        "description": "Collection of catches made with this effort",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/catch"
                         }
                     },
                     "gear_attributes": {
-                        "description": "",
+                        "description": "Collection of supplemental attributes defining the gear configuration or effort.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/attribute_with_units"
                         }
                     },
                     "effort_additional_attributes": {
-                        "description": "additional attributes tied to effort",
+                        "description": "Collection of supplemental attributes defining the effort.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/attribute_multi_value"
@@ -4576,7 +4581,7 @@
                         "type": "string"
                     },
                     "disposition": {
-                        "description": "the final disposition of the catch made",
+                        "description": "The final disposition or fate of the catch.",
                         "type": "string"
                     },
                     "unit_of_measure": {
@@ -4584,15 +4589,15 @@
                         "type": "string"
                     },
                     "market_code": {
-                        "description": "catch market code",
+                        "description": "Factors affecting market price (such as size).",
                         "type": "string"
                     },
                     "grade_code": {
-                        "description": "catch grade code",
+                        "description": "Grade, or how catch was processed.",
                         "type": "string"
                     },
                     "reported_quantity": {
-                        "description": "numeric quantity of fish caught. Always used in conjunction with unit_of_measure field. ",
+                        "description": "Numeric quantity of fish caught. Always used in conjunction with unit_of_measure field. ",
                         "type": "string"
                     },
                     "nbr_of_fish": {
@@ -4600,22 +4605,22 @@
                         "type": "string"
                     },
                     "supplier_catch_id": {
-                        "description": "unique identifier for the catch given. used to communicate back catch-level errors. ",
+                        "description": "Unique catch id given by the caller. Only used to communicate errors and for updates.",
                         "type": "string"
                     },
                     "sale_disposition_flag": {
-                        "description": "",
+                        "description": "Code indicating whether catch was sold, kept, or discarded.",
                         "type": "string"
                     },
                     "catch_additional_attributes": {
-                        "description": "additional attributes tied to the catch",
+                        "description": "Collection of supplemental attributes defining the catch.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/attribute"
                         }
                     },
                     "species_attributes": {
-                        "description": "attributes tied to a specific species.",
+                        "description": "Collection of species-specific supplemental attributes defining the catch.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/attribute"
@@ -5009,7 +5014,7 @@
                         }
                     },
                     "trip_additional_attributes": {
-                        "description": "",
+                        "description": "Collection of supplemental attributes collected at the trip-header level.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/attribute"
