@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.55",
+        "version": "1.0.56",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -4491,10 +4491,6 @@
                         "description": "Quantity of gear used.",
                         "type": "string"
                     },
-                    "gear_sets": {
-                        "description": "Number of gear sets in this effort.",
-                        "type": "string"
-                    },
                     "fishing_hours": {
                         "description": "Total amount of active fishing time in this effort.",
                         "type": "string"
@@ -4513,10 +4509,6 @@
                     },
                     "gear_size": {
                         "description": "Indicates how mesh size wass measured. Stretch Size (S) or Mesh length and width (M).",
-                        "type": "string"
-                    },
-                    "avg_depth": {
-                        "description": "Bottom depth.",
                         "type": "string"
                     },
                     "supplier_effort_id": {
@@ -4555,12 +4547,10 @@
                     "longitude": "-71.3559923529778",
                     "gear": "300",
                     "gear_quantity": "16",
-                    "gear_sets": "23",
                     "fishing_hours": "6.0",
                     "hours_days": "H",
                     "total_gear": "0",
                     "gear_size": "",
-                    "avg_depth": "55",
                     "supplier_effort_id": "120119073102827"
                 }
             },
@@ -4931,6 +4921,69 @@
                     "description": "UPDATE EVENTS UPLOAD"
                 }
             },
+            "notification_upload_response": {
+                "title": "Root Type for notification_upload_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "universal_trip_id": {
+                                    "format": "int32",
+                                    "description": "accsp unique id for the associated trip",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the result status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "universal_trip_id": "75000695"
+                        }
+                    ],
+                    "status": "OK",
+                    "description:": "trip notification submitted 2020-07-30 12:27:58 with universal trip ID: 75000695 and 0 partner-managed attributes."
+                }
+            },
+            "partner_attribute": {
+                "title": "partner_attributes",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "element_id": {
+                        "description": "element id ",
+                        "type": "string"
+                    },
+                    "element_value": {
+                        "description": "element value in string form",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "element_id": "400",
+                    "element_value": "Y"
+                }
+            },
             "trip": {
                 "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
                 "required": [
@@ -5035,8 +5088,6 @@
                     "trip_end_date": "06/21/2020",
                     "report_completion_date": "06/21/2020",
                     "trip_end_time": "2252",
-                    "num_crew": "2",
-                    "num_anglers": "1",
                     "vtr_number": "9929220020912",
                     "vessel_permit": "12345",
                     "trip_activity": "0",
@@ -5098,69 +5149,6 @@
                             "value": "Y"
                         }
                     ]
-                }
-            },
-            "notification_upload_response": {
-                "title": "Root Type for notification_upload_response",
-                "description": "",
-                "required": [
-                    "status"
-                ],
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "universal_trip_id": {
-                                    "format": "int32",
-                                    "description": "accsp unique id for the associated trip",
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of the request",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "human readable description of the result status",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "universal_trip_id": "75000695"
-                        }
-                    ],
-                    "status": "OK",
-                    "description:": "trip notification submitted 2020-07-30 12:27:58 with universal trip ID: 75000695 and 0 partner-managed attributes."
-                }
-            },
-            "partner_attribute": {
-                "title": "partner_attributes",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "element_id": {
-                        "description": "element id ",
-                        "type": "string"
-                    },
-                    "element_value": {
-                        "description": "element value in string form",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "element_id": "400",
-                    "element_value": "Y"
                 }
             }
         },
