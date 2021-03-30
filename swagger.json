@@ -5186,7 +5186,7 @@
                     },
                     "p_start_date": {
                         "format": "date",
-                        "description": "trip start date in format YYYY-MM-DD.",
+                        "description": "trip start date in format MM/DD/YYYY.",
                         "type": "string"
                     },
                     "p_start_time": {
