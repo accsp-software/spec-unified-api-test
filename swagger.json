@@ -5216,7 +5216,6 @@
                     "p_trip_type": "C",
                     "p_start_date": "2020-05-30",
                     "p_start_time": "1845",
-                    "p_departure_port": "224109",
                     "p_arrival_port": "222109",
                     "p_notif_type": "6",
                     "partner_attributes": [
