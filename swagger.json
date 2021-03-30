@@ -5160,8 +5160,7 @@
                     "p_notif_type",
                     "p_trip_type",
                     "p_start_time",
-                    "p_start_date",
-                    "p_departure_port"
+                    "p_start_date"
                 ],
                 "type": "object",
                 "properties": {
@@ -5192,10 +5191,6 @@
                     },
                     "p_start_time": {
                         "description": "trip start time in format HHMM.",
-                        "type": "string"
-                    },
-                    "p_departure_port": {
-                        "description": "port code for the departing (starting) port.",
                         "type": "string"
                     },
                     "p_arrival_port": {
