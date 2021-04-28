@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.61",
+        "version": "1.0.62",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -1788,111 +1788,6 @@
                     "description": "1 Attribute(s) Returned"
                 }
             },
-            "disposition_response": {
-                "title": "DISPOSITION",
-                "description": "disposition response",
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "description": "disposition code. Expected value by trips_upload  and reports_upload",
-                                    "type": "string"
-                                },
-                                "desc": {
-                                    "description": "name of the disposition",
-                                    "type": "string"
-                                },
-                                "category_code": {
-                                    "description": "category code of disposition",
-                                    "type": "string"
-                                },
-                                "category_name": {
-                                    "description": "category name of disposition",
-                                    "type": "string"
-                                },
-                                "comm_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in commercial trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "for_hire_ch_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "for_hire_hb_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire headboat trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rec_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in recreational trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of request",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "human readable description of request status",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "code": "001",
-                            "desc": "General : Food",
-                            "category_code": "000",
-                            "category_name": "General Utilization",
-                            "comm_flag": "N",
-                            "for_hire_ch_flag": "N",
-                            "for_hire_hb_flag": "N",
-                            "rec_flag": "N"
-                        },
-                        {
-                            "code": "001",
-                            "desc": "General : Food",
-                            "category_code": "000",
-                            "category_name": "General Utilization",
-                            "comm_flag": "Y",
-                            "for_hire_ch_flag": "Y",
-                            "for_hire_hb_flag": "N",
-                            "rec_flag": "N"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "Disposition count: 2"
-                }
-            },
             "trips_download_response": {
                 "title": "Root Type for trips_download_response",
                 "description": "",
@@ -2775,170 +2670,6 @@
                     ],
                     "status": "OK",
                     "description": "Species allowed by endorsement(s): 1"
-                }
-            },
-            "partner_managed_species_response": {
-                "title": "PARTNER_MANAGED_SPECIES",
-                "description": "",
-                "required": [
-                    "status"
-                ],
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "attribute_code": {
-                                    "format": "int32",
-                                    "description": "unique attribute code/id",
-                                    "type": "integer"
-                                },
-                                "attribute_name": {
-                                    "description": "name of attribute",
-                                    "type": "string"
-                                },
-                                "attribute_desc": {
-                                    "description": "accompanying help text",
-                                    "type": "string"
-                                },
-                                "species_itis": {
-                                    "description": "ITIS code of species",
-                                    "type": "string"
-                                },
-                                "type": {
-                                    "description": "format of attribute.",
-                                    "enum": [
-                                        "NUMBER*",
-                                        "STRING",
-                                        "DATE",
-                                        "TIMESTAMP"
-                                    ],
-                                    "type": "string"
-                                },
-                                "list_type": {
-                                    "description": "denotes whether list returned is static (S) or dynamic(D)",
-                                    "enum": [
-                                        "S",
-                                        "D"
-                                    ],
-                                    "type": "string"
-                                },
-                                "options": {
-                                    "description": "JSON key-value pairs showing the return and display value of static list items respectively",
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object"
-                                    }
-                                },
-                                "order_seq": {
-                                    "format": "int32",
-                                    "description": "display order of attribute relative to others",
-                                    "type": "integer"
-                                },
-                                "attribute_count": {
-                                    "description": "expected number of values returned. default is Single(S). Multiple (M).",
-                                    "enum": [
-                                        "S",
-                                        "M"
-                                    ],
-                                    "type": "string"
-                                },
-                                "comm_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in commercial trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "for_hire_charter_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "for_hire_hb_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire headboat trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rec_flag": {
-                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in recreational trip",
-                                    "enum": [
-                                        "R",
-                                        "Y",
-                                        "N"
-                                    ],
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "description": "status of the request",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "human readable description of the result status",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "attribute_code": 1212,
-                            "attribute_name": "Length Qualifier",
-                            "attribute_desc": "How was the length taken? (measured or estimated)",
-                            "species_itis": "172421",
-                            "type": "STRING",
-                            "list_type": "S",
-                            "options": [
-                                {
-                                    "M": "Measured"
-                                },
-                                {
-                                    "E": "Estimated"
-                                },
-                                {
-                                    "U": "Unknown"
-                                }
-                            ],
-                            "order_seq": 6,
-                            "attribute_count": "S",
-                            "comm_flag": "R",
-                            "for_hire_charter_flag": "R",
-                            "for_hire_hb_flag": "R",
-                            "rec_flag": "R"
-                        },
-                        {
-                            "attribute_code": 1203,
-                            "attribute_name": "Tag #",
-                            "attribute_desc": "HMS Tag Number (the 9 digits follows BT starting with 05 or 90)",
-                            "species_itis": "172421",
-                            "type": "NUMBER",
-                            "order_seq": 14,
-                            "comm_flag": "Y",
-                            "for_hire_charter_flag": "Y",
-                            "for_hire_hb_flag": "Y",
-                            "rec_flag": "Y"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "Partner_Managed_Species count: 2"
                 }
             },
             "areas_fished_response": {
@@ -5277,6 +5008,342 @@
                     "nbr_of_fish": "4",
                     "catch_source": "S",
                     "supplier_catch_id": "6"
+                }
+            },
+            "disposition_response": {
+                "title": "DISPOSITION",
+                "description": "disposition response",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "description": "disposition code. Expected value by trips_upload  and reports_upload",
+                                    "type": "string"
+                                },
+                                "desc": {
+                                    "description": "name of the disposition",
+                                    "type": "string"
+                                },
+                                "category_code": {
+                                    "description": "category code of disposition",
+                                    "type": "string"
+                                },
+                                "category_name": {
+                                    "description": "category name of disposition",
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in commercial trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_ch_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire headboat trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in recreational trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_groups": {
+                                    "description": "indicates a letter coded group that this disposition belongs to for the purpose of inclusion and exclusion of certain species fields.",
+                                    "type": "array",
+                                    "items": {
+                                        "enum": [
+                                            "A",
+                                            "D",
+                                            "F",
+                                            "L",
+                                            "P"
+                                        ],
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of request status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "001",
+                            "desc": "General : Food",
+                            "category_code": "000",
+                            "category_name": "General Utilization",
+                            "comm_flag": "N",
+                            "for_hire_ch_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N"
+                        },
+                        {
+                            "code": "200",
+                            "desc": "Discarded Alive : Other",
+                            "category_code": "008",
+                            "category_name": "Discarded Alive",
+                            "comm_flag": "Y",
+                            "for_hire_ch_flag": "Y",
+                            "for_hire_hb_flag": "Y",
+                            "rec_flag": "Y",
+                            "rule_groups": [
+                                "F",
+                                "A"
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Disposition count: 2"
+                }
+            },
+            "partner_managed_species_response": {
+                "title": "PARTNER_MANAGED_SPECIES",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "description": "unique attribute code/id",
+                                    "type": "integer"
+                                },
+                                "attribute_name": {
+                                    "description": "name of attribute",
+                                    "type": "string"
+                                },
+                                "attribute_desc": {
+                                    "description": "accompanying help text",
+                                    "type": "string"
+                                },
+                                "species_itis": {
+                                    "description": "ITIS code of species",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "format of attribute.",
+                                    "enum": [
+                                        "NUMBER*",
+                                        "STRING",
+                                        "DATE",
+                                        "TIMESTAMP"
+                                    ],
+                                    "type": "string"
+                                },
+                                "list_type": {
+                                    "description": "denotes whether list returned is static (S) or dynamic(D)",
+                                    "enum": [
+                                        "S",
+                                        "D"
+                                    ],
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "description": "JSON key-value pairs showing the return and display value of static list items respectively",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "order_seq": {
+                                    "format": "int32",
+                                    "description": "display order of attribute relative to others",
+                                    "type": "integer"
+                                },
+                                "attribute_count": {
+                                    "description": "expected number of values returned. default is Single(S). Multiple (M).",
+                                    "enum": [
+                                        "S",
+                                        "M"
+                                    ],
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in commercial trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_charter_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire charter trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in for-hire headboat trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N) in recreational trip",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_group": {
+                                    "description": "indicates a letter code for the group that this field is associated with. ",
+                                    "enum": [
+                                        "A",
+                                        "D",
+                                        "F",
+                                        "L",
+                                        "P"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_group_comm": {
+                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a commercial trip when a disposition on defined rule group has been picked",
+                                    "enum": [
+                                        "I",
+                                        "E"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_group_hb": {
+                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a headboat trip when a disposition on defined rule group has been picked",
+                                    "enum": [
+                                        "I",
+                                        "E"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_group_charter": {
+                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a charter trip when a disposition on defined rule group has been picked",
+                                    "enum": [
+                                        "I",
+                                        "E"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rule_group_rec": {
+                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a recreational trip when a disposition on defined rule group has been picked",
+                                    "enum": [
+                                        "I",
+                                        "E"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the result status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "attribute_code": 1212,
+                            "attribute_name": "Length Qualifier",
+                            "attribute_desc": "How was the length taken? (measured or estimated)",
+                            "species_itis": "172421",
+                            "type": "STRING",
+                            "list_type": "S",
+                            "options": [
+                                {
+                                    "M": "Measured"
+                                },
+                                {
+                                    "E": "Estimated"
+                                },
+                                {
+                                    "U": "Unknown"
+                                }
+                            ],
+                            "order_seq": 6,
+                            "attribute_count": "S",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R"
+                        },
+                        {
+                            "attribute_code": 1200,
+                            "attribute_name": "HMS Catch Area",
+                            "attribute_desc": "Highly Migratory Species: Catch Area",
+                            "species_itis": "172423",
+                            "order_seq": 63,
+                            "attribute_count": "S",
+                            "type": "STRING",
+                            "rule_group": "A",
+                            "rule_group_comm": "E",
+                            "rule_group_hb": "I",
+                            "rule_group_charter": "E",
+                            "rule_group_rec": "I",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "N"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "Partner_Managed_Species count: 2"
                 }
             }
         },
