@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.62",
+        "version": "1.0.63",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -5080,6 +5080,9 @@
                                             "A",
                                             "D",
                                             "F",
+                                            "H",
+                                            "I",
+                                            "J",
                                             "L",
                                             "P"
                                         ],
@@ -5237,48 +5240,67 @@
                                     ],
                                     "type": "string"
                                 },
-                                "rule_group": {
-                                    "description": "indicates a letter code for the group that this field is associated with. ",
-                                    "enum": [
-                                        "A",
-                                        "D",
-                                        "F",
-                                        "L",
-                                        "P"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rule_group_comm": {
-                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a commercial trip when a disposition on defined rule group has been picked",
-                                    "enum": [
-                                        "I",
-                                        "E"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rule_group_hb": {
-                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a headboat trip when a disposition on defined rule group has been picked",
-                                    "enum": [
-                                        "I",
-                                        "E"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rule_group_charter": {
-                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a charter trip when a disposition on defined rule group has been picked",
-                                    "enum": [
-                                        "I",
-                                        "E"
-                                    ],
-                                    "type": "string"
-                                },
-                                "rule_group_rec": {
-                                    "description": "indicates if this attribute should always be included (I) or excluded (E) in a recreational trip when a disposition on defined rule group has been picked",
-                                    "enum": [
-                                        "I",
-                                        "E"
-                                    ],
-                                    "type": "string"
+                                "limit_to_groups": {
+                                    "description": "indicates if element is limited to specific rule groups specified",
+                                    "type": "object",
+                                    "properties": {
+                                        "comm": {
+                                            "description": "the commercial trip rule group for which this attribute should display",
+                                            "enum": [
+                                                "A",
+                                                "D",
+                                                "F",
+                                                "H",
+                                                "I",
+                                                "J",
+                                                "L",
+                                                "P"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "hb": {
+                                            "description": "the headboat trip rule group for which this attribute should display",
+                                            "enum": [
+                                                "A",
+                                                "D",
+                                                "F",
+                                                "H",
+                                                "I",
+                                                "J",
+                                                "L",
+                                                "P"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "charter": {
+                                            "description": "the charter trip rule group for which this attribute should display",
+                                            "enum": [
+                                                "A",
+                                                "D",
+                                                "F",
+                                                "H",
+                                                "I",
+                                                "J",
+                                                "L",
+                                                "P"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "rec": {
+                                            "description": "the recreational trip rule group for which this attribute should display",
+                                            "enum": [
+                                                "A",
+                                                "D",
+                                                "F",
+                                                "H",
+                                                "I",
+                                                "J",
+                                                "L",
+                                                "P"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -5318,6 +5340,9 @@
                             ],
                             "order_seq": 6,
                             "attribute_count": "S",
+                            "limit_to_groups": {
+
+                            },
                             "comm_flag": "R",
                             "for_hire_charter_flag": "R",
                             "for_hire_hb_flag": "R",
@@ -5331,11 +5356,11 @@
                             "order_seq": 63,
                             "attribute_count": "S",
                             "type": "STRING",
-                            "rule_group": "A",
-                            "rule_group_comm": "E",
-                            "rule_group_hb": "I",
-                            "rule_group_charter": "E",
-                            "rule_group_rec": "I",
+                            "limit_to_groups": {
+                                "hb": "H",
+                                "charter": "H",
+                                "rec": "H"
+                            },
                             "comm_flag": "R",
                             "for_hire_charter_flag": "R",
                             "for_hire_hb_flag": "R",
