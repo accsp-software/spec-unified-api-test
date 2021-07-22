@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.65",
+        "version": "1.0.66",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -944,58 +944,6 @@
                     "latitude": "43.31238",
                     "longitude": "-70.11428",
                     "timestamp": "20191225131755"
-                }
-            },
-            "locations": {
-                "title": "Root Type for locations",
-                "description": "",
-                "required": [
-                    "p_supplier_trip_id",
-                    "locations"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_supplier_trip_id": {
-                        "description": "unique trip id given by the requesting entity",
-                        "type": "string"
-                    },
-                    "p_trip_id": {
-                        "description": "ACCSP trip id IF known. ",
-                        "type": "string"
-                    },
-                    "p_vendor_id": {
-                        "description": "vendor id of the device sending records",
-                        "type": "string"
-                    },
-                    "p_vessel_cgn": {
-                        "description": "US Coast Guard Number/Hull Nmber",
-                        "type": "string"
-                    },
-                    "locations": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/location"
-                        }
-                    }
-                },
-                "example": {
-                    "p_supplier_trip_id": "55590000003",
-                    "p_trip_id": "900000003",
-                    "p_vendor_id": "1233345",
-                    "p_vessel_cgn": "MS4564AX",
-                    "locations": [
-                        {
-                            "latitude": "43.31238",
-                            "longitude": "-70.11428",
-                            "timestamp": "20191225131755"
-                        },
-                        {
-                            "latitude": "42.32238",
-                            "longitude": "-70.11628",
-                            "timestamp": "20191225131845"
-                        }
-                    ]
                 }
             },
             "trip_locations_response": {
@@ -4181,120 +4129,6 @@
                     ]
                 }
             },
-            "effort": {
-                "title": "Effort",
-                "description": "",
-                "required": [
-                    "distance",
-                    "in_state",
-                    "area_code",
-                    "sub_area_code",
-                    "gear",
-                    "gear_quantity",
-                    "fishing_hours"
-                ],
-                "type": "object",
-                "properties": {
-                    "distance": {
-                        "description": "Distance from shore of fishing location.",
-                        "type": "string"
-                    },
-                    "in_state": {
-                        "description": "State postal if fishing in state waters.  'US' if fishing in federal waters.",
-                        "type": "string"
-                    },
-                    "area_code": {
-                        "description": "3 character area-code of fishing location.",
-                        "type": "string"
-                    },
-                    "sub_area_code": {
-                        "description": "4 character sub-area code of fishing location.",
-                        "type": "string"
-                    },
-                    "local_area_code": {
-                        "description": "Local-area code of fishing location.",
-                        "type": "string"
-                    },
-                    "latitude": {
-                        "description": "Latitude of effort in decimal degrees.",
-                        "type": "string"
-                    },
-                    "longitude": {
-                        "description": "Longitude of effort in decimal degrees.",
-                        "type": "string"
-                    },
-                    "gear": {
-                        "description": "Gear code used in this effort.",
-                        "type": "string"
-                    },
-                    "gear_quantity": {
-                        "format": "int32",
-                        "description": "Quantity of gear used.",
-                        "type": "string"
-                    },
-                    "fishing_hours": {
-                        "description": "Total amount of active fishing time in this effort.",
-                        "type": "string"
-                    },
-                    "hours_days": {
-                        "description": "Hours or Days indicator of fishing time",
-                        "enum": [
-                            "H",
-                            "D"
-                        ],
-                        "type": "string"
-                    },
-                    "total_gear": {
-                        "description": "Total gear in water.",
-                        "type": "string"
-                    },
-                    "gear_size": {
-                        "description": "Indicates how mesh size wass measured. Stretch Size (S) or Mesh length and width (M).",
-                        "type": "string"
-                    },
-                    "supplier_effort_id": {
-                        "description": "Unique effort id given by the caller. Only used to communicate errors and updates.",
-                        "type": "string"
-                    },
-                    "catches": {
-                        "description": "Collection of catches made with this effort",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/catch"
-                        }
-                    },
-                    "attributes": {
-                        "description": "Collection of supplemental attributes defining the gear configuration or effort.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute_with_units"
-                        }
-                    },
-                    "effort_additional_attributes": {
-                        "description": "Collection of supplemental attributes defining the effort.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/attribute_multi_value"
-                        }
-                    }
-                },
-                "example": {
-                    "distance": "1",
-                    "in_state": "RI",
-                    "area_code": "539",
-                    "sub_area_code": "0132",
-                    "local_area_code": "00",
-                    "latitude": "41.4450635115479",
-                    "longitude": "-71.3559923529778",
-                    "gear": "300",
-                    "gear_quantity": "16",
-                    "fishing_hours": "6.0",
-                    "hours_days": "H",
-                    "total_gear": "0",
-                    "gear_size": "",
-                    "supplier_effort_id": "120119073102827"
-                }
-            },
             "participant": {
                 "title": "Participant",
                 "description": "",
@@ -5384,6 +5218,176 @@
                     ],
                     "status": "OK",
                     "description": "1+ Vessel(s) Returned"
+                }
+            },
+            "locations": {
+                "title": "Root Type for locations",
+                "description": "",
+                "required": [
+                    "p_supplier_trip_id",
+                    "locations"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_supplier_trip_id": {
+                        "description": "unique trip id given by the requesting entity",
+                        "type": "string"
+                    },
+                    "p_trip_id": {
+                        "description": "ACCSP trip id IF known. ",
+                        "type": "string"
+                    },
+                    "p_vendor_id": {
+                        "description": "vendor id of the device sending records",
+                        "type": "string"
+                    },
+                    "p_vessel_cgn": {
+                        "description": "US Coast Guard number/hull number",
+                        "type": "string"
+                    },
+                    "p_vessel_srn": {
+                        "description": "vessel state registration number",
+                        "type": "string"
+                    },
+                    "locations": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/location"
+                        }
+                    }
+                },
+                "example": {
+                    "p_supplier_trip_id": "55590000003",
+                    "p_trip_id": "900000003",
+                    "p_vendor_id": "1233345",
+                    "p_vessel_cgn": "MS4564AX",
+                    "locations": [
+                        {
+                            "latitude": "43.31238",
+                            "longitude": "-70.11428",
+                            "timestamp": "20191225131755"
+                        },
+                        {
+                            "latitude": "42.32238",
+                            "longitude": "-70.11628",
+                            "timestamp": "20191225131845"
+                        }
+                    ]
+                }
+            },
+            "effort": {
+                "title": "Effort",
+                "description": "",
+                "required": [
+                    "distance",
+                    "in_state",
+                    "area_code",
+                    "sub_area_code",
+                    "gear",
+                    "gear_quantity",
+                    "fishing_hours"
+                ],
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "description": "Distance from shore of fishing location.",
+                        "type": "string"
+                    },
+                    "in_state": {
+                        "description": "State postal if fishing in state waters.  'US' if fishing in federal waters.",
+                        "type": "string"
+                    },
+                    "area_code": {
+                        "description": "3 character area-code of fishing location.",
+                        "type": "string"
+                    },
+                    "sub_area_code": {
+                        "description": "4 character sub-area code of fishing location.",
+                        "type": "string"
+                    },
+                    "local_area_code": {
+                        "description": "Local-area code of fishing location.",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "Latitude of effort in decimal degrees.",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "Longitude of effort in decimal degrees.",
+                        "type": "string"
+                    },
+                    "gear": {
+                        "description": "Gear code used in this effort.",
+                        "type": "string"
+                    },
+                    "gear_quantity": {
+                        "format": "int32",
+                        "description": "Quantity of gear used.",
+                        "type": "string"
+                    },
+                    "fishing_hours": {
+                        "description": "Total amount of active fishing time in this effort.",
+                        "type": "string"
+                    },
+                    "hours_days": {
+                        "description": "Hours or Days indicator of fishing time",
+                        "enum": [
+                            "H",
+                            "D"
+                        ],
+                        "type": "string"
+                    },
+                    "total_gear": {
+                        "description": "Total gear in water.",
+                        "type": "string"
+                    },
+                    "gear_size": {
+                        "description": "Indicates how mesh size wass measured. Stretch Size (S) or Mesh length and width (M).",
+                        "type": "string"
+                    },
+                    "supplier_effort_id": {
+                        "description": "Unique effort id given by the caller. Only used to communicate errors and updates.",
+                        "type": "string"
+                    },
+                    "catches": {
+                        "description": "Collection of catches made with this effort",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/catch"
+                        }
+                    },
+                    "gear_attributes": {
+                        "description": "Collection of supplemental attributes defining the gear configuration or effort.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_with_units"
+                        }
+                    },
+                    "effort_additional_attributes": {
+                        "description": "Collection of supplemental attributes defining the effort.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/attribute_multi_value"
+                        }
+                    }
+                },
+                "example": {
+                    "distance": "1",
+                    "in_state": "RI",
+                    "area_code": "539",
+                    "sub_area_code": "0132",
+                    "local_area_code": "00",
+                    "latitude": "41.4450635115479",
+                    "longitude": "-71.3559923529778",
+                    "gear": "300",
+                    "gear_quantity": "16",
+                    "fishing_hours": "6.0",
+                    "hours_days": "H",
+                    "total_gear": "0",
+                    "gear_size": "",
+                    "supplier_effort_id": "120119073102827"
                 }
             }
         },
