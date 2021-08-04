@@ -1311,7 +1311,8 @@
                             "PORTS",
                             "DEALERS",
                             "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES"
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS"
                         ],
                         "type": "string"
                     },
@@ -5450,6 +5451,66 @@
                     ],
                     "status": "OK",
                     "description": "Total rows inserted 3"
+                }
+            },
+            "vms_landing_locations": {
+                "title": "Root Type for vms_landing_locations",
+                "description": "List of VMS landing locations.",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "vms": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "area_code": {
+                                    "type": "string"
+                                },
+                                "port": {
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "type": "string"
+                                },
+                                "county": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "vms": 1246,
+                            "area_code": "021",
+                            "city": "SOUTH PADRE ISLAND",
+                            "state": "TX",
+                            "county": "CAMERON"
+                        },
+                        {
+                            "vms": 1394,
+                            "area_code": "010",
+                            "city": "ORANGE BEACH",
+                            "state": "FL",
+                            "county": "BALDWIN"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "1+ VMS Location(s) Returned"
                 }
             }
         },
