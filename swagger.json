@@ -913,7 +913,7 @@
                         "$ref": "#/components/schemas/sale_dispositions_response"
                     },
                     {
-                        "$ref": "#/components/schemas/vms_landing_locations"
+                        "$ref": "#/components/schemas/vms_landing_locations_response"
                     }
                 ],
                 "description": "",
@@ -5456,7 +5456,7 @@
                     "description": "Total rows inserted 3"
                 }
             },
-            "vms_landing_locations": {
+            "vms_landing_locations_response": {
                 "title": "Root Type for vms_landing_locations",
                 "description": "List of VMS landing locations.",
                 "type": "object",
@@ -5489,6 +5489,10 @@
                         }
                     },
                     "status": {
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
                         "type": "string"
                     },
                     "description": {
