@@ -5457,7 +5457,7 @@
                 }
             },
             "vms_landing_locations_response": {
-                "title": "Root Type for vms_landing_locations",
+                "title": "VMS_LANDING_LOCATIONS",
                 "description": "List of VMS landing locations.",
                 "type": "object",
                 "properties": {
