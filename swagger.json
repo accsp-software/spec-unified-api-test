@@ -911,6 +911,9 @@
                     },
                     {
                         "$ref": "#/components/schemas/sale_dispositions_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vms_landing_locations"
                     }
                 ],
                 "description": "",
