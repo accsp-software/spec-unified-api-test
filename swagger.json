@@ -2,7 +2,7 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Unified SAFIS API -Test",
-        "version": "1.0.69",
+        "version": "1.0.70",
         "description": "**Overview**\n\nThis API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end. \n\nTo request an API key, please contact us. ",
         "contact": {
             "email": "support@accsp.org"
@@ -5476,8 +5476,23 @@
                                 "port": {
                                     "type": "string"
                                 },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "street": {
+                                    "type": "string"
+                                },
                                 "city": {
                                     "type": "string"
+                                },
+                                "zipcode": {
+                                    "type": "string"
+                                },
+                                "latitude": {
+                                    "type": "number"
+                                },
+                                "longitude": {
+                                    "type": "number"
                                 },
                                 "state": {
                                     "type": "string"
@@ -5502,18 +5517,30 @@
                 "example": {
                     "row": [
                         {
-                            "vms": 1246,
-                            "area_code": "021",
-                            "city": "SOUTH PADRE ISLAND",
+                            "vms": 1054,
+                            "area_code": "019",
+                            "port": "460903",
+                            "name": "909 BEATEN ST.",
+                            "city": "FREEPORT",
+                            "street": "909 BEATEN ST",
+                            "zipcode": "77541",
+                            "latitude": 28.114123,
+                            "longitude": -93.318698,
                             "state": "TX",
-                            "county": "CAMERON"
+                            "county": "BRAZORIA"
                         },
                         {
-                            "vms": 1394,
-                            "area_code": "010",
-                            "city": "ORANGE BEACH",
-                            "state": "FL",
-                            "county": "BALDWIN"
+                            "vms": 1047,
+                            "area_code": "018",
+                            "port": "460911",
+                            "name": "1904 LOOKOUT LANE",
+                            "city": "GALVESTON",
+                            "street": "1904 LOOKOUT LANE",
+                            "zipcode": "77550",
+                            "latitude": 29.110565,
+                            "longitude": -92.489955,
+                            "state": "TX",
+                            "county": "GALVESTON"
                         }
                     ],
                     "status": "OK",
