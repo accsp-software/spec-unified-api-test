@@ -640,54 +640,6 @@
                 "description": "fetch a set of rows for a specified lookup table"
             }
         },
-        "/trips_upload": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/trips"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "eTrips"
-                ],
-                "parameters": [
-                    {
-                        "example": "AppVersion : 2.2.11232",
-                        "name": "AppVersion",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/trip_upload_response"
-                                }
-                            }
-                        },
-                        "description": "successful upload attempt"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": [
-                        ]
-                    }
-                ],
-                "summary": "trips_upload ",
-                "description": "send a set of trips rows to safis"
-            }
-        },
         "/neg_trips_upload": {
             "post": {
                 "requestBody": {
@@ -723,6 +675,62 @@
                 ],
                 "summary": "neg_trips_upload ",
                 "description": "send a set of negative / no fishing trip reports to safis."
+            }
+        },
+        "/trips_upload": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/trips"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "parameters": [
+                    {
+                        "example": "AppVersion : 2.2.11232",
+                        "name": "AppVersion",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "example": "Platform : iOS",
+                        "name": "Platform",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/trip_upload_response"
+                                }
+                            }
+                        },
+                        "description": "successful upload attempt"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": [
+                        ]
+                    }
+                ],
+                "summary": "trips_upload ",
+                "description": "send a set of trips rows to safis"
             }
         }
     },
