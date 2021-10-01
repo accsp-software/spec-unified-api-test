@@ -711,7 +711,7 @@
                         "in": "header"
                     },
                     {
-                        "example": "ETRIPS",
+                        "example": "AppName : ETRIPS",
                         "name": "AppName",
                         "schema": {
                             "type": "string"
