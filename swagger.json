@@ -935,36 +935,6 @@
                 "description": "",
                 "type": "object"
             },
-            "location": {
-                "title": "Root Type for location",
-                "description": "single location",
-                "required": [
-                    "latitude",
-                    "longitude",
-                    "timestamp"
-                ],
-                "type": "object",
-                "properties": {
-                    "latitude": {
-                        "description": "latitude in decimal degrees",
-                        "type": "string"
-                    },
-                    "longitude": {
-                        "description": "longitude in decimal degrees",
-                        "type": "string"
-                    },
-                    "timestamp": {
-                        "format": "date-time",
-                        "description": "timestamp in format: YYYYMMDDhh24miss",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "latitude": "43.31238",
-                    "longitude": "-70.11428",
-                    "timestamp": "20191225131755"
-                }
-            },
             "trip_locations_response": {
                 "title": "Root Type for trip_locations_response",
                 "description": "",
@@ -4899,62 +4869,6 @@
                     "description": "1+ Vessel(s) Returned"
                 }
             },
-            "locations": {
-                "title": "Root Type for locations",
-                "description": "",
-                "required": [
-                    "p_supplier_trip_id",
-                    "locations"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_supplier_trip_id": {
-                        "description": "unique trip id given by the requesting entity",
-                        "type": "string"
-                    },
-                    "p_trip_id": {
-                        "description": "ACCSP trip id IF known. ",
-                        "type": "string"
-                    },
-                    "p_vendor_id": {
-                        "description": "vendor id of the device sending records",
-                        "type": "string"
-                    },
-                    "p_vessel_cgn": {
-                        "description": "US Coast Guard number/hull number",
-                        "type": "string"
-                    },
-                    "p_vessel_srn": {
-                        "description": "vessel state registration number",
-                        "type": "string"
-                    },
-                    "locations": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/location"
-                        }
-                    }
-                },
-                "example": {
-                    "p_supplier_trip_id": "55590000003",
-                    "p_trip_id": "900000003",
-                    "p_vendor_id": "1233345",
-                    "p_vessel_cgn": "MS4564AX",
-                    "locations": [
-                        {
-                            "latitude": "43.31238",
-                            "longitude": "-70.11428",
-                            "timestamp": "20191225131755"
-                        },
-                        {
-                            "latitude": "42.32238",
-                            "longitude": "-70.11628",
-                            "timestamp": "20191225131845"
-                        }
-                    ]
-                }
-            },
             "effort": {
                 "title": "Effort",
                 "description": "",
@@ -5574,6 +5488,92 @@
                         {
                             "code": "040",
                             "value": "Y"
+                        }
+                    ]
+                }
+            },
+            "location": {
+                "title": "Root Type for location",
+                "description": "single location",
+                "required": [
+                    "latitude",
+                    "longitude",
+                    "timestamp"
+                ],
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "description": "latitude in decimal degrees",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "longitude in decimal degrees",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "date-time",
+                        "description": "timestamp in UTC format: YYYY-MM-DDThh24:mi:ssZ",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "latitude": "43.31238",
+                    "longitude": "-70.11428",
+                    "timestamp": "2021-10-26T18:31:30Z"
+                }
+            },
+            "locations": {
+                "title": "Root Type for locations",
+                "description": "",
+                "required": [
+                    "p_supplier_trip_id",
+                    "locations"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_supplier_trip_id": {
+                        "description": "unique trip id given by the requesting entity",
+                        "type": "string"
+                    },
+                    "p_trip_id": {
+                        "description": "ACCSP trip id IF known. ",
+                        "type": "string"
+                    },
+                    "p_vendor_id": {
+                        "description": "vendor id of the device sending records",
+                        "type": "string"
+                    },
+                    "p_vessel_cgn": {
+                        "description": "US Coast Guard number/hull number",
+                        "type": "string"
+                    },
+                    "p_vessel_srn": {
+                        "description": "vessel state registration number",
+                        "type": "string"
+                    },
+                    "locations": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/location"
+                        }
+                    }
+                },
+                "example": {
+                    "p_supplier_trip_id": "55590000003",
+                    "p_trip_id": "900000003",
+                    "p_vendor_id": "1233345",
+                    "p_vessel_cgn": "MS4564AX",
+                    "locations": [
+                        {
+                            "latitude": "43.31238",
+                            "longitude": "-70.11428",
+                            "timestamp": "2021-10-26T18:31:30Z"
+                        },
+                        {
+                            "latitude": "42.32238",
+                            "longitude": "-70.11628",
+                            "timestamp": "\t2021-10-26T18:31:44Z"
                         }
                     ]
                 }
