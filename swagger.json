@@ -5526,7 +5526,8 @@
                 "title": "Root Type for locations",
                 "description": "",
                 "required": [
-                    "p_supplier_trip_id",
+                    "p_vessel_cgn",
+                    "p_vessel_srn",
                     "locations"
                 ],
                 "type": "object",
