@@ -878,63 +878,6 @@
                     "description": "Total rows inserted 2"
                 }
             },
-            "lookup_list_responses": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/gears_list_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/attributes_list_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/gear_attributes_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/disposition_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/partner_managed_species_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/areas_fished_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/species_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/catch_source_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/user_notifications_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/participants_lookup_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/vessels_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/swipe_cards_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ports_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/dealers_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/partner_managed_notifications_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/sale_dispositions_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/vms_landing_locations_response"
-                    }
-                ],
-                "description": "",
-                "type": "object"
-            },
             "trip_locations_response": {
                 "title": "Root Type for trip_locations_response",
                 "description": "",
@@ -1265,57 +1208,6 @@
                     "SUPPLIER_EFFORT_ID": "052620093047882",
                     "SUPPLIER_CATCH_ID": "052620093047883",
                     "EVENT_ID": "807053"
-                }
-            },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
                 }
             },
             "participants": {
@@ -5578,6 +5470,118 @@
                         }
                     ]
                 }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "lookup_list_responses": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/gears_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/attributes_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/gear_attributes_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/disposition_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/areas_fished_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/catch_source_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/user_notifications_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/participants_lookup_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vessels_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/swipe_cards_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ports_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/dealers_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_notifications_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/sale_dispositions_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vms_landing_locations_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/lookup_list_responses"
+                    }
+                ],
+                "description": "",
+                "type": "object"
             }
         },
         "securitySchemes": {
