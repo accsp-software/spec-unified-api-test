@@ -5578,11 +5578,23 @@
                     "partner_attributes": [
                         {
                             "element_id": "400",
-                            "element_value": "2883"
+                            "element_value": "Y"
                         },
                         {
-                            "element_id": "403",
-                            "element_value": "Y"
+                            "element_id": "401",
+                            "element_value": "05/06/2022"
+                        },
+                        {
+                            "element_id": "402",
+                            "element_value": "1400"
+                        },
+                        {
+                            "element_id": "406",
+                            "element_value": "EST"
+                        },
+                        {
+                            "element_id": "405",
+                            "element_value": "1077"
                         }
                     ]
                 }
