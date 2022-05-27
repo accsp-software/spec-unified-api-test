@@ -5412,66 +5412,6 @@
                     "p_lastdate": "12/27/2010 14:45:00 "
                 }
             },
-            "lookup_list_responses": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/gears_list_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/attributes_list_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/gear_attributes_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/disposition_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/partner_managed_species_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/areas_fished_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/species_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/catch_source_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/user_notifications_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/participants_lookup_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/vessels_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/swipe_cards_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ports_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/dealers_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/partner_managed_notifications_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/sale_dispositions_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/vms_landing_locations_response"
-                    },
-                    {
-                        "$ref": "#/components/schemas/lookup_list_responses"
-                    }
-                ],
-                "description": "",
-                "type": "object"
-            },
             "lookup_list_date_changed_request": {
                 "title": "Root Type for lookup_list_date_changed_request",
                 "description": "",
@@ -5597,6 +5537,83 @@
                             "element_value": "1077"
                         }
                     ]
+                }
+            },
+            "lookup_list_responses": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/gears_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/attributes_list_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/gear_attributes_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/disposition_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/areas_fished_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/catch_source_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/user_notifications_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/participants_lookup_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vessels_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/swipe_cards_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ports_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/dealers_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_notifications_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/sale_dispositions_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/vms_landing_locations_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/lookup_list_responses"
+                    },
+                    {
+                        "$ref": "#/components/schemas/trip_activity_response"
+                    }
+                ],
+                "description": "",
+                "type": "object"
+            },
+            "trip_activity_response": {
+                "title": "TRIP_ACTIVITY",
+                "description": "Provides a list of trip activity types for a given partner (p_partner). List types for older applications and versions are available by specifying a listtype using the p_listtype parameter (e.g. p_listtype = \"ETRIPS\").",
+                "type": "object",
+                "example": {
+                    "activity_type": 1,
+                    "activity_description": "Set only trip",
+                    "comm_flag": "Y",
+                    "for_hire_charter_flag": "Y",
+                    "for_hire_hb_flag": "Y",
+                    "rec_flag": "N",
+                    "status": "Y"
                 }
             }
         },
