@@ -5236,6 +5236,7 @@
                             "target_species": "",
                             "avg_depth": "55",
                             "supplier_effort_id": "120119073102827",
+                            "anything_caught": "Y",
                             "catches": [
                                 {
                                     "species_itis": "161706",
