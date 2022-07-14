@@ -5607,6 +5607,7 @@
                     }
                 },
                 "example": {
+                    "p_device_id": "ABC123CDE456",
                     "p_supplier_trip_id": "55590000003",
                     "p_trip_id": "900000003",
                     "p_vendor_id": "1233345",
