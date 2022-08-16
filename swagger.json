@@ -738,7 +738,7 @@
                     }
                 ],
                 "summary": "trips_upload ",
-                "description": "send a set of trips rows to safis"
+                "description": "send a set of trips rows to safis using the request showen a trip submission that include three gear attributes"
             }
         }
     },
