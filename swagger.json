@@ -803,6 +803,7 @@
                             "start_date": "11/22/2017",
                             "end_date": "11/22/2017",
                             "cf_license_nbr": "123456",
+                            "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990"
                         },
                         {
@@ -811,6 +812,7 @@
                             "start_date": "11/23/2017",
                             "end_date": "11/23/2017",
                             "cf_license_nbr": "123456",
+                            "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990"
                         }
                     ]
