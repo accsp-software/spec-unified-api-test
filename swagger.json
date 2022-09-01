@@ -802,14 +802,16 @@
                             "iss_agency": "0004",
                             "start_date": "11/22/2017",
                             "end_date": "11/22/2017",
-                            "cf_license_nbr": "123456"
+                            "cf_license_nbr": "123456",
+                            "coast_guard_nbr": "8877990"
                         },
                         {
                             "supplier_row_id": "12345612",
                             "iss_agency": "0004",
                             "start_date": "11/23/2017",
                             "end_date": "11/23/2017",
-                            "cf_license_nbr": "123456"
+                            "cf_license_nbr": "123456",
+                            "coast_guard_nbr": "8877990"
                         }
                     ]
                 }
@@ -5261,6 +5263,10 @@
                                     "species_attributes": [
                                     ],
                                     "sale_disposition_attributes": [
+                                        {
+                                            "code": "6011",
+                                            "value": "192938"
+                                        }
                                     ]
                                 }
                             ],
