@@ -640,43 +640,6 @@
                 "description": "fetch a set of rows for a specified lookup table"
             }
         },
-        "/neg_trips_upload": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/neg_trips"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "eTrips"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/neg_trips_response"
-                                }
-                            }
-                        },
-                        "description": "output of the endpoint"
-                    }
-                },
-                "security": [
-                    {
-                        "Confidential-API": [
-                        ]
-                    }
-                ],
-                "summary": "neg_trips_upload ",
-                "description": "send a set of negative / no fishing trip reports to safis."
-            }
-        },
         "/trips_upload": {
             "post": {
                 "requestBody": {
@@ -739,6 +702,43 @@
                 ],
                 "summary": "trips_upload ",
                 "description": "send a set of trips rows to safis using the request showen a trip submission that include three gear attributes"
+            }
+        },
+        "/neg_trips_upload": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/neg_trips"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/neg_trips_response"
+                                }
+                            }
+                        },
+                        "description": "output of the endpoint"
+                    }
+                },
+                "security": [
+                    {
+                        "Confidential-API": [
+                        ]
+                    }
+                ],
+                "summary": "neg_trips_upload ",
+                "description": "The neg_trips_upload endpoint accepts multiple reports within a single API call (see example request).  However, to avoid unexpected validation failures we recommend sending reports from the same fishing license, participant and vessel within individual API calls.  Including different fishing licenses or vessels within a single API call may result in unexpected validation failures and misleading errors."
             }
         }
     },
