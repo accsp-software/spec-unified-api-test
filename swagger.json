@@ -5680,7 +5680,8 @@
                             "for_hire_ch_flag": "N",
                             "for_hire_hb_flag": "N",
                             "rec_flag": "N",
-                            "status": "A"
+                            "status": "A",
+                            "type": "Number(10,3)"
                         },
                         {
                             "code": "407",
@@ -5691,7 +5692,8 @@
                             "for_hire_ch_flag": "N",
                             "for_hire_hb_flag": "N",
                             "rec_flag": "N",
-                            "status": "A"
+                            "status": "A",
+                            "type": "Number(10,3)"
                         }
                     ],
                     "status": "OK",
