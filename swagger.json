@@ -5732,44 +5732,61 @@
                 }
             },
             "neg_trips_download_request": {
+                "title": "Root Type for neg_trips_download_request",
                 "description": "",
+                "required": [
+                    "p_license_nbr",
+                    "p_partner",
+                    "p_date"
+                ],
                 "type": "object",
+                "properties": {
+                    "p_license_nbr": {
+                        "description": "permit number/license number of the requested trips",
+                        "type": "string"
+                    },
+                    "p_partner": {
+                        "description": "4 character issuing agency of the license number given",
+                        "type": "string"
+                    },
+                    "p_date": {
+                        "format": "date",
+                        "description": "earliest negative trip report date requested. Format MM/DD/YYYY",
+                        "type": "string"
+                    }
+                },
                 "example": {
-                    "p_license_nbr": "MAFISHER",
+                    "p_license_nbr": "12223344",
                     "p_partner": "0003",
-                    "p_date": "01/01/2021"
+                    "p_date": "12/01/2016"
                 }
             },
             "neg_trips_download_response": {
+                "title": "Root Type for neg_trips_download_response",
                 "description": "",
+                "required": [
+                    "status"
+                ],
                 "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable explanation of the request status",
+                        "type": "string"
+                    }
+                },
                 "example": {
-                    "row": [
-                        {
-                            "neg_trips": [
-                                {
-                                    "trip_id": 99283,
-                                    "trip_date": "2021-06-22T00:00:00Z",
-                                    "cf_permit_id": 12345,
-                                    "cf_id": 54321,
-                                    "de": "2021-06-15T07:08:22Z",
-                                    "submit_method": "M",
-                                    "status": "ACTIVE"
-                                },
-                                {
-                                    "trip_id": 103345,
-                                    "trip_date": "2021-12-31T00:00:00Z",
-                                    "cf_permit_id": 12345,
-                                    "cf_id": 54321,
-                                    "de": "2021-10-20T16:32:10Z",
-                                    "submit_method": "M",
-                                    "status": "ACTIVE"
-                                }
-                            ]
-                        }
+                    "trips": [
                     ],
                     "status": "OK",
-                    "description:": "retrieved negative trip count: 2"
+                    "description": "0 negative trip(s) returned"
                 }
             }
         },
