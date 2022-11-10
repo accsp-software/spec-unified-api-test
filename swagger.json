@@ -740,6 +740,37 @@
                 "summary": "trip_locations",
                 "description": "This endpoint is used to send a set of trip locations to SAFIS. Records in the locations array should include a timestamp in UTC format. The ACCSP API expects a 'Z' or Zulu offset (e.g. 2021-11-26T18:31:30Z) and timestamps submitted without a time offset will be interpreted as not having one. Location records should also include latitude and longitude (5-decimal precision) within the range 20 to 50 and -100 to -60, respectively. See Request Sample."
             }
+        },
+        "/neg_trips_download": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/neg_trips_download_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/neg_trips_download_response"
+                                }
+                            }
+                        },
+                        "description": "output of the endpoint"
+                    }
+                },
+                "summary": "trips_download",
+                "description": "retrieve set of negative or DNF (did not fish) trips records from safis. \nA calling app requests a list of negative trips from the SAFIS system for the provided permit/license and date range.  This list will only contain successfully uploaded negative trips.  See the example response for the format of neagtive trips returned at this endpoint."
+            }
         }
     },
     "components": {
@@ -5698,6 +5729,47 @@
                     ],
                     "status": "OK",
                     "description": "2 Gear(s) Returned"
+                }
+            },
+            "neg_trips_download_request": {
+                "description": "",
+                "type": "object",
+                "example": {
+                    "p_license_nbr": "MAFISHER",
+                    "p_partner": "0003",
+                    "p_date": "01/01/2021"
+                }
+            },
+            "neg_trips_download_response": {
+                "description": "",
+                "type": "object",
+                "example": {
+                    "row": [
+                        {
+                            "neg_trips": [
+                                {
+                                    "trip_id": 99283,
+                                    "trip_date": "2021-06-22T00:00:00Z",
+                                    "cf_permit_id": 12345,
+                                    "cf_id": 54321,
+                                    "de": "2021-06-15T07:08:22Z",
+                                    "submit_method": "M",
+                                    "status": "ACTIVE"
+                                },
+                                {
+                                    "trip_id": 103345,
+                                    "trip_date": "2021-12-31T00:00:00Z",
+                                    "cf_permit_id": 12345,
+                                    "cf_id": 54321,
+                                    "de": "2021-10-20T16:32:10Z",
+                                    "submit_method": "M",
+                                    "status": "ACTIVE"
+                                }
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "description:": "retrieved negative trip count: 2"
                 }
             }
         },
