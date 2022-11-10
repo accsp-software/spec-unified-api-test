@@ -5783,10 +5783,19 @@
                     }
                 },
                 "example": {
-                    "trips": [
+                    "row": [
+                        {
+                            "trip_id": 103345,
+                            "trip_date": "2021-12-31T00:00:00Z",
+                            "cf_permit_id": 12345,
+                            "cf_id": 54321,
+                            "de": "2021-10-20T16:32:10Z",
+                            "submit_method": "M",
+                            "status": "ACTIVE"
+                        }
                     ],
                     "status": "OK",
-                    "description": "0 negative trip(s) returned"
+                    "description": "retrieved negative trip count: 1"
                 }
             }
         },
