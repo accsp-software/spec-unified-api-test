@@ -768,8 +768,8 @@
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "trips_download",
-                "description": "Retrieve a set of negative or DNF (did not fish) trips records from safis. \nA calling app requests a list of negative trips from the SAFIS system for the provided permit/license and date range.  This list will only contain successfully uploaded negative trips.  See the example response for the format of neagtive trips returned at this endpoint."
+                "summary": "neg_trips_download",
+                "description": "Retrieve a set of negative or DNF (did not fish) trips records from safis. \nA calling app requests a list of negative trips from the SAFIS system for the provided permit/license and date range.  This list will only contain successfully uploaded negative trips.  See the example response for the format of neagtive trips returned at this endpoint. "
             }
         }
     },
