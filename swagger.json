@@ -5731,6 +5731,44 @@
                     "description": "2 Gear(s) Returned"
                 }
             },
+            "neg_trips_download_response": {
+                "title": "Root Type for neg_trips_download_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable explanation of the request status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "trip_id": 98705,
+                            "trip_date": "05/22/2021",
+                            "cf_license_nbr": "TESTCF",
+                            "cf_id": 125013,
+                            "vessel_name": "HOWARD",
+                            "state_reg_nbr": "ME4870L",
+                            "status": "ACTIVE",
+                            "date_entered": "2021-05-04T13:59:32Z"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "retrieved negative trip count: 1"
+                }
+            },
             "neg_trips_download_request": {
                 "title": "Root Type for neg_trips_download_request",
                 "description": "",
@@ -5756,46 +5794,14 @@
                     }
                 },
                 "example": {
-                    "p_license_nbr": "12223344",
-                    "p_partner": "0003",
-                    "p_date": "12/01/2016"
-                }
-            },
-            "neg_trips_download_response": {
-                "title": "Root Type for neg_trips_download_response",
-                "description": "",
-                "required": [
-                    "status"
-                ],
-                "type": "object",
-                "properties": {
-                    "status": {
-                        "description": "status of the request",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "human readable explanation of the request status",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "trip_id": 103345,
-                            "trip_date": "2021-12-31T00:00:00Z",
-                            "cf_permit_id": 12345,
-                            "cf_id": 54321,
-                            "de": "2021-10-20T16:32:10Z",
-                            "submit_method": "M",
-                            "status": "ACTIVE"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "retrieved negative trip count: 1"
+                    "trip_id": 98705,
+                    "trip_date": "05/22/2021",
+                    "cf_license_nbr": "TESTCF",
+                    "cf_id": 125013,
+                    "vessel_name": "HOWARD",
+                    "state_reg_nbr": "ME4870L",
+                    "status": "ACTIVE",
+                    "date_entered": "2021-05-04T13:59:32Z"
                 }
             }
         },
