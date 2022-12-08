@@ -5655,18 +5655,33 @@
                 "example": {
                     "row": [
                         {
-                            "trip_id": "98705",
-                            "trip_date": "05/22/2021",
-                            "cf_license_nbr": "TESTCF",
-                            "cf_id": "125011",
-                            "vessel_name": "HOWARD",
-                            "state_reg_nbr": "ME48702",
-                            "status": "ACTIVE",
-                            "date_entered": "2021-05-04T13:59:32Z"
+                            "neg_trips": [
+                                {
+                                    "trip_id": "110423",
+                                    "trip_date": "01/12/2022",
+                                    "cf_license_nbr": "MAFISHER2",
+                                    "cf_id": "125013",
+                                    "vessel_name": " Deborah Ann",
+                                    "state_reg_nbr": "MD5928BF",
+                                    "status": "ACTIVE",
+                                    "date_entered": "2022-04-14T11:11:36Z"
+                                },
+                                {
+                                    "trip_id": "110624",
+                                    "trip_date": "05/12/2022",
+                                    "cf_license_nbr": "MAFISHER2",
+                                    "cf_id": "125013",
+                                    "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
+                                    "coast_guard_nbr": "8877991",
+                                    "vessel_permit": "555555",
+                                    "status": "ACTIVE",
+                                    "date_entered": "2022-05-13T14:02:47Z"
+                                }
+                            ]
                         }
                     ],
                     "status": "OK",
-                    "description": "retrieved negative trip count: 1"
+                    "description:": "retrieved negative trip count: 5"
                 }
             },
             "neg_trips_download_request": {
