@@ -741,7 +741,7 @@
                 "description": "This endpoint is used to send a set of trip locations to SAFIS. Records in the locations array should include a timestamp in UTC format. The ACCSP API expects a 'Z' or Zulu offset (e.g. 2021-11-26T18:31:30Z) and timestamps submitted without a time offset will be interpreted as not having one. Location records should also include latitude and longitude (5-decimal precision) within the range 20 to 50 and -100 to -60, respectively. See Request Sample."
             }
         },
-        "/neg_trips_download": {
+        "/neg_trips_not_processed": {
             "post": {
                 "requestBody": {
                     "content": {
@@ -768,8 +768,8 @@
                         "description": "output of the endpoint"
                     }
                 },
-                "summary": "neg_trips_download",
-                "description": "Retrieve a set of negative or DNF (did not fish) trips from SAFIS. \nA calling app requests a list of negative trips from the SAFIS system for the provided permit/license and date range.  This list will only contain successfully uploaded negative trips.  See the example response for the format of neagtive trips returned at this endpoint. "
+                "summary": "neg_trips_not_processed",
+                "description": "This endpoint provides a list of negative (did not fish) trips submitted under the provided license (p_license_nbr) which either 1) did not fully process after being received by the ACCSP or 2) processed successfully but were subsequently deleted by a partner administrator."
             }
         }
     },
@@ -5657,25 +5657,20 @@
                         {
                             "neg_trips": [
                                 {
-                                    "trip_id": "110423",
                                     "trip_date": "01/12/2022",
                                     "cf_license_nbr": "MAFISHER2",
-                                    "cf_id": "125013",
                                     "vessel_name": " Deborah Ann",
-                                    "state_reg_nbr": "MD5928BF",
-                                    "status": "ACTIVE",
-                                    "date_entered": "2022-04-14T11:11:36Z"
+                                    "coast_guard_nbr": "8877991",
+                                    "vessel_permit": "555555",
+                                    "date_entered": "14-DEC-2022"
                                 },
                                 {
-                                    "trip_id": "110624",
                                     "trip_date": "05/12/2022",
                                     "cf_license_nbr": "MAFISHER2",
-                                    "cf_id": "125013",
                                     "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
                                     "coast_guard_nbr": "8877991",
                                     "vessel_permit": "555555",
-                                    "status": "ACTIVE",
-                                    "date_entered": "2022-05-13T14:02:47Z"
+                                    "date_entered": "14-DEC-2022"
                                 }
                             ]
                         }
@@ -5689,17 +5684,12 @@
                 "description": "",
                 "required": [
                     "p_license_nbr",
-                    "p_partner",
                     "p_date"
                 ],
                 "type": "object",
                 "properties": {
                     "p_license_nbr": {
                         "description": "permit number/license number of the requested trips",
-                        "type": "string"
-                    },
-                    "p_partner": {
-                        "description": "4 character issuing agency of the license number given",
                         "type": "string"
                     },
                     "p_date": {
@@ -5710,7 +5700,6 @@
                 },
                 "example": {
                     "p_license_nbr": "112233",
-                    "p_partner": "0031",
                     "p_date": "11/14/2020"
                 }
             },
