@@ -5659,6 +5659,7 @@
                                 {
                                     "trip_date": "01/12/2022",
                                     "cf_license_nbr": "MAFISHER2",
+                                    "issuing_agency": "0018",
                                     "vessel_name": " Deborah Ann",
                                     "coast_guard_nbr": "8877991",
                                     "vessel_permit": "555555",
@@ -5667,6 +5668,7 @@
                                 {
                                     "trip_date": "05/12/2022",
                                     "cf_license_nbr": "MAFISHER2",
+                                    "issuing_agency": "0018",
                                     "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
                                     "coast_guard_nbr": "8877991",
                                     "vessel_permit": "555555",
