@@ -4461,11 +4461,17 @@
                             "permits": [
                                 {
                                     "num": "SERO-4401",
-                                    "agency": "0016"
+                                    "agency": "0016",
+                                    "in_use": "Y",
+                                    "start_date": "08/05/2022",
+                                    "end_date": "07/31/2023"
                                 },
                                 {
                                     "num": "610395",
-                                    "agency": "0018"
+                                    "agency": "0018",
+                                    "in_use": "Y",
+                                    "start_date": "03/01/2022",
+                                    "end_date": "04/30/2023"
                                 }
                             ],
                             "in_use": "Y"
@@ -4478,11 +4484,17 @@
                             "permits": [
                                 {
                                     "num": "SERO-1070",
-                                    "agency": "0016"
+                                    "agency": "0016",
+                                    "in_use": "Y",
+                                    "start_date": "08/01/2022",
+                                    "end_date": "07/31/2023"
                                 },
                                 {
                                     "num": "556363",
-                                    "agency": "0018"
+                                    "agency": "0018",
+                                    "in_use": "Y",
+                                    "start_date": "04/01/2022",
+                                    "end_date": "04/30/2023"
                                 }
                             ],
                             "in_use": "Y"
