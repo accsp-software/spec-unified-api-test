@@ -2449,7 +2449,12 @@
                             "in_use": "N",
                             "hms": "N",
                             "shark": "N",
-                            "area": "N"
+                            "area": "N",
+                            "comm_flag": "Y",
+                            "for_hire_ch_flag": "Y",
+                            "for_hire_hb_flag": "Y",
+                            "rec_flag": "Y",
+                            "dealer_rpt_flag": "Y"
                         },
                         {
                             "species_qc_id": 81768,
@@ -2465,7 +2470,12 @@
                             "in_use": "N",
                             "hms": "N",
                             "shark": "N",
-                            "area": "N"
+                            "area": "N",
+                            "comm_flag": "Y",
+                            "for_hire_ch_flag": "Y",
+                            "for_hire_hb_flag": "Y",
+                            "rec_flag": "Y",
+                            "dealer_rpt_flag": "Y"
                         }
                     ],
                     "status": "OK",
