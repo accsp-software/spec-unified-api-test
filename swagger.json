@@ -704,6 +704,37 @@
                 "description": "The calling app sends a notification record in JSON format.  The record consists of core notification details submitted as parameter values, and optional partner-managed notification attributes submitted as a JSON array.  See example request.  The response, also in JSON format, includes the universal trip ID for the trip.  The universal trip ID is created when a notification record is submitted if this is the first notification associated with the trip.  If an existing universal trip ID already exists for the same trip, the previously generated universal trip ID is returned.  \r\n"
             }
         },
+        "/neg_trips_not_processed": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/neg_trips_download_request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "eTrips"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/neg_trips_download_response"
+                                }
+                            }
+                        },
+                        "description": "output of the endpoint"
+                    }
+                },
+                "summary": "neg_trips_not_processed",
+                "description": "This endpoint provides a list of negative (did not fish) trips submitted under the provided license (p_license_nbr) which either 1) did not fully process after being received by the ACCSP or 2) processed successfully but were subsequently deleted by a partner administrator."
+            }
+        },
         "/trip_locations": {
             "post": {
                 "requestBody": {
@@ -738,38 +769,7 @@
                     }
                 ],
                 "summary": "trip_locations",
-                "description": "This endpoint is used to send a set of trip locations to SAFIS. Records in the locations array should include a timestamp in UTC format. The ACCSP API expects a 'Z' or Zulu offset (e.g. 2021-11-26T18:31:30Z) and timestamps submitted without a time offset will be interpreted as not having one. Location records should also include latitude and longitude (5-decimal precision) within the range 20 to 50 and -100 to -60, respectively. See Request Sample."
-            }
-        },
-        "/neg_trips_not_processed": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/neg_trips_download_request"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "eTrips"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/neg_trips_download_response"
-                                }
-                            }
-                        },
-                        "description": "output of the endpoint"
-                    }
-                },
-                "summary": "neg_trips_not_processed",
-                "description": "This endpoint provides a list of negative (did not fish) trips submitted under the provided license (p_license_nbr) which either 1) did not fully process after being received by the ACCSP or 2) processed successfully but were subsequently deleted by a partner administrator."
+                "description": "This endpoint is used to send a set of trip locations to SAFIS. Records in the locations array should include a timestamp in UTC format. The ACCSP API expects a 'Z' or Zulu offset (e.g. 2021-11-26T18:31:30Z) and timestamps submitted without a time offset will be interpreted as not having one. Location records should also include latitude and longitude (5-decimal precision) within the range 20 to 50 and -100 to -60, respectively. See Request Sample. A vessel coast number or state registration number is required, if both values are *sent* the coast guard number will be used to validate the vessel."
             }
         }
     },
