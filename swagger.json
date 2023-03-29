@@ -561,7 +561,7 @@
                     }
                 ],
                 "summary": "lookup_list",
-                "description": "fetch a set of rows for a specified lookup table"
+                "description": "fetch a set of rows for a specified lookup table.\n\nAll lists accept the p_partner parameter and are partner specific with the exception of VESSELS, PORTS, USER_NOTIFICATIONS and VMS_LANDING_LOCATIONS.\n "
             }
         },
         "/trips_upload": {
