@@ -5201,67 +5201,6 @@
                     "p_date": "11/14/2020"
                 }
             },
-            "locations": {
-                "title": "Root Type for locations",
-                "description": "",
-                "required": [
-                    "p_vessel_cgn",
-                    "p_vessel_srn",
-                    "locations",
-                    "p_device_id"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_supplier_trip_id": {
-                        "description": "unique trip id given by the requesting entity",
-                        "type": "string"
-                    },
-                    "p_vendor_id": {
-                        "description": "vendor id of the device sending records",
-                        "type": "string"
-                    },
-                    "p_vessel_cgn": {
-                        "description": "US Coast Guard number/hull number",
-                        "type": "string"
-                    },
-                    "p_vessel_srn": {
-                        "description": "vessel state registration number",
-                        "type": "string"
-                    },
-                    "p_device_id": {
-                        "description": "unique identifier of device sending location data",
-                        "type": "string"
-                    },
-                    "locations": {
-                        "description": "",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/location"
-                        }
-                    }
-                },
-                "example": {
-                    "p_device_id": "ABC123CDE456",
-                    "p_supplier_trip_id": "55590000003",
-                    "p_vendor_id": "1233345",
-                    "p_vessel_cgn": "MS4564AX",
-                    "p_vessel_srn": "",
-                    "locations": [
-                        {
-                            "latitude": "43.31238",
-                            "longitude": "-70.11428",
-                            "timestamp": "2021-10-26T18:31:30Z",
-                            "horizontal_acc": "1.0"
-                        },
-                        {
-                            "latitude": "42.32238",
-                            "longitude": "-70.11628",
-                            "timestamp": "2021-10-26T18:31:44Z",
-                            "horizontal_acc": "1.0"
-                        }
-                    ]
-                }
-            },
             "location": {
                 "title": "Root Type for location",
                 "description": "single location",
@@ -5857,6 +5796,67 @@
                         {
                             "code": "040",
                             "value": "Y"
+                        }
+                    ]
+                }
+            },
+            "locations": {
+                "title": "Root Type for locations",
+                "description": "",
+                "required": [
+                    "p_vessel_cgn",
+                    "p_vessel_srn",
+                    "locations",
+                    "p_device_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_supplier_trip_id": {
+                        "description": "unique trip id given by the requesting entity",
+                        "type": "string"
+                    },
+                    "p_vendor_id": {
+                        "description": "vendor id of the device sending records",
+                        "type": "string"
+                    },
+                    "p_vessel_cgn": {
+                        "description": "US Coast Guard number",
+                        "type": "string"
+                    },
+                    "p_vessel_srn": {
+                        "description": "vessel state registration number",
+                        "type": "string"
+                    },
+                    "p_device_id": {
+                        "description": "unique identifier of device sending location data",
+                        "type": "string"
+                    },
+                    "locations": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/location"
+                        }
+                    }
+                },
+                "example": {
+                    "p_device_id": "ABC123CDE456",
+                    "p_supplier_trip_id": "55590000003",
+                    "p_vendor_id": "1233345",
+                    "p_vessel_cgn": "MS4564AX",
+                    "p_vessel_srn": "",
+                    "locations": [
+                        {
+                            "latitude": "43.31238",
+                            "longitude": "-70.11428",
+                            "timestamp": "2021-10-26T18:31:30Z",
+                            "horizontal_acc": "1.0"
+                        },
+                        {
+                            "latitude": "42.32238",
+                            "longitude": "-70.11628",
+                            "timestamp": "2021-10-26T18:31:44Z",
+                            "horizontal_acc": "1.0"
                         }
                     ]
                 }
