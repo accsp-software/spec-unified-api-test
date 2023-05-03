@@ -5498,64 +5498,6 @@
                     "description": "1+ Vessel(s) Returned"
                 }
             },
-            "neg_trips_download_response": {
-                "title": "Root Type for neg_trips_download_response",
-                "description": "",
-                "required": [
-                    "status"
-                ],
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "writeOnly": false,
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "readOnly": false
-                    },
-                    "status": {
-                        "description": "status of the request",
-                        "enum": [
-                            "OK",
-                            "FAIL"
-                        ],
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "human readable explanation of the request status",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "neg_trips": [
-                                {
-                                    "trip_date": "01/12/2022",
-                                    "cf_license_nbr": "MAFISHER2",
-                                    "issuing_agency": "0018",
-                                    "vessel_name": "Deborah Ann",
-                                    "coast_guard_nbr": "8877991",
-                                    "vessel_permit": "555555",
-                                    "date_entered": "14-DEC-2022"
-                                },
-                                {
-                                    "trip_date": "05/12/2022",
-                                    "cf_license_nbr": "MAFISHER2",
-                                    "issuing_agency": "0018",
-                                    "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
-                                    "coast_guard_nbr": "8877991",
-                                    "vessel_permit": "555555",
-                                    "date_entered": "14-DEC-2022"
-                                }
-                            ]
-                        }
-                    ],
-                    "status": "OK",
-                    "description:": "retrieved negative trip count: 5"
-                }
-            },
             "trip": {
                 "description": "trip level information. Either of state_reg_nbr or coast_guard_nbr is required. ",
                 "required": [
@@ -5859,6 +5801,91 @@
                             "horizontal_acc": "1.0"
                         }
                     ]
+                }
+            },
+            "neg_trips_download_response": {
+                "title": "Root Type for neg_trips_response",
+                "description": "",
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "trip_date": {
+                                    "description": "trip_date taken.",
+                                    "type": "string"
+                                },
+                                "cf_license_nbr": {
+                                    "description": "Permit/License Number of Permit in use.",
+                                    "type": "string"
+                                },
+                                "issuing_agency": {
+                                    "description": "4 character identifier of issuing agency of permit in use.",
+                                    "type": "string"
+                                },
+                                "vessel_name": {
+                                    "description": "Name of the vessel used",
+                                    "type": "string"
+                                },
+                                "coast_guard_nbr": {
+                                    "description": "Coast Gurd Number/Hull Number of vessel. Required to provide either coast_guard_nbr or state_reg_nbr.",
+                                    "type": "string"
+                                },
+                                "vessel_permit": {
+                                    "description": "uniquie identification of vessel's permit.",
+                                    "type": "string"
+                                },
+                                "date_entered": {
+                                    "type": "date entered."
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "neg_trips": [
+                                {
+                                    "trip_date": "01/12/2022",
+                                    "cf_license_nbr": "MAFISHER2",
+                                    "issuing_agency": "0018",
+                                    "vessel_name": "Deborah Ann",
+                                    "coast_guard_nbr": "8877991",
+                                    "vessel_permit": "555555",
+                                    "date_entered": "14-DEC-2022"
+                                },
+                                {
+                                    "trip_date": "05/12/2022",
+                                    "cf_license_nbr": "MAFISHER2",
+                                    "issuing_agency": "0018",
+                                    "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
+                                    "coast_guard_nbr": "8877991",
+                                    "vessel_permit": "555555",
+                                    "date_entered": "14-DEC-2022"
+                                }
+                            ]
+                        }
+                    ],
+                    "status": "OK",
+                    "description:": "retrieved negative trip count: 5"
                 }
             }
         },
