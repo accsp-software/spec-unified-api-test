@@ -5746,8 +5746,6 @@
                 "title": "Root Type for locations",
                 "description": "",
                 "required": [
-                    "p_vessel_cgn",
-                    "p_vessel_srn",
                     "locations",
                     "p_device_id"
                 ],
@@ -5814,36 +5812,7 @@
                     "row": {
                         "type": "array",
                         "items": {
-                            "type": "object",
-                            "properties": {
-                                "trip_date": {
-                                    "description": "trip_date taken.",
-                                    "type": "string"
-                                },
-                                "cf_license_nbr": {
-                                    "description": "Permit/License Number of Permit in use.",
-                                    "type": "string"
-                                },
-                                "issuing_agency": {
-                                    "description": "4 character identifier of issuing agency of permit in use.",
-                                    "type": "string"
-                                },
-                                "vessel_name": {
-                                    "description": "Name of the vessel used",
-                                    "type": "string"
-                                },
-                                "coast_guard_nbr": {
-                                    "description": "Coast Gurd Number/Hull Number of vessel. Required to provide either coast_guard_nbr or state_reg_nbr.",
-                                    "type": "string"
-                                },
-                                "vessel_permit": {
-                                    "description": "uniquie identification of vessel's permit.",
-                                    "type": "string"
-                                },
-                                "date_entered": {
-                                    "type": "date entered."
-                                }
-                            }
+                            "type": "string"
                         }
                     },
                     "status": {
