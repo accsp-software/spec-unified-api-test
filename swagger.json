@@ -5580,6 +5580,7 @@
                     "trip_type": "C",
                     "supplier_trip_id": "062220035128937",
                     "port": "071001",
+                    "device_id": "12345678",
                     "state": "23",
                     "coast_guard_nbr": "1093639",
                     "state_reg_nbr": "",
