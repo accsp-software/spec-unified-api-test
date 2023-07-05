@@ -836,7 +836,7 @@
                             "cf_license_nbr": "123456",
                             "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990",
-                            "device_id": "12345678"
+                            "device_id": "4321"
                         },
                         {
                             "supplier_row_id": "12345612",
@@ -846,7 +846,7 @@
                             "cf_license_nbr": "123456",
                             "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990",
-                            "device_id": "12345678"
+                            "device_id": "4321"
                         }
                     ]
                 }
