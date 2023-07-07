@@ -5758,7 +5758,7 @@
                     "trip_type": "C",
                     "supplier_trip_id": "062220035128937",
                     "port": "071001",
-                    "device_id": "12345678",
+                    "device_id": "4321",
                     "state": "23",
                     "coast_guard_nbr": "1093639",
                     "state_reg_nbr": "",
@@ -5912,7 +5912,7 @@
                         "description": "code to define the type of trip.  allowed values are C = Commercial, R = Recreational, H = For Hire-Headboat, A = For Hire-Charter. ",
                         "type": "string"
                     },
-                    "device_id": {
+                    "p_device_id": {
                         "description": "unique identification of a device. ",
                         "type": "string"
                     },
@@ -5946,7 +5946,7 @@
                     "p_vessel_cgn": "",
                     "p_vessel_srn": "NH0258BA",
                     "p_trip_type": "C",
-                    "device_id": "4321",
+                    "p_device_id": "4321",
                     "p_start_date": "05/03/2020",
                     "p_start_time": "1845",
                     "p_arrival_port": "222109",
