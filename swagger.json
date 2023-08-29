@@ -4751,6 +4751,9 @@
                     },
                     {
                         "$ref": "#/components/schemas/SCIFISH_TRIP_ACTIVITY_RESPONCE"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SCIFISH_GEARS"
                     }
                 ],
                 "description": "",
@@ -5467,60 +5470,6 @@
                     "description": "1003 Species(s) Returned."
                 }
             },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS",
-                            "GARFO_ACCSP_GEAR_MAPPING",
-                            "SCIFISH_SPECIES",
-                            "SCIFISH_TRIP_ACTIVITY"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
             "SCIFISH_TRIP_ACTIVITY_RESPONCE": {
                 "title": "SCIFISH_TRIP_ACTIVITY",
                 "description": "",
@@ -5968,6 +5917,124 @@
                     ],
                     "status": "OK",
                     "description": "Total rows inserted 3"
+                }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING",
+                            "SCIFISH_SPECIE",
+                            "SCIFISH_GEARS",
+                            "SCIFISH_TRIP_ACTIVITY"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "SCIFISH_GEARS": {
+                "title": "SCIFISH_GEARS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string"
+                                },
+                                "desc": {
+                                    "type": "string"
+                                },
+                                "category_code": {
+                                    "type": "string"
+                                },
+                                "category_name": {
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "631",
+                            "desc": "RAKES/SHOVELS/PITCHFORKS",
+                            "category_code": "631",
+                            "category_name": "RAKES/SHOVELS/PITCHFORKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "632",
+                            "desc": "PICKS",
+                            "category_code": "632",
+                            "category_name": "PICKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "306",
+                            "desc": "HOOK AND LINE, TROLL",
+                            "category_code": "300",
+                            "category_name": "HOOK AND LINE",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "3 Gear(s) Returned"
                 }
             }
         },
