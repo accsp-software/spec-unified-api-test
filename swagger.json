@@ -769,7 +769,7 @@
                     }
                 ],
                 "summary": "lookup_list",
-                "description": "fetch a set of rows for a specified lookup table.\n\nAll lists accept the p_partner parameter and are partner specific with the exception of VESSELS, PORTS, USER_NOTIFICATIONS, VMS_LANDING_LOCATIONS, SCIFISH_SPECIES AND SCIFISH_TRIP_ACTIVITY.\nAll vessels returned are federally permitted vessels. "
+                "description": "fetch a set of rows for a specified lookup table.\n\nAll lists accept the p_partner parameter and are partner specific with the exception of VESSELS, PORTS, USER_NOTIFICATIONS, VMS_LANDING_LOCATIONS, SCIFISH_SPECIES AND SCIFISH_TRIP_ACTIVITY, TRIP_PROCESSED.\nAll vessels returned are federally permitted vessels. "
             }
         }
     },
@@ -4754,6 +4754,9 @@
                     },
                     {
                         "$ref": "#/components/schemas/SCIFISH_GEARS"
+                    },
+                    {
+                        "$ref": "#/components/schemas/trip_processed_response"
                     }
                 ],
                 "description": "",
@@ -6020,7 +6023,8 @@
                             "GARFO_ACCSP_GEAR_MAPPING",
                             "SCIFISH_SPECIES",
                             "SCIFISH_GEARS",
-                            "SCIFISH_TRIP_ACTIVITY"
+                            "SCIFISH_TRIP_ACTIVITY",
+                            "TRIP_PROCESSED"
                         ],
                         "type": "string"
                     },
@@ -6035,6 +6039,70 @@
                     "p_listname": "GEARS",
                     "p_listtype": "EDR",
                     "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "trip_processed_request": {
+                "title": "Root Type for trip_processed",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "p_listname": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "p_supplier_trip_id": {
+                        "description": "Associated supplier_trip that was given in the request.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_listname": "TRIP_PROCESSED",
+                    "p_supplier_trip_id": "123456789"
+                }
+            },
+            "trip_processed_response": {
+                "title": "TRIP_PROCESSED",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Accsp_trip_id": {
+                                    "description": "Associated accsp trip id that was given  if trip is processed.",
+                                    "type": "string"
+                                },
+                                "Processed": {
+                                    "description": "trip is processed or not on accsp database.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "Accsp_trip_id": "12345",
+                            "Processed": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "processed status of trip returned."
                 }
             }
         },
