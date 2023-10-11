@@ -6070,15 +6070,15 @@
                         "items": {
                             "type": "object",
                             "properties": {
-                                "Event_id": {
+                                "event_id": {
                                     "description": "the last event_id assosiated with trip_processed.",
                                     "type": "string"
                                 },
-                                "Accsp_trip_id": {
+                                "accsp_trip_id": {
                                     "description": "Associated accsp trip id that was given  if trip is processed.",
                                     "type": "string"
                                 },
-                                "Processed": {
+                                "processed": {
                                     "description": "trip is processed or not on accsp database.",
                                     "type": "string"
                                 }
@@ -6102,8 +6102,8 @@
                     "row": [
                         {
                             "event_id": "12345",
-                            "Accsp_trip_id": "012345",
-                            "Processed": "Y"
+                            "accsp_trip_id": "012345",
+                            "processed": "Y"
                         }
                     ],
                     "status": "OK",
