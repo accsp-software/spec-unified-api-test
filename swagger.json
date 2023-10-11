@@ -6070,6 +6070,10 @@
                         "items": {
                             "type": "object",
                             "properties": {
+                                "Event_id": {
+                                    "description": "the last event_id assosiated with trip_processed.",
+                                    "type": "string"
+                                },
                                 "Accsp_trip_id": {
                                     "description": "Associated accsp trip id that was given  if trip is processed.",
                                     "type": "string"
@@ -6097,7 +6101,8 @@
                 "example": {
                     "row": [
                         {
-                            "Accsp_trip_id": "12345",
+                            "event_id": "12345",
+                            "Accsp_trip_id": "012345",
                             "Processed": "Y"
                         }
                     ],
