@@ -6067,40 +6067,10 @@
                             "common_name": "SHARK, UNC",
                             "scientific_name": "CHONDRICHTHYES",
                             "status": "Y"
-                        },
-                        {
-                            "species_itis": "172419",
-                            "common_name": "TUNA, ALBACORE",
-                            "scientific_name": "THUNNUS ALALUNGA",
-                            "status": "Y"
-                        },
-                        {
-                            "species_itis": "168791",
-                            "common_name": "DOLPHIN",
-                            "scientific_name": "Coryphaena hippurus",
-                            "status": "Y"
-                        },
-                        {
-                            "species_itis": "172418",
-                            "common_name": "TUNA, UNC",
-                            "scientific_name": "THUNNUS",
-                            "status": "Y"
-                        },
-                        {
-                            "species_itis": "172428",
-                            "common_name": "TUNA, BIGEYE",
-                            "scientific_name": "THUNNUS OBESUS",
-                            "status": "Y"
-                        },
-                        {
-                            "species_itis": "172482",
-                            "common_name": "SWORDFISH",
-                            "scientific_name": "XIPHIAS GLADIUS",
-                            "status": "Y"
                         }
                     ],
                     "status": "OK",
-                    "description": "7 hms Species(s) Returned."
+                    "description": "2 hms Species(s) Returned."
                 }
             },
             "lookup_list_request": {
