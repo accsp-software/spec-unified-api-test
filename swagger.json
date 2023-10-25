@@ -769,7 +769,7 @@
                     }
                 ],
                 "summary": "lookup_list",
-                "description": "fetch a set of rows for a specified lookup table.\n\nAll lists accept the p_partner parameter and are partner specific with the exception of VESSELS, PORTS, USER_NOTIFICATIONS, VMS_LANDING_LOCATIONS, SCIFISH_SPECIES AND SCIFISH_TRIP_ACTIVITY, TRIP_PROCESSED.\nAll vessels returned are federally permitted vessels. "
+                "description": "fetch a set of rows for a specified lookup table.\n\nAll lists accept the p_partner parameter and are partner specific with the exception of VESSELS, PORTS, USER_NOTIFICATIONS, VMS_LANDING_LOCATIONS, SCIFISH_SPECIES AND SCIFISH_TRIP_ACTIVITY, TRIP_PROCESSED,HMS_TARGET_SPECIES,HMS_GEARS.\nAll vessels returned are federally permitted vessels. "
             }
         }
     },
@@ -4757,6 +4757,12 @@
                     },
                     {
                         "$ref": "#/components/schemas/trip_processed_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/hms_target_species_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/hms_gears_response"
                     }
                 ],
                 "description": "",
@@ -5922,125 +5928,6 @@
                     "description": "Total rows inserted 3"
                 }
             },
-            "SCIFISH_GEARS": {
-                "title": "SCIFISH_GEARS",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "string"
-                                },
-                                "desc": {
-                                    "type": "string"
-                                },
-                                "category_code": {
-                                    "type": "string"
-                                },
-                                "category_name": {
-                                    "type": "string"
-                                },
-                                "in_use": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "code": "631",
-                            "desc": "RAKES/SHOVELS/PITCHFORKS",
-                            "category_code": "631",
-                            "category_name": "RAKES/SHOVELS/PITCHFORKS",
-                            "in_use": "Y"
-                        },
-                        {
-                            "code": "632",
-                            "desc": "PICKS",
-                            "category_code": "632",
-                            "category_name": "PICKS",
-                            "in_use": "Y"
-                        },
-                        {
-                            "code": "306",
-                            "desc": "HOOK AND LINE, TROLL",
-                            "category_code": "300",
-                            "category_name": "HOOK AND LINE",
-                            "in_use": "Y"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "3 Gear(s) Returned"
-                }
-            },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS",
-                            "GARFO_ACCSP_GEAR_MAPPING",
-                            "SCIFISH_SPECIES",
-                            "SCIFISH_GEARS",
-                            "SCIFISH_TRIP_ACTIVITY",
-                            "TRIP_PROCESSED"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
             "trip_processed_request": {
                 "title": "Root Type for trip_processed",
                 "description": "",
@@ -6108,6 +5995,315 @@
                     ],
                     "status": "OK",
                     "description": "processed status of trip returned."
+                }
+            },
+            "hms_target_species_request": {
+                "title": "hms_target_species_request",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "p_listname": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_listname": "HMS_TARGET_SPECIES"
+                }
+            },
+            "hms_target_species_response": {
+                "title": "HMS_TARGET_SPECIES",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "species_itis": {
+                                    "description": "ITIS code of species",
+                                    "type": "string"
+                                },
+                                "common_name": {
+                                    "type": "string"
+                                },
+                                "scientific_name": {
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "description": "indicator for whether record is in-use currently",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "species_itis": "172423",
+                            "common_name": "TUNA, YELLOWFIN",
+                            "scientific_name": "THUNNUS ALBACARES",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "159785",
+                            "common_name": "SHARK, UNC",
+                            "scientific_name": "CHONDRICHTHYES",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "172419",
+                            "common_name": "TUNA, ALBACORE",
+                            "scientific_name": "THUNNUS ALALUNGA",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "168791",
+                            "common_name": "DOLPHIN",
+                            "scientific_name": "Coryphaena hippurus",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "172418",
+                            "common_name": "TUNA, UNC",
+                            "scientific_name": "THUNNUS",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "172428",
+                            "common_name": "TUNA, BIGEYE",
+                            "scientific_name": "THUNNUS OBESUS",
+                            "status": "Y"
+                        },
+                        {
+                            "species_itis": "172482",
+                            "common_name": "SWORDFISH",
+                            "scientific_name": "XIPHIAS GLADIUS",
+                            "status": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "7 hms Species(s) Returned."
+                }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING",
+                            "SCIFISH_SPECIES",
+                            "SCIFISH_GEARS",
+                            "SCIFISH_TRIP_ACTIVITY",
+                            "TRIP_PROCESSED",
+                            "HMS_TARGET_SPECIES",
+                            "HMS_GEARS"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "hms_gears_request": {
+                "title": "hms_gears_request",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "p_listname": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_listname": "HMS_GEARS"
+                }
+            },
+            "SCIFISH_GEARS": {
+                "title": "SCIFISH_GEARS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "gear code. Returned by the upload requests where gear is requested."
+                                },
+                                "desc": {
+                                    "type": "string"
+                                },
+                                "category_code": {
+                                    "type": "string"
+                                },
+                                "category_name": {
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "631",
+                            "desc": "RAKES/SHOVELS/PITCHFORKS",
+                            "category_code": "631",
+                            "category_name": "RAKES/SHOVELS/PITCHFORKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "632",
+                            "desc": "PICKS",
+                            "category_code": "632",
+                            "category_name": "PICKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "306",
+                            "desc": "HOOK AND LINE, TROLL",
+                            "category_code": "300",
+                            "category_name": "HOOK AND LINE",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "3 Gear(s) Returned"
+                }
+            },
+            "hms_gears_response": {
+                "title": "HMS_GEARS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "gear_code": {
+                                    "description": "gear code. Returned by the upload requests where gear is requested.",
+                                    "type": "string"
+                                },
+                                "gear_name": {
+                                    "description": "gear name.",
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "description": "indicator for whether record is in-use currently",
+                                    "enum": [
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the status of request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "gear_code": "650",
+                            "gear_name": "HARPOONS",
+                            "status": "Y"
+                        },
+                        {
+                            "gear_code": "324",
+                            "gear_name": "TROLL LINE, GREEN-STICK",
+                            "status": "Y"
+                        },
+                        {
+                            "gear_code": "409",
+                            "gear_name": "LONG LINE, PELAGIC",
+                            "status": "Y"
+                        },
+                        {
+                            "gear_code": "411",
+                            "gear_name": "BUOY GEAR, PELAGIC",
+                            "status": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "4 hms gears(s) Returned."
                 }
             }
         },
