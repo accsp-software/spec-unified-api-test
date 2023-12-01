@@ -2836,6 +2836,7 @@
                             "full_name": "JAMES MADISON",
                             "license_nbr": "0273",
                             "agency": "0003",
+                            "in_use": "Y",
                             "permit_id": 155928
                         },
                         {
@@ -2843,6 +2844,7 @@
                             "full_name": "JOHN DOE",
                             "license_nbr": "0283",
                             "agency": "0003",
+                            "in_use": "N",
                             "permit_id": 100154
                         }
                     ],
