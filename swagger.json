@@ -5978,69 +5978,6 @@
                     "p_listname": "HMS_GEARS"
                 }
             },
-            "SCIFISH_GEARS": {
-                "title": "SCIFISH_GEARS",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "row": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "gear code. Returned by the upload requests where gear is requested."
-                                },
-                                "desc": {
-                                    "type": "string"
-                                },
-                                "category_code": {
-                                    "type": "string"
-                                },
-                                "category_name": {
-                                    "type": "string"
-                                },
-                                "in_use": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "row": [
-                        {
-                            "code": "631",
-                            "desc": "RAKES/SHOVELS/PITCHFORKS",
-                            "category_code": "631",
-                            "category_name": "RAKES/SHOVELS/PITCHFORKS",
-                            "in_use": "Y"
-                        },
-                        {
-                            "code": "632",
-                            "desc": "PICKS",
-                            "category_code": "632",
-                            "category_name": "PICKS",
-                            "in_use": "Y"
-                        },
-                        {
-                            "code": "306",
-                            "desc": "HOOK AND LINE, TROLL",
-                            "category_code": "300",
-                            "category_name": "HOOK AND LINE",
-                            "in_use": "Y"
-                        }
-                    ],
-                    "status": "OK",
-                    "description": "3 Gear(s) Returned"
-                }
-            },
             "hms_gears_response": {
                 "title": "HMS_GEARS",
                 "description": "",
@@ -6144,6 +6081,69 @@
                     ]
                 }
             },
+            "SCIFISH_GEARS": {
+                "title": "SCIFISH_GEARS",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string"
+                                },
+                                "desc": {
+                                    "type": "string"
+                                },
+                                "category_code": {
+                                    "type": "string"
+                                },
+                                "category_name": {
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "code": "631",
+                            "desc": "RAKES/SHOVELS/PITCHFORKS",
+                            "category_code": "631",
+                            "category_name": "RAKES/SHOVELS/PITCHFORKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "632",
+                            "desc": "PICKS",
+                            "category_code": "632",
+                            "category_name": "PICKS",
+                            "in_use": "Y"
+                        },
+                        {
+                            "code": "306",
+                            "desc": "HOOK AND LINE, TROLL",
+                            "category_code": "300",
+                            "category_name": "HOOK AND LINE",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "3 Gear(s) Returned"
+                }
+            },
             "dealer_report": {
                 "title": "Root Type for dealer_report",
                 "description": "",
@@ -6221,13 +6221,14 @@
                     }
                 },
                 "example": {
-                    "state_reg_nbr": "MS9999",
-                    "landing_date": "02/01/2017",
+                    "report_update": "N",
+                    "state_reg_nbr": "VA54321",
+                    "landing_date": "07/14/2018",
                     "time_landed": "1618",
-                    "date_of_pur": "02/01/2017",
-                    "dea_license_nbr": "MADEALER",
-                    "dea_partner_id": "0003",
-                    "supplier_dr_id": "22882-2K1-U-9MUPC",
+                    "date_of_pur": "07/14/2018",
+                    "dea_license_nbr": 1234,
+                    "dea_partner_id": "0016",
+                    "supplier_dr_id": "301585-2K1-U-9MUPC",
                     "cf_license_nbr": "22882",
                     "cf_partner_id": "0003",
                     "vtr_number": "23452120091807",
@@ -6235,18 +6236,18 @@
                     "port": "240513",
                     "catch_source": "S",
                     "trip_start_date": "01/31/2017",
-                    "trip_start_time": "1018",
+                    "trip_start_time": "2218",
                     "observer_log_id": "54321",
                     "vtr_explanation": "vtr, what vtr",
                     "landings": [
                         {
-                            "species_itis": "079872",
-                            "disposition_code": "001",
+                            "species_itis": 172421,
+                            "disposition_code": "012",
                             "gear_code": "620",
-                            "grade_code": "02",
-                            "unit_measure": "CN",
-                            "reported_quantity": "2500",
-                            "price": ".65",
+                            "grade_code": "01",
+                            "unit_measure": "LB",
+                            "reported_quantity": "430",
+                            "price": ".41",
                             "market_code": "UN",
                             "area_fished": "514",
                             "sub_area_fished": "0057",
@@ -6259,38 +6260,7 @@
                             "fishing_hours": "3",
                             "hours_days_flag": "H",
                             "bft_sale_nature'": "D",
-                            "bft_color": "Z",
-                            "bft_shape": "C",
-                            "bft_length": "27",
-                            "bft_area_code": "3",
-                            "bft_destination_code": "X",
-                            "bft_tag_prefix": "3",
-                            "bft_tag_nbr": "0136302",
-                            "bft_measure_type": "2",
-                            "hms_fins_attached": "N",
-                            "hms_explanation": "not sure what happened, hmm"
-                        },
-                        {
-                            "species_itis": "079872",
-                            "disposition_code": "001",
-                            "gear_code": "620",
-                            "grade_code": "02",
-                            "unit_measure": "CN",
-                            "reported_quantity": "3500",
-                            "price": ".5",
-                            "market_code": "SH",
-                            "area_fished": "514",
-                            "sub_area_fished": "0057",
-                            "local_area_code": "CCB42",
-                            "catch_source": "A",
-                            "temp_unit": "F",
-                            "gear_quantity": "1",
-                            "in_state": "MA",
-                            "total_gear_in_water": "1",
-                            "fishing_hours": "3",
-                            "hours_days_flag": "H",
-                            "bft_sale_nature'": "D",
-                            "bft_color": "Z",
+                            "bft_color": "A",
                             "bft_shape": "C",
                             "bft_length": "27",
                             "bft_area_code": "3",
