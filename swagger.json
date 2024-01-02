@@ -3390,142 +3390,6 @@
                     "description": "Vessels assigned for Fisherman endorsement(s): 2"
                 }
             },
-            "dealer_report": {
-                "title": "Root Type for dealer_report",
-                "description": "",
-                "required": [
-                    "landings",
-                    "date_of_pur",
-                    "cf_partner_id",
-                    "cf_license_nbr",
-                    "landing_date",
-                    "port",
-                    "supplier_dr_id"
-                ],
-                "type": "object",
-                "properties": {
-                    "state_reg_nbr": {
-                        "description": "State Registration number of vessel. If no vessel used, provide 'FROM_SHORE'. Required to provide either coast_guard_nbr or state_reg_nbr.",
-                        "type": "string"
-                    },
-                    "landing_date": {
-                        "format": "date",
-                        "description": "Landing Date of report. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "time_landed": {
-                        "type": "string"
-                    },
-                    "date_of_pur": {
-                        "format": "date",
-                        "description": "Purchase date. Format MM/DD/YYYY",
-                        "type": "string"
-                    },
-                    "dea_license_nbr": {
-                        "description": "Permit/License Number of Dealer in use",
-                        "type": "string"
-                    },
-                    "dea_partner_id": {
-                        "description": "4 character identifier of issuing agency of dealer permit in use",
-                        "type": "string"
-                    },
-                    "supplier_dr_id": {
-                        "description": "unique report id given by the caller. Only used to communicate errors and updates.",
-                        "type": "string"
-                    },
-                    "cf_license_nbr": {
-                        "description": "Permit/License Number of fisherman purchased from.",
-                        "type": "string"
-                    },
-                    "cf_partner_id": {
-                        "description": "4 character identifier of issuing agency of fisherman permit in use",
-                        "type": "string"
-                    },
-                    "submit_method": {
-                        "type": "string"
-                    },
-                    "port": {
-                        "description": "Landing Port of Vessel",
-                        "type": "string"
-                    },
-                    "trip_start_date": {
-                        "type": "string"
-                    },
-                    "trip_start_time": {
-                        "type": "string"
-                    },
-                    "vtr_number": {
-                        "description": "vessel tracking report number when a NMFS-NE registed vessel is in use.",
-                        "type": "string"
-                    },
-                    "landings": {
-                        "description": "Collection of landings in this dealer report.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/landing"
-                        }
-                    }
-                },
-                "example": {
-                    "state_reg_nbr": "MS9999",
-                    "landing_date": "02/01/2017",
-                    "time_landed": "1618",
-                    "date_of_pur": "02/01/2017",
-                    "dea_license_nbr": "MADEALER",
-                    "dea_partner_id": "0003",
-                    "supplier_dr_id": "22882-2K1-U-9MUPC",
-                    "cf_license_nbr": "22882",
-                    "cf_partner_id": "0003",
-                    "vtr_number": "23452120091807",
-                    "submit_method": "D",
-                    "port": "240513",
-                    "catch_source": "S",
-                    "trip_start_date": "01/31/2017",
-                    "trip_start_time": "1018",
-                    "landings": [
-                        {
-                            "species_itis": "079872",
-                            "disposition_code": "001",
-                            "gear_code": "620",
-                            "grade_code": "02",
-                            "unit_measure": "CN",
-                            "reported_quantity": "2500",
-                            "price": ".65",
-                            "market_code": "UN",
-                            "area_fished": "514",
-                            "sub_area_fished": "0057",
-                            "local_area_code": "CCB42",
-                            "catch_source": "A",
-                            "temp_unit": "F",
-                            "gear_quantity": "1",
-                            "in_state": "MA",
-                            "total_gear_in_water": "1",
-                            "fishing_hours": "3",
-                            "hours_days_flag": "H"
-                        },
-                        {
-                            "species_itis": "079872",
-                            "disposition_code": "001",
-                            "gear_code": "620",
-                            "grade_code": "02",
-                            "unit_measure": "CN",
-                            "reported_quantity": "3500",
-                            "price": ".5",
-                            "market_code": "SH",
-                            "area_fished": "514",
-                            "sub_area_fished": "0057",
-                            "local_area_code": "CCB42",
-                            "catch_source": "A",
-                            "temp_unit": "F",
-                            "gear_quantity": "1",
-                            "in_state": "MA",
-                            "total_gear_in_water": "1",
-                            "fishing_hours": "3",
-                            "hours_days_flag": "H"
-                        }
-                    ]
-                }
-            },
             "participant": {
                 "title": "Participant",
                 "description": "",
@@ -6277,6 +6141,166 @@
                         "EFFORT_ADDITIONAL_ATTRIBUTES",
                         "HMS_GEARS",
                         "HMS_SPECIES"
+                    ]
+                }
+            },
+            "dealer_report": {
+                "title": "Root Type for dealer_report",
+                "description": "",
+                "required": [
+                    "landings",
+                    "date_of_pur",
+                    "cf_partner_id",
+                    "cf_license_nbr",
+                    "landing_date",
+                    "port",
+                    "supplier_dr_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "state_reg_nbr": {
+                        "description": "State Registration number of vessel. If no vessel used, provide 'FROM_SHORE'. Required to provide either coast_guard_nbr or state_reg_nbr.",
+                        "type": "string"
+                    },
+                    "landing_date": {
+                        "format": "date",
+                        "description": "Landing Date of report. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "time_landed": {
+                        "type": "string"
+                    },
+                    "date_of_pur": {
+                        "format": "date",
+                        "description": "Purchase date. Format MM/DD/YYYY",
+                        "type": "string"
+                    },
+                    "dea_license_nbr": {
+                        "description": "Permit/License Number of Dealer in use",
+                        "type": "string"
+                    },
+                    "dea_partner_id": {
+                        "description": "4 character identifier of issuing agency of dealer permit in use",
+                        "type": "string"
+                    },
+                    "supplier_dr_id": {
+                        "description": "unique report id given by the caller. Only used to communicate errors and updates.",
+                        "type": "string"
+                    },
+                    "cf_license_nbr": {
+                        "description": "Permit/License Number of fisherman purchased from.",
+                        "type": "string"
+                    },
+                    "cf_partner_id": {
+                        "description": "4 character identifier of issuing agency of fisherman permit in use",
+                        "type": "string"
+                    },
+                    "submit_method": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "description": "Landing Port of Vessel",
+                        "type": "string"
+                    },
+                    "trip_start_date": {
+                        "type": "string"
+                    },
+                    "trip_start_time": {
+                        "type": "string"
+                    },
+                    "vtr_number": {
+                        "description": "vessel tracking report number when a NMFS-NE registed vessel is in use.",
+                        "type": "string"
+                    },
+                    "landings": {
+                        "description": "Collection of landings in this dealer report.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/landing"
+                        }
+                    }
+                },
+                "example": {
+                    "state_reg_nbr": "MS9999",
+                    "landing_date": "02/01/2017",
+                    "time_landed": "1618",
+                    "date_of_pur": "02/01/2017",
+                    "dea_license_nbr": "MADEALER",
+                    "dea_partner_id": "0003",
+                    "supplier_dr_id": "22882-2K1-U-9MUPC",
+                    "cf_license_nbr": "22882",
+                    "cf_partner_id": "0003",
+                    "vtr_number": "23452120091807",
+                    "submit_method": "D",
+                    "port": "240513",
+                    "catch_source": "S",
+                    "trip_start_date": "01/31/2017",
+                    "trip_start_time": "1018",
+                    "observer_log_id": "54321",
+                    "vtr_explanation": "vtr, what vtr",
+                    "landings": [
+                        {
+                            "species_itis": "079872",
+                            "disposition_code": "001",
+                            "gear_code": "620",
+                            "grade_code": "02",
+                            "unit_measure": "CN",
+                            "reported_quantity": "2500",
+                            "price": ".65",
+                            "market_code": "UN",
+                            "area_fished": "514",
+                            "sub_area_fished": "0057",
+                            "local_area_code": "CCB42",
+                            "catch_source": "A",
+                            "temp_unit": "F",
+                            "gear_quantity": "1",
+                            "in_state": "MA",
+                            "total_gear_in_water": "1",
+                            "fishing_hours": "3",
+                            "hours_days_flag": "H",
+                            "bft_sale_nature'": "D",
+                            "bft_color": "Z",
+                            "bft_shape": "C",
+                            "bft_length": "27",
+                            "bft_area_code": "3",
+                            "bft_destination_code": "X",
+                            "bft_tag_prefix": "3",
+                            "bft_tag_nbr": "0136302",
+                            "bft_measure_type": "2",
+                            "hms_fins_attached": "N",
+                            "hms_explanation": "not sure what happened, hmm"
+                        },
+                        {
+                            "species_itis": "079872",
+                            "disposition_code": "001",
+                            "gear_code": "620",
+                            "grade_code": "02",
+                            "unit_measure": "CN",
+                            "reported_quantity": "3500",
+                            "price": ".5",
+                            "market_code": "SH",
+                            "area_fished": "514",
+                            "sub_area_fished": "0057",
+                            "local_area_code": "CCB42",
+                            "catch_source": "A",
+                            "temp_unit": "F",
+                            "gear_quantity": "1",
+                            "in_state": "MA",
+                            "total_gear_in_water": "1",
+                            "fishing_hours": "3",
+                            "hours_days_flag": "H",
+                            "bft_sale_nature'": "D",
+                            "bft_color": "Z",
+                            "bft_shape": "C",
+                            "bft_length": "27",
+                            "bft_area_code": "3",
+                            "bft_destination_code": "X",
+                            "bft_tag_prefix": "3",
+                            "bft_tag_nbr": "0136302",
+                            "bft_measure_type": "2",
+                            "hms_fins_attached": "N",
+                            "hms_explanation": "not sure what happened, hmm"
+                        }
                     ]
                 }
             }
