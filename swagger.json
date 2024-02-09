@@ -2245,7 +2245,9 @@
                     "row": [
                         {
                             "area_code": "514",
+                            "area_name": "EASTERN MASS",
                             "sub_area_code": "0106",
+                            "sub_area_name": "MASSACHUSETTS BAY",
                             "local_area_code": "GBH3",
                             "local_area_name": "MA GBH3 - NEPONSET RIV AND DORCHESTER BAY",
                             "state": "MA",
@@ -2254,26 +2256,19 @@
                             "in_use": "Y"
                         },
                         {
-                            "area_code": "442",
+                            "area_code": "011",
+                            "area_name": "ALABAMA-MISSISSIPPI",
                             "sub_area_code": "0000",
+                            "sub_area_name": "OFFSHORE WATERS",
                             "local_area_code": "00",
-                            "state": "US",
-                            "area_display_name": "US 442 - MISAINE BANK",
-                            "waters": "F",
-                            "in_use": "Y"
-                        },
-                        {
-                            "area_code": "513",
-                            "sub_area_code": "0021",
-                            "local_area_code": "00",
-                            "state": "ME",
-                            "area_display_name": "ME 513 - 21- PISCATAQUA RIVER - ME",
+                            "state": "MS",
+                            "area_display_name": "ALABAMA-MISSISSIPPI 011: OFFSHORE WATERS",
                             "waters": "S",
-                            "in_use": "N"
+                            "in_use": "Y"
                         }
                     ],
                     "status": "OK",
-                    "description": "3 Areas(s) Returned"
+                    "description": "2 Areas(s) Returned"
                 }
             },
             "species_response": {
