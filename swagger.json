@@ -6312,15 +6312,16 @@
                     }
                 },
                 "example": {
-                    "report_update": "N",
-                    "state_reg_nbr": "VA54321",
+                    "report_update": "Y",
+                    "accsp_report_id": "3145324",
+                    "state_reg_nbr": "VA12345",
                     "landing_date": "09/15/2018",
                     "time_landed": "1618",
                     "date_of_pur": "09/15/2018",
                     "dea_license_nbr": 1234,
                     "dea_partner_id": "0016",
-                    "supplier_dr_id": "301585-2K1-U-9MUPC",
-                    "cf_license_nbr": "22882",
+                    "supplier_dr_id": "1234-2K1-U-54321",
+                    "cf_license_nbr": "2468",
                     "cf_partner_id": "0003",
                     "vtr_number": "23452120091826",
                     "submit_method": "D",
@@ -6330,6 +6331,11 @@
                     "shark_fishery": "Y",
                     "observer_log_id": "bat654",
                     "vtr_explanation": "vtr, what vtr update?",
+                    "explanation_late": "why was report submitted late?",
+                    "explanation_modified": "why was this report modified?",
+                    "date_submitted": "12/01/2024",
+                    "platform": "PCTT",
+                    "user_submission_handle": "any_file_name_123.txt",
                     "landings": [
                         {
                             "species_itis": 172421,
@@ -6363,7 +6369,7 @@
                             "bft_tag_nbr": "0136302",
                             "bft_measure_type": "2",
                             "hms_fins_attached": "N",
-                            "hms_explanation": "we are not sure what happened to fins"
+                            "hms_explanation": "fins...did anyone see the fins?"
                         }
                     ]
                 }
