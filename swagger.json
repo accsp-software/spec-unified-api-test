@@ -6379,7 +6379,7 @@
                 }
             },
             "partner_managed_footer_response": {
-                "title": "PARTNER_MANAGED_FOOTEr",
+                "title": "PARTNER_MANAGED_FOOTER",
                 "description": "",
                 "type": "object",
                 "properties": {
