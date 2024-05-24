@@ -4397,7 +4397,7 @@
                         "$ref": "#/components/schemas/hms_gears_response"
                     },
                     {
-                        "$ref": "#/components/schemas/partner_managed_footer"
+                        "$ref": "#/components/schemas/partner_managed_footer_response"
                     }
                 ],
                 "description": "",
@@ -6378,8 +6378,8 @@
                     "p_lastdate": "12/27/2010 14:45:00 "
                 }
             },
-            "partner_managed_footer": {
-                "title": "partner_managed_footer",
+            "partner_managed_footer_response": {
+                "title": "PARTNER_MANAGED_FOOTEr",
                 "description": "",
                 "type": "object",
                 "properties": {
