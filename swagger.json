@@ -6379,7 +6379,7 @@
                 }
             },
             "partner_managed_footer": {
-                "title": "Root Type for partner_managed_footer",
+                "title": "partner_managed_footer",
                 "description": "",
                 "type": "object",
                 "properties": {
