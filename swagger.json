@@ -4395,6 +4395,9 @@
                     },
                     {
                         "$ref": "#/components/schemas/hms_gears_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/partner_managed_footer"
                     }
                 ],
                 "description": "",
@@ -5705,64 +5708,6 @@
                     "description": "2 hms Species(s) Returned."
                 }
             },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS",
-                            "GARFO_ACCSP_GEAR_MAPPING",
-                            "SCIFISH_SPECIES",
-                            "SCIFISH_GEARS",
-                            "SCIFISH_TRIP_ACTIVITY",
-                            "TRIP_PROCESSED",
-                            "HMS_TARGET_SPECIES",
-                            "HMS_GEARS"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
             "hms_gears_request": {
                 "title": "hms_gears_request",
                 "description": "",
@@ -6372,6 +6317,253 @@
                             "hms_explanation": "fins...did anyone see the fins?"
                         }
                     ]
+                }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "PARTNER_MANAGED_FOOTER",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING",
+                            "SCIFISH_SPECIES",
+                            "SCIFISH_GEARS",
+                            "SCIFISH_TRIP_ACTIVITY",
+                            "TRIP_PROCESSED",
+                            "HMS_TARGET_SPECIES",
+                            "HMS_GEARS"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "partner_managed_footer": {
+                "title": "Root Type for partner_managed_footer",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "partner_id": {
+                                    "type": "string"
+                                },
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "partner_element_name": {
+                                    "type": "string"
+                                },
+                                "partner_help_text": {
+                                    "type": "string"
+                                },
+                                "switchboard_behavior": {
+                                    "type": "string"
+                                },
+                                "condition_field": {
+                                    "type": "string"
+                                },
+                                "condition_value": {
+                                    "type": "string"
+                                },
+                                "component_id": {
+                                    "type": "string"
+                                },
+                                "component_desc": {
+                                    "type": "string"
+                                },
+                                "comm_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_charter_flag": {
+                                    "type": "string"
+                                },
+                                "for_hire_hb_flag": {
+                                    "type": "string"
+                                },
+                                "rec_flag": {
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "human readable description of the result status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 107,
+                            "partner_element_name": "Total Number of Pots in This Area",
+                            "partner_help_text": "Total number of pots in the reported chart area",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "T",
+                            "component_desc": "Trip Header",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 246,
+                            "partner_element_name": "Average Number of Pots per String",
+                            "partner_help_text": "The average number of pots per string, for this effort.",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 350,
+                            "partner_element_name": "Total Number of Buoy Lines in Water",
+                            "partner_help_text": "Total number of buoy lines in the water in all areas",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 490,
+                            "partner_element_name": "Total Average Number of Pots Per String in Water",
+                            "partner_help_text": "At the start of the trip, if your gear has vertical lines, how many total lines are in the water",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 1393,
+                            "partner_element_name": "Total number of pots in the Water",
+                            "partner_help_text": "Total number of pots in the water in all areas",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 1397,
+                            "partner_element_name": "Mesh Size",
+                            "partner_help_text": "Pot entrance (ring, hoop) size (inches)",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0016",
+                            "attribute_code": 1441,
+                            "partner_element_name": "Total Number of Buoy Lines in This Area",
+                            "partner_help_text": "Total number of buoy lines in the reported chart area",
+                            "switchboard_behavior": "S",
+                            "condition_field": "SPECIES_ITIS",
+                            "condition_value": "098678",
+                            "component_id": "G",
+                            "component_desc": "Gears",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "R",
+                            "for_hire_hb_flag": "R",
+                            "rec_flag": "R",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "7 Attribute(s) Returned."
                 }
             }
         },
