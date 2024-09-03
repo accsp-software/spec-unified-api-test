@@ -6194,6 +6194,25 @@
                             "for_hire_hb_flag": "R",
                             "rec_flag": "R",
                             "in_use": "Y"
+                        },
+                        {
+                            "partner_id": "0018",
+                            "attribute_code": 3,
+                            "partner_element_name": "Target Species",
+                            "partner_help_text": "Choose one or more targeted species.",
+                            "switchboard_behavior": "G",
+                            "condition_field": "GEAR_CODE",
+                            "condition_value": "411",
+                            "type": "VARCHAR2",
+                            "list_type": "D",
+                            "list_name": "SPECIES",
+                            "component_id": "E",
+                            "component_desc": "Trip Effort",
+                            "comm_flag": "R",
+                            "for_hire_charter_flag": "N",
+                            "for_hire_hb_flag": "N",
+                            "rec_flag": "N",
+                            "in_use": "Y"
                         }
                     ],
                     "status": "OK",
