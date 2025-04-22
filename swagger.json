@@ -6529,6 +6529,13 @@
                         "items": {
                             "$ref": "#/components/schemas/landing"
                         }
+                    },
+                    "landing_additional_attribute": {
+                        "description": "collection of landing attribute",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/landings_additional_attributes"
+                        }
                     }
                 },
                 "example": {
