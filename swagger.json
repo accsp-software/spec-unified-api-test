@@ -6421,6 +6421,37 @@
                     "description": "3 Attribute(s) Returned."
                 }
             },
+            "report_additional_attributes": {
+                "title": "Root Type for report_additional_attributes",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            },
+            "landings_additional_attributes": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "title": "Root Type for landings_additional_attributes",
+                "description": "",
+                "type": "object"
+            },
             "dealer_report": {
                 "title": "Root Type for dealer_report",
                 "description": "",
@@ -6546,13 +6577,6 @@
                         "items": {
                             "$ref": "#/components/schemas/landing"
                         }
-                    },
-                    "landing_additional_attribute": {
-                        "description": "collection of landing attribute",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/landings_additional_attributes"
-                        }
                     }
                 },
                 "example": {
@@ -6640,37 +6664,6 @@
                         }
                     ]
                 }
-            },
-            "report_additional_attributes": {
-                "title": "Root Type for report_additional_attributes",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                }
-            },
-            "landings_additional_attributes": {
-                "oneOf": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "string"
-                            },
-                            "value": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                ],
-                "title": "Root Type for landings_additional_attributes",
-                "description": "",
-                "type": "object"
             }
         },
         "securitySchemes": {
