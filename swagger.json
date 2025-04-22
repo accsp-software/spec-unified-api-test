@@ -6638,44 +6638,16 @@
                 }
             },
             "landings_additional_attributes": {
-                "oneOf": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "landings_additional_attributes": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "value": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "$ref": "#/components/schemas/landing"
-                    }
-                ],
                 "title": "Root Type for landings_additional_attributes",
                 "description": "",
                 "type": "object",
-                "example": {
-                    "landings_additional_attributes": [
-                        {
-                            "code": "321",
-                            "value": "Z"
-                        },
-                        {
-                            "code": "5432",
-                            "value": "7"
-                        }
-                    ]
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
                 }
             }
         },
