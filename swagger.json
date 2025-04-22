@@ -6602,7 +6602,17 @@
                             "bft_tag_nbr": "0136302",
                             "bft_measure_type": "2",
                             "hms_fins_attached": "N",
-                            "hms_explanation": "fins...did anyone see the fins?"
+                            "hms_explanation": "fins...did anyone see the fins?",
+                            "landings_additional_attributes": [
+                                {
+                                    "code": "321",
+                                    "value": "Z"
+                                },
+                                {
+                                    "code": "5432",
+                                    "value": "7"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -6618,6 +6628,47 @@
                     "value": {
                         "type": "string"
                     }
+                }
+            },
+            "landings_additional_attributes": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "landings_additional_attributes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/landing"
+                    }
+                ],
+                "title": "Root Type for landings_additional_attributes",
+                "description": "",
+                "type": "object",
+                "example": {
+                    "landings_additional_attributes": [
+                        {
+                            "code": "321",
+                            "value": "Z"
+                        },
+                        {
+                            "code": "5432",
+                            "value": "7"
+                        }
+                    ]
                 }
             }
         },
