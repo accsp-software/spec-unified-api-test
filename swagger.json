@@ -6404,47 +6404,6 @@
                     "description": "3 Attribute(s) Returned."
                 }
             },
-            "report_additional_attributes": {
-                "oneOf": [
-                    {
-                        "type": "object",
-                        "properties": {
-                            "report_additional_attributes": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string"
-                                        },
-                                        "value": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "$ref": "#/components/schemas/dealer_report"
-                    }
-                ],
-                "title": "Root Type for report_additional_attributes",
-                "description": "",
-                "type": "object",
-                "example": {
-                    "report_additional_attributes": [
-                        {
-                            "code": "799",
-                            "value": "AA2"
-                        },
-                        {
-                            "code": "800",
-                            "value": "26"
-                        }
-                    ]
-                }
-            },
             "dealer_report": {
                 "title": "Root Type for dealer_report",
                 "description": "",
@@ -6646,6 +6605,19 @@
                             "hms_explanation": "fins...did anyone see the fins?"
                         }
                     ]
+                }
+            },
+            "report_additional_attributes": {
+                "title": "Root Type for report_additional_attributes",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
                 }
             }
         },
