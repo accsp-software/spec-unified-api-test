@@ -6187,6 +6187,13 @@
                     "hms_explanation": {
                         "description": "hms explanation",
                         "type": "string"
+                    },
+                    "landings_additional_attributes": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/landings_additional_attributes"
+                        }
                     }
                 },
                 "example": {
@@ -6222,7 +6229,17 @@
                     "bft_destination_code": "X",
                     "bft_measure_type": 2,
                     "hms_fins_attached": "U",
-                    "hms_explanation\"": "we're not sure what happened to fins"
+                    "hms_explanation\"": "we're not sure what happened to fins",
+                    "landings_additional_attributes": [
+                        {
+                            "code": "321",
+                            "value": "Z"
+                        },
+                        {
+                            "code": "5432",
+                            "value": "7"
+                        }
+                    ]
                 }
             },
             "partner_managed_footer_response": {
@@ -6638,17 +6655,22 @@
                 }
             },
             "landings_additional_attributes": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "title": "Root Type for landings_additional_attributes",
                 "description": "",
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                }
+                "type": "object"
             }
         },
         "securitySchemes": {
