@@ -836,7 +836,8 @@
                             "cf_license_nbr": "123456",
                             "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990",
-                            "device_id": "4321"
+                            "device_id": "4321",
+                            "sector": "C"
                         },
                         {
                             "supplier_row_id": "12345612",
@@ -846,7 +847,8 @@
                             "cf_license_nbr": "123456",
                             "state_reg_nbr": "",
                             "coast_guard_nbr": "8877990",
-                            "device_id": "4321"
+                            "device_id": "4321",
+                            "sector": "H"
                         }
                     ]
                 }
@@ -4895,6 +4897,7 @@
                                     "vessel_name": "Deborah Ann",
                                     "coast_guard_nbr": "8877991",
                                     "vessel_permit": "555555",
+                                    "sector": "C",
                                     "date_entered": "14-DEC-2022"
                                 },
                                 {
@@ -4904,6 +4907,7 @@
                                     "vessel_name": "DUAL-PERMIT FED TEST VESSEL",
                                     "coast_guard_nbr": "8877991",
                                     "vessel_permit": "555555",
+                                    "sector": "C",
                                     "date_entered": "14-DEC-2022"
                                 }
                             ]
