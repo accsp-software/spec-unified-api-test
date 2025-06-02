@@ -6667,7 +6667,7 @@
                         "type": "string"
                     },
                     "sector": {
-                        "description": "sector is a trip type value for commercial ='C' or for_hire='H'.",
+                        "description": "sector is a trip type value for DNF reports. Use for COMM_FLAG trip type= 'C' and FH_FLAG trip_type = 'H'.",
                         "type": "string"
                     }
                 },
