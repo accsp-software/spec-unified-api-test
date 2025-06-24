@@ -4156,6 +4156,12 @@
                     },
                     {
                         "$ref": "#/components/schemas/partner_managed_footer_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/sector_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/trip_type_response"
                     }
                 ],
                 "description": "",
@@ -5747,65 +5753,6 @@
                     "description": "2 Areas(s) Returned"
                 }
             },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "PARTNER_MANAGED_FOOTER",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS",
-                            "GARFO_ACCSP_GEAR_MAPPING",
-                            "SCIFISH_SPECIES",
-                            "SCIFISH_GEARS",
-                            "SCIFISH_TRIP_ACTIVITY",
-                            "TRIP_PROCESSED",
-                            "HMS_TARGET_SPECIES",
-                            "HMS_GEARS"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
             "landing": {
                 "title": "Root Type for landing",
                 "description": "",
@@ -6681,6 +6628,192 @@
                     "coast_guard_nbr": "12345689",
                     "device_id": "4321",
                     "sector": "F"
+                }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "PARTNER_MANAGED_FOOTER",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING",
+                            "SCIFISH_SPECIES",
+                            "SCIFISH_GEARS",
+                            "SCIFISH_TRIP_ACTIVITY",
+                            "TRIP_PROCESSED",
+                            "HMS_TARGET_SPECIES",
+                            "HMS_GEARS",
+                            "TRIP_TYPE",
+                            "SECTOR"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "sector_response": {
+                "title": "Root Type for sector_response",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "sector": {
+                                    "description": "sector type.",
+                                    "type": "string"
+                                },
+                                "sector_desc": {
+                                    "description": "description of the sector.",
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "status of the sector.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the request",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status request",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "sector": "C",
+                            "sector_desc": "Commercial",
+                            "in_use": "Y"
+                        },
+                        {
+                            "sector": "F",
+                            "sector_desc": "for-hire charter and for-hire headboat",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "2 sector(s) Returned"
+                }
+            },
+            "trip_type_response": {
+                "title": "Root Type for trip_type_response",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "trip_type": {
+                                    "description": "trip type of the vessel used.",
+                                    "type": "string"
+                                },
+                                "trip_type_desc": {
+                                    "description": "discription of the trip type.",
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "status of the trip type.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "description": "status of the upload attempt",
+                        "enum": [
+                            "OK",
+                            "FAIL"
+                        ],
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Human readable description of the status reason or failure",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "trip_type": "C",
+                            "trip_type_desc": "Commercial",
+                            "in_use": "ACTIVE"
+                        },
+                        {
+                            "trip_type": "P",
+                            "trip_type_desc": "For-Hire (keep-historical)",
+                            "in_use": "INACTIVE"
+                        },
+                        {
+                            "trip_type": "A",
+                            "trip_type_desc": "For-Hire: Charter",
+                            "in_use": "ACTIVE"
+                        },
+                        {
+                            "trip_type": "H",
+                            "trip_type_desc": "For-Hire: Headboat/Party",
+                            "in_use": "ACTIVE"
+                        },
+                        {
+                            "trip_type": "R",
+                            "trip_type_desc": "Recreational",
+                            "in_use": "ACTIVE"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "5 trip_types(s) Returned"
                 }
             }
         },
