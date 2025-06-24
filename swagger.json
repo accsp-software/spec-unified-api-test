@@ -6692,7 +6692,7 @@
                 }
             },
             "sector_response": {
-                "title": "Root Type for sector_response",
+                "title": "SECTOR",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -6747,7 +6747,7 @@
                 }
             },
             "trip_type_response": {
-                "title": "Root Type for trip_type_response",
+                "title": "TRIP_TYPE",
                 "description": "",
                 "type": "object",
                 "properties": {
