@@ -4031,6 +4031,12 @@
                     },
                     {
                         "$ref": "#/components/schemas/trip_type_response"
+                    },
+                    {
+                        "$ref": "#/components/schemas/report_additional_attributes"
+                    },
+                    {
+                        "$ref": "#/components/schemas/landings_additional_attributes"
                     }
                 ],
                 "description": "",
@@ -6255,67 +6261,6 @@
                     "sector": "F"
                 }
             },
-            "lookup_list_request": {
-                "title": "Root Type for lookup_list_request",
-                "description": "",
-                "required": [
-                    "p_listname",
-                    "p_partner"
-                ],
-                "type": "object",
-                "properties": {
-                    "p_partner": {
-                        "description": "4 character value of permit issuing agency",
-                        "type": "string"
-                    },
-                    "p_listname": {
-                        "description": "Lookup list name being requested",
-                        "enum": [
-                            "GEARS",
-                            "GEAR_ATTRIBUTES",
-                            "TRIP_ADDITIONAL_ATTRIBUTES",
-                            "EFFORT_ADDITIONAL_ATTRIBUTES",
-                            "PARTNER_MANAGED_SPECIES",
-                            "PARTNER_MANAGED_FOOTER",
-                            "DISPOSITION",
-                            "AREASFISHED",
-                            "SPECIES",
-                            "CATCH_SOURCE",
-                            "USER_NOTIFICATIONS",
-                            "PARTICIPANTS",
-                            "VESSELS",
-                            "SWIPE_CARDS",
-                            "TRIP_ACTIVITY",
-                            "PORTS",
-                            "DEALERS",
-                            "PARTNER_MANAGED_NOTIFICATIONS",
-                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
-                            "VMS_LANDING_LOCATIONS",
-                            "GARFO_ACCSP_GEAR_MAPPING",
-                            "SCIFISH_SPECIES",
-                            "SCIFISH_GEARS",
-                            "SCIFISH_TRIP_ACTIVITY",
-                            "TRIP_PROCESSED",
-                            "HMS_TARGET_SPECIES",
-                            "HMS_GEARS",
-                            "TRIP_TYPE",
-                            "SECTOR"
-                        ],
-                        "type": "string"
-                    },
-                    "p_lastdate": {
-                        "format": "date-time",
-                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "p_partner": "0023",
-                    "p_listname": "GEARS",
-                    "p_listtype": "EDR",
-                    "p_lastdate": "12/27/2010 14:45:00 "
-                }
-            },
             "sector_response": {
                 "title": "SECTOR",
                 "description": "",
@@ -6439,40 +6384,6 @@
                     ],
                     "status": "OK",
                     "description": "5 trip_types(s) Returned"
-                }
-            },
-            "report_additional_attributes": {
-                "title": "report_additional_attributes",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "description": "unique identifier for report supplied by sender",
-                        "type": "string"
-                    },
-                    "value": {
-                        "description": "unique identifier for report supplied by sender",
-                        "type": "string"
-                    }
-                }
-            },
-            "landings_additional_attributes": {
-                "title": "Root Type for landings_additional_attributes",
-                "description": "",
-                "required": [
-                    "code",
-                    "value"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "description": "unique identifier for landing supplied by sender",
-                        "type": "string"
-                    },
-                    "value": {
-                        "description": "unique identifier for landing supplied by sender",
-                        "type": "string"
-                    }
                 }
             },
             "dealer_reports_response": {
@@ -6837,6 +6748,351 @@
                             ]
                         }
                     ]
+                }
+            },
+            "lookup_list_request": {
+                "title": "Root Type for lookup_list_request",
+                "description": "",
+                "required": [
+                    "p_listname",
+                    "p_partner"
+                ],
+                "type": "object",
+                "properties": {
+                    "p_partner": {
+                        "description": "4 character value of permit issuing agency",
+                        "type": "string"
+                    },
+                    "p_listname": {
+                        "description": "Lookup list name being requested",
+                        "enum": [
+                            "GEARS",
+                            "GEAR_ATTRIBUTES",
+                            "TRIP_ADDITIONAL_ATTRIBUTES",
+                            "EFFORT_ADDITIONAL_ATTRIBUTES",
+                            "PARTNER_MANAGED_SPECIES",
+                            "PARTNER_MANAGED_FOOTER",
+                            "DISPOSITION",
+                            "AREASFISHED",
+                            "SPECIES",
+                            "CATCH_SOURCE",
+                            "USER_NOTIFICATIONS",
+                            "PARTICIPANTS",
+                            "VESSELS",
+                            "SWIPE_CARDS",
+                            "TRIP_ACTIVITY",
+                            "PORTS",
+                            "DEALERS",
+                            "PARTNER_MANAGED_NOTIFICATIONS",
+                            "SALE_DISPOSITIONS_ADDITIONAL_ATTRIBUTES",
+                            "LANDING_ADDITIONAL_ATTRIBUTES",
+                            "REPORT_ADDITIONAL_ATTRIBUTES",
+                            "VMS_LANDING_LOCATIONS",
+                            "GARFO_ACCSP_GEAR_MAPPING",
+                            "SCIFISH_SPECIES",
+                            "SCIFISH_GEARS",
+                            "SCIFISH_TRIP_ACTIVITY",
+                            "TRIP_PROCESSED",
+                            "HMS_TARGET_SPECIES",
+                            "HMS_GEARS",
+                            "TRIP_TYPE",
+                            "SECTOR"
+                        ],
+                        "type": "string"
+                    },
+                    "p_lastdate": {
+                        "format": "date-time",
+                        "description": "oldest date of changes requested. Format MM/DD/YYYY hh24:mi",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "p_partner": "0023",
+                    "p_listname": "GEARS",
+                    "p_listtype": "EDR",
+                    "p_lastdate": "12/27/2010 14:45:00 "
+                }
+            },
+            "report_additional_attributes": {
+                "title": "REPORT_ADDITIONAL_ATTRIBUTE",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "description": "unique attribute code/id",
+                                    "type": "integer"
+                                },
+                                "attribute_name": {
+                                    "description": "name of attribute",
+                                    "type": "string"
+                                },
+                                "attribute_desc": {
+                                    "description": "attribute description",
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "FIN": {
+                                                "description": "Finfish",
+                                                "type": "string"
+                                            },
+                                            "SHE": {
+                                                "description": "Shellfish",
+                                                "type": "string"
+                                            },
+                                            "NOR": {
+                                                "description": "Unknown",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "attribute_count": {
+                                    "description": "attribute count",
+                                    "type": "string"
+                                },
+                                "partner_id": {
+                                    "description": "partner id",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "type",
+                                    "type": "string"
+                                },
+                                "dealer_rpt_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N)",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "indicates if attribute is in use (Y), not in use (N)",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "attribute_code": 5001,
+                            "attribute_name": "VTR number",
+                            "attribute_desc": "VTR or Trip ID",
+                            "attribute_count": "S",
+                            "partner_id": "0016",
+                            "type": "STRING",
+                            "dealer_rpt_flag": "Y",
+                            "in_use": "Y"
+                        },
+                        {
+                            "attribute_code": 5003,
+                            "attribute_name": "REP_TYPE",
+                            "attribute_desc": "Attribute 2 (test only)",
+                            "options": [
+                                {
+                                    "FIN": "Finfish"
+                                },
+                                {
+                                    "SHE": "Shellfish"
+                                },
+                                {
+                                    "NOR": "Unknown"
+                                }
+                            ],
+                            "attribute_count": "S",
+                            "list_type": "S",
+                            "partner_id": "0016",
+                            "type": "STRING",
+                            "dealer_rpt_flag": "Y",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "2 Attribute(s) Returned"
+                }
+            },
+            "landings_additional_attributes": {
+                "title": "LANDING_ADDITIONAL_ATTRIBUTE",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "row": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute_code": {
+                                    "format": "int32",
+                                    "description": "unique attribute code/id",
+                                    "type": "integer"
+                                },
+                                "attribute_name": {
+                                    "description": "name of attribute",
+                                    "type": "string"
+                                },
+                                "attribute_desc": {
+                                    "description": "attribute description",
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "Y": {
+                                                "description": "Yes",
+                                                "type": "string"
+                                            },
+                                            "N": {
+                                                "description": "No",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "attribute_count": {
+                                    "description": "attribute count",
+                                    "type": "string"
+                                },
+                                "list_type": {
+                                    "description": "list type",
+                                    "type": "string"
+                                },
+                                "partner_id": {
+                                    "description": "partner id",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "type",
+                                    "type": "string"
+                                },
+                                "dealer_rpt_flag": {
+                                    "description": "indicates if attribute is required (R), optional (Y) or Not displayed (N)",
+                                    "enum": [
+                                        "R",
+                                        "Y",
+                                        "N"
+                                    ],
+                                    "type": "string"
+                                },
+                                "in_use": {
+                                    "description": "indicates if attribute is in use (Y), not in use (N)",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "row": [
+                        {
+                            "attribute_code": 1234,
+                            "attribute_name": "Fins Attached",
+                            "attribute_desc": "Fins Attached",
+                            "options": [
+                                {
+                                    "Y": "Yes"
+                                },
+                                {
+                                    "N": "No"
+                                }
+                            ],
+                            "attribute_count": "S",
+                            "list_type": "S",
+                            "partner_id": "0031",
+                            "type": "STRING",
+                            "dealer_rpt_flag": "R",
+                            "in_use": "Y"
+                        },
+                        {
+                            "attribute_code": 1234,
+                            "attribute_name": "Fins Explanation",
+                            "attribute_desc": "Fins Explanation",
+                            "attribute_count": "S",
+                            "partner_id": "0031",
+                            "type": "STRING",
+                            "dealer_rpt_flag": "Y",
+                            "in_use": "Y"
+                        },
+                        {
+                            "attribute_code": 1234,
+                            "attribute_name": "HMS Area Code",
+                            "attribute_desc": "HMS Area Code",
+                            "options": [
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF12356": "BF12356"
+                                },
+                                {
+                                    "BF12378": "BF12378"
+                                },
+                                {
+                                    "BF12391": "BF12391"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                },
+                                {
+                                    "BF123": "BF123"
+                                }
+                            ],
+                            "attribute_count": "S",
+                            "partner_id": "0031",
+                            "type": "STRING",
+                            "dealer_rpt_flag": "R",
+                            "in_use": "Y"
+                        }
+                    ],
+                    "status": "OK",
+                    "description": "3 Attribute(s) Returned."
                 }
             }
         },
