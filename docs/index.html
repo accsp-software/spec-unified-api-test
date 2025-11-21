@@ -6377,7 +6377,9 @@
             <hr>
             <div><p><strong>Overview</strong></p>
 <p>This API is used by remote applications   to communicate with the SAFIS backend database server. It is not intended for any other purpose. This document is intended as a programmer’s reference manual. It is used by both application developers who build a front-end, and the programmers who maintain this   API back-end.</p>
-<p>To request an API key, please contact us.</p>
+<p>To request an API key, please contact support@accsp.org </p>
+<p>Server and base url:  https://safis.accsp.org/safis_test/safist/api/</p>
+            
 </div>
           </div>
         </div>
@@ -11499,6 +11501,7 @@ except ApiException as e:
                         <div class="clearfix"></div>
                         <p></p>
                         <p class="marked">The calling app sends a notification record in JSON format.  The record consists of core notification details submitted as parameter values, and optional partner-managed notification attributes submitted as a JSON array.  See example request.  The response, also in JSON format, includes the universal trip ID for the trip.  The universal trip ID is created when a notification record is submitted if this is the first notification associated with the trip.  If an existing universal trip ID already exists for the same trip, the previously generated universal trip ID is returned.  
+
 </p>
                         <p></p>
                         <br />
